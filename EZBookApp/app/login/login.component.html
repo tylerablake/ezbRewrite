@@ -1,0 +1,24 @@
+<GridLayout id="login-page" class="page page-content" rows="auto,*,50" columns="*">
+  <StackLayout marginTop="100" marginBottom="0" col="0" row="0">
+      <Image [src]="logoImageSrc"></Image>
+  </StackLayout>
+  <StackLayout col="0" row="1" margin="10" verticalAlignment="center" backgroundColor="white">
+      <StackLayout class="form" padding="10">
+          <StackLayout class="input-field" color="#005ABB">
+              <TextField class="input" hint="Username" [(ngModel)]="this.username" style.placeholderColor="#005ABB" autocorrect="false"></TextField>
+              <StackLayout class="hr-light"></StackLayout>
+          </StackLayout>
+          <StackLayout class="input-field" color="#005ABB">
+              <TextField secure="true" class="input" hint="Password" [(ngModel)]="this.password" style.placeholderColor="#005ABB" autocorrect="false"></TextField>
+              <StackLayout class="hr-light"></StackLayout>
+          </StackLayout>
+          <Button class="btn btn-primary" textTransform="none" text="Login" (tap)="onSignIn()" [isEnabled]="this.username && this.password ? 'true' : 'false'"></Button>
+          <GridLayout rows="auto" [columns]="isAndroid ? 'auto,auto' : '*'">
+              <Button  [visibility]="isAndroid ? 'visible' : 'collapsed'" row="0" col="0" class="btn btn-default" textWrap="false" textTransform="none" text="Register New User" (tap)="onRegisterTap()" color="#005ABB"></Button>
+              <Button row="0" col="1" class="btn btn-default" textWrap="false" textTransform="none" text="Forgot Password" (tap)="onForgotPasswordTap()" color="#005ABB"></Button>
+          </GridLayout>
+      </StackLayout>
+  </StackLayout>
+  <Label row="2" col="0" verticalAlignment="center" horizontalAlignment="center" text="QA Build" class="font-weight-bold" fontSize="14"
+      color="yellow"></Label>
+</GridLayout>
