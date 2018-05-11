@@ -34,14 +34,13 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {   
+  ngOnInit(): void {
     //TODO: Remove after testing
     this.username = "ezbapp1";
     this.password = "App12345";
-    //this.onSignIn();             
   }
 
-  onSignIn(): void {
+  onSignIn(): void {    
     this.authService.login(this.username, this.password)
       .subscribe((result) => {
         if(result === true){          

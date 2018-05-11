@@ -1,5 +1,15 @@
-<ActionBar class="action-bar">
+<!-- <ActionBar class="action-bar">
     <Label class="action-bar-title" [text]="title"></Label>
+</ActionBar> -->
+
+<ActionBar class="action-bar">
+
+    <Label class="action-bar-title" [text]="title" android:horizontalAlignment="left"></Label>
+    <ActionItem (tap)="onSearch()" ios.systemIcon="12" ios.position="right" text="Search" android.systemIcon="ic_menu_search"
+        android.color="white"></ActionItem>    
+    <ActionItem (tap)="onLogoutButtonTap()" ios.position="left" android.position="popup" text="Logout"></ActionItem>
+    <ActionItem (tap)="onMyAccountButtonTap()" ios.position="left" android.position="popup" text="My Account" icon="res://user" android.systemIcon="organize"
+        android.color="white"></ActionItem>
 </ActionBar>
 
 <!--

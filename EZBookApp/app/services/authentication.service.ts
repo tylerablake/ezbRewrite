@@ -4,11 +4,6 @@ import { Router, NavigationEnd, NavigationStart } from "@angular/router";
 import { JwtHelper, tokenNotExpired, AuthHttp } from "angular2-jwt";
 import * as  base64 from "base-64";
 import * as utf8 from "utf8";
-import "rxjs/add/observable/of";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/filter";
-import "rxjs/add/operator/takeUntil";
-import "rxjs/add/operator/retry";
 import { Observable } from "rxjs/Observable";
 import { Subscription } from "rxjs/Subscription";
 import { RouterExtensions } from "nativescript-angular/router";
@@ -54,17 +49,17 @@ export class AuthenticationService implements OnDestroy{
                     });
 
                     this.data.searchOptions.BookingStatusCode = "OP";
-                    
+                    console.log('Login Successful!');
                     return true;
                 } else {
                     console.log(response.status + ": " + response.statusText);
                     return false;
                 }
             })
-            // .catch((error: any) => {
-            //     console.log(error);
-            //     return Observable.of(false);
-            // })
+            .catch((error: any) => {
+                console.log(error);
+                return Observable.of(false);
+            })
             ;
 
     }
@@ -97,9 +92,9 @@ export class AuthenticationService implements OnDestroy{
                     return false;                    
                 }
             })
-            // .catch((error: any) => {
-            //     return Observable.of(false);
-            // })
+            .catch((error: any) => {
+                return Observable.of(false);
+            })
             ;
     }
 
@@ -175,10 +170,10 @@ export class AuthenticationService implements OnDestroy{
             this.http.get(
             url, options)            
             .map(res => res.json())
-            // .catch(err => {
-            //     console.log("Error on load(): " + err)
-            //     return Observable.of(false);
-            // })
+            .catch(err => {
+                console.log("Error on getCurrentUserProfile(): " + err)
+                return Observable.of(false);
+            })
             ;
 
             return profile;                    
@@ -223,7 +218,7 @@ export class AuthenticationService implements OnDestroy{
 
     passwordChangeLogout():void{
         Config.token = "";
-        //this.data.searchOptions = new DashboardBookingSearch(false);
+        this.data.searchOptions = new DashboardBookingSearch(false);
         this.routerExtensions.navigate(["/login"], {clearHistory: true});
     }
 

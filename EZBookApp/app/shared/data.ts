@@ -5,6 +5,10 @@ import { DashboardBookingSearch } from '~/data/search/dashboard-search.model';
 import { Market } from '~/data/market/market.model';
 import { Customer } from '~/data/customer/customer.model';
 import { EquipmentCategory } from '~/data/equipment/equipment-category.model';
+import { CheckAvailability } from '~/data/availability/check-availability.model';
+import { BookingAvailabilityViewModel } from '~/data/availability/booking-availability.viewmodel';
+import { ReuseAvailabilityViewModel } from '~/data/availability/reuse-availability.viewmodel';
+
 // import { DashboardBookingSearch } from "../search/dashboard-order-search.model";
 // import { EquipmentCategory } from './equipment/equipment-category.model';
 // import { EquipmentService } from './equipment/equipment.service';
@@ -34,9 +38,9 @@ export class Data {
 
   public searchOptions: DashboardBookingSearch = new DashboardBookingSearch(true);
 
-  // public availabilitySearchOptions: CheckAvailability = new CheckAvailability();
+  public availabilitySearchOptions: CheckAvailability = new CheckAvailability();
 
-  // public reuseSearchOptions: CheckAvailability = new CheckAvailability();
+  public reuseSearchOptions: CheckAvailability = new CheckAvailability();
 
   public equipmentCategories: EquipmentCategory[] = new Array<EquipmentCategory>();    
 
@@ -62,9 +66,9 @@ export class Data {
 
   public userProfile: UserProfile = new UserProfile();
 
-  // public poolBookingUnits:AvailabilityViewModel[] = new Array<AvailabilityViewModel>();
+  public poolBookingUnits: BookingAvailabilityViewModel[] = new Array<BookingAvailabilityViewModel>();
 
-  // public reuseBookingUnits: ReuseAvailabilityViewModel[] = new Array<ReuseAvailabilityViewModel>();
+  public reuseBookingUnits: ReuseAvailabilityViewModel[] = new Array<ReuseAvailabilityViewModel>();
 
   // public submitCustomerBookingModel: SubmitBooking = new SubmitBooking();
 
