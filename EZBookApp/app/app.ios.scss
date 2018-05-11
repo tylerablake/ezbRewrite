@@ -9,3 +9,16 @@
 @import 'app-common';
 
 // Place any CSS rules you want to apply only on iOS here
+#login-page{        
+  background-image: url("res://loginscreen.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-top:-50;
+}
+
+.action-bar.p-10{
+  margin-top:-30;  
+  padding-top:30;
+  //background-color:rgb(61,112,185);
+}

@@ -11,3 +11,20 @@
 // Place any CSS rules you want to apply only on Android here
 
 
+.action-item {
+  padding-right: 10;
+}
+
+#login-page{
+  background-image: url("res://loginscreen");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-top:-50;
+}
+
+.action-bar.p-10{
+  margin-top:-30;  
+  padding-top:40;
+  //background-color:rgb(61,112,185);
+}
