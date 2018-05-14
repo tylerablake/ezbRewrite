@@ -14,7 +14,7 @@
           </StackLayout>
           <Button class="btn btn-primary" textTransform="none" text="Login" (tap)="onSignIn()" [isEnabled]="this.username && this.password ? 'true' : 'false'"></Button>
           <GridLayout rows="auto" [columns]="isAndroid ? 'auto,auto' : '*'">
-              <Button  [visibility]="isAndroid ? 'visible' : 'collapsed'" row="0" col="0" class="btn btn-default" textWrap="false" textTransform="none" text="Register New User" (tap)="onRegisterTap()" color="#005ABB"></Button>
+              <Button [visibility]="isAndroid ? 'visible' : 'collapsed'" row="0" col="0" class="btn btn-default" textWrap="false" textTransform="none" text="Register New User" (tap)="onRegisterTap()" color="#005ABB"></Button>
               <Button row="0" col="1" class="btn btn-default" textWrap="false" textTransform="none" text="Forgot Password" (tap)="onForgotPasswordTap()" color="#005ABB"></Button>
           </GridLayout>
       </StackLayout>

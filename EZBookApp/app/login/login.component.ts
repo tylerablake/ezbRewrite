@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       this.logoImageSrc = "res://ezbooklogo";
     }
     if(platformModule.isIOS){
-      this.isAndroid = true;
+      this.isAndroid = false;
       this.logoImageSrc = "res://ezbooklogo.png";
     }
   }
