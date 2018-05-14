@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Request, RequestOptions, Headers } from "@angular/http";
+import { RequestOptions, Headers } from "@angular/http";
 import { Config } from '~/shared/config';
 import * as  base64 from "base-64";
 import * as utf8 from "utf8";

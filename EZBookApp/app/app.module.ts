@@ -4,19 +4,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { HttpModule } from "@angular/http";
 import { NativeScriptFormsModule } from "nativescript-angular/forms"
 import { NativeScriptHttpModule } from "nativescript-angular/http";
-
-//Components
-import { AppComponent } from "./app.component";
-import { LoginComponent } from "~/login/login.component";
-
-
-//Services
-import { AuthenticationService } from "~/services/authentication.service";
-import { HttpHelperService } from "~/services/http-helper.service";
-import { OrderService } from "~/services/order.service";
-import { Data } from "~/shared/data";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
-import { TabsComponent } from "~/tabs/tabs.component";
 
 //Rxjs
 import "rxjs/add/observable/throw";
@@ -26,6 +14,25 @@ import "rxjs/add/operator/switchMap";
 import "rxjs/add/observable/of";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/filter";
+
+//Components
+import { AppComponent } from "./app.component";
+import { LoginComponent } from "~/login/login.component";
+import { RegisterComponent } from "~/register/register.component";
+import { RecoverPasswordComponent } from "~/recover-password/recover-password.component";
+import { TabsComponent } from "~/tabs/tabs.component";
+
+
+//Services
+import { AccountService } from "~/services/account.service";
+import { AuthenticationService } from "~/services/authentication.service";
+import { HttpHelperService } from "~/services/http-helper.service";
+import { OrderService } from "~/services/order.service";
+import { Data } from "~/shared/data";
+
+
+
+
 
 @NgModule({
     bootstrap: [
@@ -41,10 +48,13 @@ import "rxjs/add/operator/filter";
     declarations: [
         AppComponent,
         LoginComponent,
-        TabsComponent
+        TabsComponent,
+        RegisterComponent,
+        RecoverPasswordComponent
     ],
     providers: [
         AuthenticationService,
+        AccountService,
         HttpHelperService,
         OrderService,
         Data    

@@ -47,5 +47,29 @@
 	<string>UIStatusBarStyleLightContent</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+
+	<key>NSAppTransportSecurity</key>
+	<dict>	
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+				<key>tracintermodal.com</key>				
+				<dict>
+				<!--Include to allow subdomains-->
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<!--Include to allow HTTP requests-->
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<!-- Include to specify minimum TLS version -->
+				<key>NSTemporaryExceptionMinimumTLSVersion</key>
+				<string>1.0</string>
+				<key>NSTemporaryExceptionRequiresForwardSecrecy</key>
+				<false/>
+				</dict>
+		</dict>
+	</dict>
+
 </dict>
 </plist>

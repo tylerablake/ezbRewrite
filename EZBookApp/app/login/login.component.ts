@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
   onSignIn(): void {    
     this.authService.login(this.username, this.password)
       .subscribe((result) => {
+        console.log(`Login response => ${result}`);
         if(result === true){          
           this.routerExtensions.navigate(["/tabs"], {clearHistory: true});
         }
