@@ -5,6 +5,8 @@ import { HttpModule } from "@angular/http";
 import { NativeScriptFormsModule } from "nativescript-angular/forms"
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
+import { NativeScriptUIDataFormModule } from "nativescript-ui-dataform/angular";
+import { NativeScriptUIListViewModule, RadListViewComponent, TKListViewItemDirective, TKListViewItemSwipeDirective } from "nativescript-ui-listview/angular";
 
 //Rxjs
 import "rxjs/add/observable/throw";
@@ -21,6 +23,7 @@ import { LoginComponent } from "~/login/login.component";
 import { RegisterComponent } from "~/register/register.component";
 import { RecoverPasswordComponent } from "~/recover-password/recover-password.component";
 import { TabsComponent } from "~/tabs/tabs.component";
+import { SearchComponent } from "~/tabs/search/search.component";
 
 
 //Services
@@ -29,6 +32,11 @@ import { AuthenticationService } from "~/services/authentication.service";
 import { HttpHelperService } from "~/services/http-helper.service";
 import { OrderService } from "~/services/order.service";
 import { Data } from "~/shared/data";
+import { HelperService } from "~/services/helper.service";
+import { HomeComponent } from "~/tabs/home/home.component";
+import { DashboardComponent } from "~/tabs/dashboard/dashboard.component";
+
+
 
 
 
@@ -40,24 +48,30 @@ import { Data } from "~/shared/data";
     ],
     imports: [
         NativeScriptModule,
-        AppRoutingModule,        
+        AppRoutingModule,
         NativeScriptFormsModule,
         NativeScriptHttpModule,
-        HttpModule        
+        HttpModule,
+        NativeScriptUIDataFormModule,
+        NativeScriptUIListViewModule
     ],
     declarations: [
         AppComponent,
         LoginComponent,
         TabsComponent,
         RegisterComponent,
-        RecoverPasswordComponent
+        RecoverPasswordComponent,
+        SearchComponent,
+        HomeComponent,
+        DashboardComponent
     ],
     providers: [
         AuthenticationService,
         AccountService,
         HttpHelperService,
+        HelperService,
         OrderService,
-        Data    
+        Data
     ],
     schemas: [
         NO_ERRORS_SCHEMA

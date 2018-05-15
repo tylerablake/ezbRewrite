@@ -5,12 +5,14 @@ import { LoginComponent } from "~/login/login.component";
 import { TabsComponent } from "~/tabs/tabs.component";
 import { RegisterComponent } from "~/register/register.component";
 import { RecoverPasswordComponent } from "~/recover-password/recover-password.component";
+import { SearchComponent } from "~/tabs/search/search.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/login", pathMatch: "full" },    
     { path: "login", component: LoginComponent },
     { path: "register", component: RegisterComponent},
-    { path: "recoverPassword", component: RecoverPasswordComponent},        
+    { path: "recoverPassword", component: RecoverPasswordComponent},     
+    { path: "search", component: SearchComponent},   
     { path: "tabs", component: TabsComponent},
     { path: "tabs/:id", component: TabsComponent}    
 ];

@@ -1,11 +1,13 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
+import { TabsRoutingModule } from "./tabs-routing.module";
+
 
 import { BrowseComponent } from "./browse/browse.component";
 import { HomeComponent } from "./home/home.component";
 import { SearchComponent } from "./search/search.component";
-import { TabsRoutingModule } from "./tabs-routing.module";
 import { TabsComponent } from "./tabs.component";
+import { DashboardComponent } from "~/tabs/dashboard/dashboard.component";
 
 @NgModule({
     imports: [
@@ -13,10 +15,12 @@ import { TabsComponent } from "./tabs.component";
         TabsRoutingModule
     ],
     declarations: [
-        TabsComponent,
-        HomeComponent,
-        BrowseComponent,
-        SearchComponent
+        TabsComponent
+        //,
+        //HomeComponent,
+        //DashboardComponent,
+        //BrowseComponent,
+        //SearchComponent        
     ],
     schemas: [
         NO_ERRORS_SCHEMA

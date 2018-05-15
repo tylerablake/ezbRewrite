@@ -53,7 +53,7 @@ export class Config {
 
   static userIsAdmin = false;
 
-  static accentHex = "#005ABB";
+  static tracBlueHex = "#005ABB";
   
   static tracOrangeHex = "#f8a61d";
 

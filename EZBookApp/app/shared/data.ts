@@ -8,6 +8,7 @@ import { EquipmentCategory } from '~/data/equipment/equipment-category.model';
 import { CheckAvailability } from '~/data/availability/check-availability.model';
 import { BookingAvailabilityViewModel } from '~/data/availability/booking-availability.viewmodel';
 import { ReuseAvailabilityViewModel } from '~/data/availability/reuse-availability.viewmodel';
+import { LocationModel } from '~/data/location/location.model';
 
 // import { DashboardBookingSearch } from "../search/dashboard-order-search.model";
 // import { EquipmentCategory } from './equipment/equipment-category.model';
@@ -46,7 +47,7 @@ export class Data {
 
   public isFilteredSearch: boolean = false;
 
-  public locationData: Location[];
+  public locationData: LocationModel[];
 
   public locationStrings: string[] = new Array<string>();
 

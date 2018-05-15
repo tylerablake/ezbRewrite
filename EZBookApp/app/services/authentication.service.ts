@@ -30,13 +30,10 @@ export class AuthenticationService implements OnDestroy{
         const url: string = Config.proxyUrl + Config.securityUrl;
         
         const options = this.httpHelper.getLoginHeaders(username,password);
-        
-        console.log(`Login credentials => User: ${username}, Pass: ${password}`);
-
+                
         return this.http.get(url, options)
             .map((response: Response) => {                                
-                const token = response.json() && response.json().token;
-                console.log(`Login token => ${token}`);
+                const token = response.json() && response.json().token;                
 
                 if (token) {                    
                     Config.token = token;
@@ -206,16 +203,32 @@ export class AuthenticationService implements OnDestroy{
         this.routerExtensions.navigate(["/login"], {clearHistory: true});
 
         if(sessionTimeout){
-            dialogs.alert("You were idle too long. You need to login to access the application");
+            dialogs.alert({
+                title: "Timeout",
+                message: "You were idle too long. You need to login to access the application.",
+                okButtonText: "Ok"
+            });
+            //dialogs.alert("You were idle too long. You need to login to access the application");
             //TNSFancyAlert.showError("Session Timeout", "You were idle too long. You need to login to access the application.", "Dismiss");    
             
         }
         else if(sessionTimeout === false){
-            dialogs.alert("Success! Please log in using your new password");
+            dialogs.alert({
+                title: "Success!",
+                message: "Please log in using your new password",
+                okButtonText: "Ok"
+            });
+            //dialogs.alert("Success! Please log in using your new password");
             //TNSFancyAlert.showSuccess("Success!","Please log in using your new password.");
         }
         else{
-            dialogs.alert("Logout successful!");
+            dialogs.alert({
+                title: "",                
+                message: "Logout successful!",
+                okButtonText: "Ok"
+            
+            });
+            //dialogs.alert("Logout successful!");
             //TNSFancyAlert.showSuccess("Logout Successful!", "", "Dismiss");                    
         }        
     }
