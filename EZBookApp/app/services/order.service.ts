@@ -10,7 +10,7 @@ import { Market } from "~/data/market/market.model";
 import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs/Observable";
 import { ObservableArray } from "tns-core-modules/data/observable-array/observable-array";
-
+import { LoadingIndicator } from "nativescript-loading-indicator";
 import * as dialogs from "ui/dialogs";
 import { Customer } from "~/data/customer/customer.model";
 import { DashboardBookingSearch } from "~/data/search/dashboard-search.model";
@@ -62,32 +62,32 @@ export class OrderService implements OnDestroy {
     // private ordersSubscription: Subscription;
     // private _orders: ObservableArray<Order>;
 
-    // private loaderOptions = {
-    //     message: 'Loading application data',
-    //     //progress: 0.65,
-    //     android: {
-    //         indeterminate: true,
-    //         cancelable: false,
-    //         cancelListener: function (dialog) { console.log("Loading cancelled") },
-    //         max: 100,
-    //         progressNumberFormat: "%1d/%2d",
-    //         progressPercentFormat: 0.53,
-    //         progressStyle: 1,
-    //         secondaryProgress: 1
-    //     },
-    //     ios: {
-    //         //details: "Loading application data",
-    //         margin: 10,
-    //         //dimBackground: true,
-    //         //color: "#000", // color of indicator and labels
-    //         // background box around indicator
-    //         // hideBezel will override this if true
-    //         //backgroundColor: "yellow",
-    //         hideBezel: false, // default false, can hide the surrounding bezel
-    //         //view: UIView, // Target view to show on top of (Defaults to entire window)
-    //         //mode: // see iOS specific options below
-    //     }
-    // };
+    private loaderOptions = {
+        message: 'Loading application data',
+        //progress: 0.65,
+        android: {
+            indeterminate: true,
+            cancelable: false,
+            cancelListener: function (dialog) { console.log("Loading cancelled") },
+            max: 100,
+            progressNumberFormat: "%1d/%2d",
+            progressPercentFormat: 0.53,
+            progressStyle: 1,
+            secondaryProgress: 1
+        },
+        ios: {
+            //details: "Loading application data",
+            margin: 10,
+            //dimBackground: true,
+            //color: "#000", // color of indicator and labels
+            // background box around indicator
+            // hideBezel will override this if true
+            //backgroundColor: "yellow",
+            hideBezel: false, // default false, can hide the surrounding bezel
+            //view: UIView, // Target view to show on top of (Defaults to entire window)
+            //mode: // see iOS specific options below
+        }
+    };
 
     constructor(private http: Http, private httpHelper: HttpHelperService, private data: Data, private authService: AuthenticationService) {
     }
@@ -99,8 +99,7 @@ export class OrderService implements OnDestroy {
         const options = this.httpHelper.getCommonAuthHeaders();
 
         const orderList: Observable<Order[]> =
-            <Observable<Order[]>>
-
+            <Observable<Order[]>>            
             this.http.post(
                 url,
                 JSON.stringify(orderSearch), options)
@@ -250,8 +249,8 @@ export class OrderService implements OnDestroy {
 
         if (!this.data.locationData) {
 
-            //var loader = new LoadingIndicator();
-            //loader.show(this.loaderOptions);
+            var loader = new LoadingIndicator();
+            loader.show(this.loaderOptions);
 
             return this.http.get(url, options)
                 .map((res: Response) => res.json())
@@ -268,7 +267,7 @@ export class OrderService implements OnDestroy {
                     (error: Error) => console.log("Error getting location data: " + error),
                     () => {
                         console.log("All location data received!");
-                        //loader.hide();
+                        loader.hide();
                     });
         }
     }
@@ -281,8 +280,8 @@ export class OrderService implements OnDestroy {
 
         if (!this.data.marketData) {
 
-            //var loader = new LoadingIndicator();
-            //loader.show(this.loaderOptions);
+            var loader = new LoadingIndicator();
+            loader.show(this.loaderOptions);
 
             return this.http.get(url, options)
                 .map((res: Response) => res.json())
@@ -298,7 +297,7 @@ export class OrderService implements OnDestroy {
                     (error: Error) => console.log("Error getting market data: " + error),
                     () => {
                         console.log("All market data received!");
-                        //loader.hide();
+                        loader.hide();
                     });
         }
     }
@@ -329,8 +328,8 @@ export class OrderService implements OnDestroy {
 
         if (!this.data.customerData) {
 
-            //var loader = new LoadingIndicator();
-            //loader.show(this.loaderOptions);
+            var loader = new LoadingIndicator();
+            loader.show(this.loaderOptions);
 
             return this.http.get(url, options)
                 .map((res: Response) => res.json())
@@ -346,7 +345,7 @@ export class OrderService implements OnDestroy {
                     (error: Error) => console.log("Error getting customer data: " + error),
                     () => {
                         console.log("All customer data received!");
-                        //loader.hide();
+                        loader.hide();
 
                     });
         }

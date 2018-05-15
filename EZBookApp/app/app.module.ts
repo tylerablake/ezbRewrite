@@ -6,7 +6,7 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms"
 import { NativeScriptHttpModule } from "nativescript-angular/http";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { NativeScriptUIDataFormModule } from "nativescript-ui-dataform/angular";
-import { NativeScriptUIListViewModule, RadListViewComponent, TKListViewItemDirective, TKListViewItemSwipeDirective } from "nativescript-ui-listview/angular";
+import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 
 //Rxjs
 import "rxjs/add/observable/throw";

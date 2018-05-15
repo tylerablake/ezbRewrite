@@ -1,69 +1,67 @@
 <GridLayout rows="*, auto" columns="*">
-  <GridLayout rows="*" columns="*">
-      <ListView *ngIf="orders.length > 0" #myListView [items]="orders" (itemTap)="onOrderItemTap($event)" class="list-group" selectionBehavior="None"
-          (itemSwipeProgressEnded)="onSwipeCellFinished($event)" (itemSwipeProgressStarted)="onSwipeCellStarted($event)" (itemSwipeProgressChanged)="onCellSwiping($event)"
-          swipeActions="true">
-          <ng-template tkListItemTemplate let-order="item">
-              <StackLayout class="list-group-item">
-                  <GridLayout rows="auto, auto" columns="200, *" class="list-group-item-content" borderLeftWidth="10" [borderColor]="getColor(order.StatusDescription)">
-                      <Label class="font-weight-bold p-b-10">
-                          <Span [text]="'Order # ' + order.BookingOrderCode"></Span>
-                      </Label>
-                      <Label col="1" colSpan="1" horizontalAlignment="left" class="m-r-5 p-b-10 font-weight-bold">
-                          <FormattedString>
-                              <Span [text]="order.StatusDescription"></Span>
-                          </FormattedString>
-                      </Label>
+    <GridLayout rows="*" columns="*">
+        <RadListView *ngIf="orders.length > 0" #myListView [items]="orders" (itemTap)="onOrderItemTap($event)" class="list-group" selectionBehavior="None"
+            (itemSwipeProgressEnded)="onSwipeCellFinished($event)" (itemSwipeProgressStarted)="onSwipeCellStarted($event)" (itemSwipeProgressChanged)="onCellSwiping($event)"
+            swipeActions="true">
+            <ng-template tkListItemTemplate let-order="item">
+                <StackLayout class="list-group-item">
+                    <GridLayout rows="auto, auto" columns="200, *" class="list-group-item-content" borderLeftWidth="10" [borderColor]="getColor(order.StatusDescription)">
+                        <Label class="font-weight-bold p-b-10">
+                            <Span [text]="'Order # ' + order.BookingOrderCode"></Span>
+                        </Label>
+                        <Label col="1" colSpan="1" horizontalAlignment="left" class="m-r-5 p-b-10 font-weight-bold">
+                            <FormattedString>
+                                <Span [text]="order.StatusDescription"></Span>
+                            </FormattedString>
+                        </Label>
 
-                      <StackLayout row="2" colSpan="1">
-                          <Label class="p-b-10 font-weight-bold">
-                              <FormattedString ios:fontFamily="system">                                    
-                                  <Span class="text-default" [text]="getChassisEquipmentString(order.EquipmentSize)"></Span>
-                              </FormattedString>
-                          </Label>
-                          <Label class="p-b-10">
-                              <FormattedString ios:fontFamily="system">
-                                  <Span text="Market: " class="font-weight-bold"></Span>
-                                  <Span class="card-text" [text]="order.MarketDescription"></Span>
-                              </FormattedString>
-                          </Label>
-                          <Label class="p-b-10" textWrap="true">
-                              <FormattedString ios:fontFamily="system">
-                                  <Span text="Customer: " class="font-weight-bold"></Span>
-                                  <Span [text]="order.Customer"></Span>
-                              </FormattedString>
-                          </Label>
-                      </StackLayout>
+                        <StackLayout row="2" colSpan="1">
+                            <Label class="p-b-10 font-weight-bold">
+                                <FormattedString ios:fontFamily="system">                                    
+                                    <Span class="text-default" [text]="getChassisEquipmentString(order.EquipmentSize)"></Span>
+                                </FormattedString>
+                            </Label>
+                            <Label class="p-b-10">
+                                <FormattedString ios:fontFamily="system">
+                                    <Span text="Market: " class="font-weight-bold"></Span>
+                                    <Span class="card-text" [text]="order.MarketDescription"></Span>
+                                </FormattedString>
+                            </Label>
+                            <Label class="p-b-10" textWrap="true">
+                                <FormattedString ios:fontFamily="system">
+                                    <Span text="Customer: " class="font-weight-bold"></Span>
+                                    <Span [text]="order.Customer"></Span>
+                                </FormattedString>
+                            </Label>
+                        </StackLayout>
 
-                      <StackLayout row="2" col="1" colSpan="1" horizontalAlignment="left">
-                          <Label class="p-b-10 font-weight-bold">
-                              <FormattedString ios:fontFamily="system">                                
-                                  <Span class="text-default" [text]="order.CreateDate | date:'MM/dd/yyyy'"></Span>
-                              </FormattedString>
-                          </Label>
-                          <Label class="p-b-10 font-weight-bold">
-                              <FormattedString ios:fontFamily="system">                                    
-                                  <Span [text]="order.IsReUseBooking == true ? 'Reuse Booking' : order.BookingOrderTypeDescription"></Span>
-                              </FormattedString>
-                          </Label>
-                          <Label text="Edit" (tap)="onOrderEditTap($event)" class="text-primary p-t-20 m-r-0" horizontalAlignment="right" textWrap="true"></Label>                            
-                      </StackLayout>
+                        <StackLayout row="2" col="1" colSpan="1" horizontalAlignment="left">
+                            <Label class="p-b-10 font-weight-bold">
+                                <FormattedString ios:fontFamily="system">                                
+                                    <Span class="text-default" [text]="order.CreateDate | date:'MM/dd/yyyy'"></Span>
+                                </FormattedString>
+                            </Label>
+                            <Label class="p-b-10 font-weight-bold">
+                                <FormattedString ios:fontFamily="system">                                    
+                                    <Span [text]="order.IsReUseBooking == true ? 'Reuse Booking' : order.BookingOrderTypeDescription"></Span>
+                                </FormattedString>
+                            </Label>
+                            <Label text="Edit" (tap)="onOrderEditTap($event)" class="text-primary p-t-20 m-r-0" horizontalAlignment="right" textWrap="true"></Label>                            
+                        </StackLayout>
 
-                  </GridLayout>
-                  <StackLayout height="1" color="gray"></StackLayout>
-              </StackLayout>
-          </ng-template>
-          <GridLayout *tkListItemSwipeTemplate columns="auto, *, auto" class="gridLayoutLayout">
-              <StackLayout id="delete-view" col="2" class="deleteViewStackLayout" (tap)="onRightSwipeClick($event)">
-                  <Label text="delete" class="swipetemplateLabel" verticalAlignment="center" horizontalAlignment="center"></Label>
-              </StackLayout>
-          </GridLayout>
-      </ListView>
-  </GridLayout>
+                    </GridLayout>
+                    <StackLayout height="1" color="gray"></StackLayout>
+                </StackLayout>
+            </ng-template>
+            <GridLayout *tkListItemSwipeTemplate columns="auto, *, auto" class="gridLayoutLayout">
+                <StackLayout id="delete-view" col="2" class="deleteViewStackLayout" (tap)="onRightSwipeClick($event)">
+                    <Label text="delete" color="white" class="swipetemplateLabel" verticalAlignment="center" horizontalAlignment="center"></Label>
+                </StackLayout>
+            </GridLayout>
+        </RadListView>
+    </GridLayout>
 
-  <Label [visibility]="this.filterReturnedNoResults ? 'visible' : 'collapsed'" text="No results found." fontSize="20" textWrap="true"
-      color="black" verticalAlignment="center" horizontalAlignment="center"></Label>
-  <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
+    <Label [visibility]="this.filterReturnedNoResults ? 'visible' : 'collapsed'" text="No results found." fontSize="20" textWrap="true"
+        color="black" verticalAlignment="center" horizontalAlignment="center"></Label>
+    <ActivityIndicator [busy]="isLoading"></ActivityIndicator>
 </GridLayout>
-
- 
