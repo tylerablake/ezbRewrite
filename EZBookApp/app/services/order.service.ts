@@ -16,6 +16,7 @@ import { Customer } from "~/data/customer/customer.model";
 import { DashboardBookingSearch } from "~/data/search/dashboard-search.model";
 import { Order } from "~/data/order/order.model";
 import { LocationModel } from "~/data/location/location.model";
+import { DashboardOrder } from "~/data/order/dashboard-order.model";
 
 // import { Injectable, NgZone, OnDestroy } from "@angular/core";
 // import { Http, Response, Request, Headers } from "@angular/http";
@@ -59,8 +60,8 @@ import { LocationModel } from "~/data/location/location.model";
 @Injectable()
 export class OrderService implements OnDestroy {
     private url = Config.proxyUrl + Config.dashboardUrl;
-    // private ordersSubscription: Subscription;
-    // private _orders: ObservableArray<Order>;
+    private ordersSubscription: Subscription;
+    private _orders: ObservableArray<Order> = new ObservableArray<Order>();
 
     private loaderOptions = {
         message: 'Loading application data',
@@ -98,8 +99,8 @@ export class OrderService implements OnDestroy {
         const url = Config.proxyUrl + Config.dashboardUrl + "/search";
         const options = this.httpHelper.getCommonAuthHeaders();
 
-        const orderList: Observable<Order[]> =
-            <Observable<Order[]>>            
+        const orderList: Observable<DashboardOrder[]> =
+            <Observable<DashboardOrder[]>>
             this.http.post(
                 url,
                 JSON.stringify(orderSearch), options)
@@ -573,7 +574,7 @@ export class OrderService implements OnDestroy {
 
     //     //Get reuse details
     //     var getReuseDetailsUrl = Config.proxyUrl + Config.reuseBookingUrl + "/" + cancelBookingData.BookingOrderId;
-        
+
     //     const cancelBookingResponse: Observable<ConfirmReuse> =
     //         <Observable<ConfirmReuse>>
     //         this.http.get(getReuseDetailsUrl, options)
@@ -592,17 +593,17 @@ export class OrderService implements OnDestroy {
             this.authService.logout(true);
         }
         else {
-            if(error.json().ModelState.ErrorMessage[0]){
+            if (error.json().ModelState.ErrorMessage[0]) {
                 dialogs.alert(error.json().ModelState.ErrorMessage[0]);
-            }            
+            }
         }
         return Observable.of(false);
         //return Observable.throw(error);
     }
 
     ngOnDestroy() {
-        // if (this.ordersSubscription) {
-        //     this.ordersSubscription.unsubscribe();
-        // }
+        if (this.ordersSubscription) {
+            this.ordersSubscription.unsubscribe();
+        }
     }
 }

@@ -5,7 +5,7 @@ import { LoginComponent } from "~/login/login.component";
 import { TabsComponent } from "~/tabs/tabs.component";
 import { RegisterComponent } from "~/register/register.component";
 import { RecoverPasswordComponent } from "~/recover-password/recover-password.component";
-import { SearchComponent } from "~/tabs/search/search.component";
+import { SearchComponent } from "~/search/search.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/login", pathMatch: "full" },    
