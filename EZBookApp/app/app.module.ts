@@ -27,6 +27,7 @@ import { HomeComponent } from "~/tabs/home/home.component";
 import { DashboardComponent } from "~/tabs/dashboard/dashboard.component";
 import { BookingComponent } from "~/tabs/booking/booking.component";
 import { SearchComponent } from "~/search/search.component";
+import { ReuseComponent } from "~/tabs/reuse/reuse.component";
 
 
 //Services
@@ -36,7 +37,6 @@ import { HttpHelperService } from "~/services/http-helper.service";
 import { OrderService } from "~/services/order.service";
 import { Data } from "~/shared/data";
 import { HelperService } from "~/services/helper.service";
-import { ReuseComponent } from "~/tabs/reuse/reuse.component";
 
 
 

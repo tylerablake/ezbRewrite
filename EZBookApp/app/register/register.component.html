@@ -1,29 +1,38 @@
 <ActionBar title="Register New User" icon="" class="action-bar">
-</ActionBar>
-
-<GridLayout horizontalAlignment="center" verticalAlignment="center" class="page page-content" backgroundColor="#ffffff" rows="*,auto" columns="*">
-
-  <GridLayout rows="auto,auto,auto,auto,auto,auto" columns="auto,*" class="m-10">
-      <Image col="0" row="0" src="res://user"></Image>      
-      <TextField col="1" row="0" class="input" hint="Username" [(ngModel)]="registerModel.Username"></TextField>
-      
-      <Image col="0" row="1" src="res://user"></Image>      
-      <TextField col="1" row="1" class="input" secure="true" hint="Password" [(ngModel)]="registerModel.Password"></TextField>
-
-      <Image col="0" row="2" src="res://user"></Image>      
-      <TextField col="1" row="2" class="input" secure="true" hint="Confirm Password" [(ngModel)]="registerModel.ConfirmPassword"></TextField>
-
-      <Image col="0" row="3" src="res://user"></Image>      
-      <TextField col="1" row="3" class="input" hint="Email" [(ngModel)]="registerModel.Email"></TextField>
-
-      <Image col="0" row="4" src="res://user"></Image>      
-      <TextField col="1" row="4" class="input" hint="Phone Number" [(ngModel)]="registerModel.PhoneNumber"></TextField>
-
-      <Image col="0" row="5" src="res://user"></Image>      
-      <TextField col="1" row="5" class="input" hint="SCAC" [(ngModel)]="registerModel.SCAC"></TextField>
-  </GridLayout>
-
-  <Button row="1" col="0" text="Register" class="btn btn-primary m-t-20" (tap)="onRegisterSubmit()" textTransform="none" horizontalAlignment="stretch" verticalAlignment="center"></Button>
+  </ActionBar>
   
-
-</GridLayout>
+  <GridLayout horizontalAlignment="center" verticalAlignment="center" class="page page-content" backgroundColor="#ffffff" rows="*,auto" columns="*">
+  <ScrollView>    
+  
+    <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="auto,*" class="m-10">
+  
+        <Image col="0" row="0" src="res://user"></Image>      
+        <TextField col="1" row="0" class="input" hint="First Name" [(ngModel)]="registerModel.FirstName"></TextField>
+  
+        <Image col="0" row="1" src="res://user"></Image>      
+        <TextField col="1" row="1" class="input" hint="Last Name" [(ngModel)]="registerModel.LastName"></TextField>
+  
+        <Image col="0" row="2" src="res://user"></Image>      
+        <TextField col="1" row="2" class="input" hint="Username" [(ngModel)]="registerModel.Username"></TextField>
+        
+        <Image col="0" row="3" src="res://user"></Image>      
+        <TextField col="1" row="3" class="input" secure="true" hint="Password" [(ngModel)]="registerModel.Password"></TextField>
+  
+        <Image col="0" row="4" src="res://user"></Image>      
+        <TextField col="1" row="4" class="input" secure="true" hint="Confirm Password" [(ngModel)]="registerModel.ConfirmPassword"></TextField>
+  
+        <Image col="0" row="5" src="res://user"></Image>      
+        <TextField col="1" row="5" class="input" hint="Email" [(ngModel)]="registerModel.Email"></TextField>
+  
+        <Image col="0" row="6" src="res://user"></Image>      
+        <TextField col="1" row="6" class="input" hint="Phone Number" [(ngModel)]="registerModel.PhoneNumber"></TextField>
+  
+        <Image col="0" row="7" src="res://user"></Image>      
+        <TextField col="1" row="7" class="input" hint="SCAC" [(ngModel)]="registerModel.SCAC"></TextField>
+    </GridLayout>
+  </ScrollView>
+    <Button android:style="height:60;" row="1" col="0" text="Register" class="btn btn-primary" (tap)="onRegisterSubmit()" textTransform="none" horizontalAlignment="stretch" verticalAlignment="center"
+    [isEnabled]=" !this.registerModel.FirstName || !this.registerModel.LastName || !this.registerModel.Username || !this.registerModel.Password || !this.registerModel.ConfirmPassword || !this.registerModel.Email || !this.registerModel.PhoneNumber || !this.registerModel.SCAC ? 'false' : 'true'"></Button>
+    
+  
+  </GridLayout>
