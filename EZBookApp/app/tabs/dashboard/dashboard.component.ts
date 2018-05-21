@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, Input, ViewContainerRef, ChangeDetectionStrategy } from "@angular/core";
+import { Component, OnInit, OnDestroy, ViewChild, Input, ViewContainerRef, ChangeDetectionStrategy, AfterViewInit } from "@angular/core";
 import { ObservableArray } from "data/observable-array";
 import { RouterExtensions, PageRoute } from "nativescript-angular/router";
 import { Subscription } from "rxjs/Subscription";
@@ -27,21 +27,19 @@ import * as platformModule from "tns-core-modules/platform";
 
 })
 export class DashboardComponent implements OnInit, OnDestroy {  
-  //private setSearchProperties: number;
   private filterReturnedNoResults: boolean = false;
   private _isLoading: boolean = false;
   private leftThresholdPassed = false;
   private rightThresholdPassed = false;
-  private orders: ObservableArray<Order> = new ObservableArray<Order>([]);
+  private _orders: ObservableArray<DashboardOrder>;
   private ordersSubscription: Subscription;
   private locationsSubscription: Subscription;
   private marketSubscription: Subscription;
   private customerSubscription: Subscription;
   private searchOptions: DashboardBookingSearch = new DashboardBookingSearch(false);
 
-  //@ViewChild("myListView") listViewComponent: RadListViewComponent;
 
-  //get orders(): ObservableArray<Order> {return this._orders;}
+  get orders(): ObservableArray<DashboardOrder> {return this._orders;}
 
   get isLoading(): boolean { return this._isLoading; }
 
@@ -69,14 +67,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
       console.log("setUserClaims() ERROR!");
     }
 
-    this.filterReturnedNoResults = false;
+    //this.filterReturnedNoResults = false;
     this.refreshData();
     this.locationsSubscription = this.orderService.getLocationData();
     this.marketSubscription = this.orderService.getMarketData();
     this.customerSubscription = this.orderService.getCustomerData();
   }
+  
 
   public refreshData(): void {
+    
     this._isLoading = true;
     this.filterReturnedNoResults = false;
 
@@ -90,13 +90,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.ordersSubscription = this.orderService.getDashboardData(this.searchOptions)
       .finally(() => this._isLoading = false)
       .subscribe((results: ObservableArray<DashboardOrder>) => {
-        this.orders = new ObservableArray(results["ResultSet"]);
-        console.log(`Found ${this.orders.length} orders.`);
-
-        if (this.orders.length < 1) {
+        this._orders = new ObservableArray(results["ResultSet"]);
+        
+        if (this._orders.length < 1) {
           this.filterReturnedNoResults = true;
         }
         else {
+          console.log(`Found ${this._orders.length} orders.`);
           this.filterReturnedNoResults = false;
         }
         this._isLoading = false;       
@@ -116,14 +116,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.authService.logout();
   }
 
-  onItemLoading(args){
-    // if(platformModule.isIOS){
-    //   const iosCell = args.ios;
-    //   iosCell.selectionStyle = UITableViewCellSelectionStyle.None;
-    // }
-    
-  }
-
+  
   //Swipe Functions
 
   public onCellSwiping(args: ListViewEventData) {

@@ -1,9 +1,7 @@
 <GridLayout rows="*, auto" columns="*">
     <GridLayout rows="*" columns="*">
-        <RadListView height="100%" *ngIf="orders.length > 0" #myListView [items]="this.orders" (itemTap)="onOrderItemTap($event)" class="list-group" selectionBehavior="None"
-            (itemSwipeProgressEnded)="onSwipeCellFinished($event)" (itemSwipeProgressStarted)="onSwipeCellStarted($event)" (itemSwipeProgressChanged)="onCellSwiping($event)"
-            swipeActions="true">
-            <ng-template tkListItemTemplate let-order="item">
+        <RadListView  #myListView [items]="orders" (itemTap)="onOrderItemTap($event)" class="list-group">
+            <ng-template tkListItemTemplate let-order="item" separatorColor="purple">
                 <StackLayout class="list-group-item">
                     <GridLayout rows="auto, auto" columns="200, *" class="list-group-item-content" borderLeftWidth="10" [borderColor]="getColor(order.StatusDescription)">
                         <Label class="font-weight-bold p-b-10">
@@ -53,11 +51,6 @@
                     <StackLayout height="1" color="gray"></StackLayout>
                 </StackLayout>
             </ng-template>
-            <GridLayout *tkListItemSwipeTemplate columns="auto, *, auto" class="gridLayoutLayout">
-                <StackLayout id="delete-view" col="2" class="deleteViewStackLayout" (tap)="onRightSwipeClick($event)">
-                    <Label text="delete" color="white" class="swipetemplateLabel" verticalAlignment="center" horizontalAlignment="center"></Label>
-                </StackLayout>
-            </GridLayout>
         </RadListView>
     </GridLayout>
 
