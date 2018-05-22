@@ -7,6 +7,8 @@ import { RegisterComponent } from "~/register/register.component";
 import { RecoverPasswordComponent } from "~/recover-password/recover-password.component";
 import { SearchComponent } from "~/search/search.component";
 import { AccountComponent } from "~/account/account.component";
+import { ReuseComponent } from "~/tabs/reuse/reuse.component";
+
 
 const routes: Routes = [
     { path: "", redirectTo: "/login", pathMatch: "full" },    
@@ -16,7 +18,8 @@ const routes: Routes = [
     { path: "search", component: SearchComponent},   
     { path: "tabs", component: TabsComponent},
     { path: "tabs/:id", component: TabsComponent},
-    { path: "account", component: AccountComponent}    
+    { path: "account", component: AccountComponent},
+    { path: "reuse", component: ReuseComponent}    
 ];
 
 @NgModule({

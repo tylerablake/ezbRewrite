@@ -67,7 +67,7 @@ import { HelperService } from "~/services/helper.service";
         DashboardComponent,
         BookingComponent,
         ReuseComponent,
-        AccountComponent
+        AccountComponent        
     ],
     providers: [
         AuthenticationService,

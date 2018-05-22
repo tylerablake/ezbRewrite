@@ -25,7 +25,8 @@ export class TabsComponent implements OnInit {
         }        
     }
 
-    ngOnInit(): void {
+    ngOnInit(): void {        
+
         // Init your component properties here.
         this.pageRoute.activatedRoute
         .switchMap((activatedRoute) => activatedRoute.params)

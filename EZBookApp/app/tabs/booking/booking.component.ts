@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { equipmentCategoriesList, PartyTypeList } from '../../shared/constants';
+import { EquipmentCategoriesList, PartyTypeList } from '../../shared/constants';
 import { RadAutoCompleteTextViewComponent } from "nativescript-ui-autocomplete/angular";
 import { Data } from "../../shared/data";
 import { RouterExtensions } from 'nativescript-angular/router';
@@ -31,7 +31,7 @@ elementRegistryModule.registerElement("FilterSelect", () => require("nativescrip
 
 export class BookingComponent implements OnInit {    
   private createBookingObject: CreateBooking = new CreateBooking();
-  private equipmentCategories: string[] = equipmentCategoriesList.map(equip => equip.EquipmentCategoryDescription);
+  private equipmentCategories: string[] = EquipmentCategoriesList.map(equip => equip.EquipmentCategoryDescription);
   private chassisAvailabilities: Availability[];
   private responsiblePartyTypeList: string[] = PartyTypeList.map(type => type.name);    
   private responsiblePartyTypeSelectList: ObservableArray<PartyFilterSelectItem> = new ObservableArray<PartyFilterSelectItem>();
@@ -337,7 +337,7 @@ export class BookingComponent implements OnInit {
   onSearch() {
 
     if (this.createBookingObject.EquipmentSize.indexOf('.') < 1) {
-      this.createBookingObject.EquipmentSize = this.createBookingObject.EquipmentSize ? equipmentCategoriesList.filter((category: EquipmentCategory) => category.EquipmentCategoryDescription === this.createBookingObject.EquipmentSize)[0].EquipmentCategoryCode : "";
+      this.createBookingObject.EquipmentSize = this.createBookingObject.EquipmentSize ? EquipmentCategoriesList.filter((category: EquipmentCategory) => category.EquipmentCategoryDescription === this.createBookingObject.EquipmentSize)[0].EquipmentCategoryCode : "";
     }
 
     if (this.createBookingObject.MarketCode) {

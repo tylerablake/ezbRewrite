@@ -37,7 +37,7 @@
                 </GridLayout>
             </GridLayout>
 
-            <GridLayout rows="30" columns="*" backgroundColor="white" class="p-10 m-b-10">
+            <GridLayout rows="40" columns="*" backgroundColor="white" class="p-l-10 p-t-0 p-b-0 m-b-10">
                 <GridLayout row="0" col="0" rows="*" columns="*" orientation="horizontal" horizontalAlignment="stretch" [class]="!this.formIsValid && this.createBookingObject.ResponsiblePartyType == '' && this.displayValidationErrors ? 'bordered' : ''">
                     <FilterSelect id="bookingResponsiblePartyTypeFilterSelect" row="0" col="0" horizontalAlignment="left" verticalAlignment="center"
                         [items]="responsiblePartyTypeSelectList" (change)="onResponsiblePartyTypeSelected($event)" allowSearch="false"
@@ -49,7 +49,7 @@
             </GridLayout>
 
 
-            <GridLayout rows="30" columns="*" backgroundColor="white" class="p-10 m-b-10">
+            <GridLayout rows="40" columns="*" backgroundColor="white" class="p-l-10 p-t-0 p-b-0 m-b-10">
                 <GridLayout row="0" col="0" rows="*" columns="*" orientation="horizontal" horizontalAlignment="stretch" [class]="!this.formIsValid && !this.createBookingObject.ResponsiblePartyId && this.displayValidationErrors ? 'bordered' : ''">
                     <FilterSelect id="bookingResponsiblePartyFilterSelect" row="0" col="0" horizontalAlignment="left" verticalAlignment="center"
                         [items]="responsiblePartySelectList" (change)="onResponsiblePartySelected($event)" render="drop" multiple="false"
@@ -59,7 +59,7 @@
                 </GridLayout>
             </GridLayout>
 
-            <GridLayout rows="30" columns="*" backgroundColor="white" class="p-10 m-b-10">
+            <GridLayout rows="40" columns="*" backgroundColor="white" class="p-l-10 p-t-0 p-b-0 m-b-10">
                 <GridLayout row="0" col="0" rows="*" columns="*" orientation="horizontal" horizontalAlignment="stretch" [class]="!this.formIsValid && !this.createBookingObject.MarketCode && this.displayValidationErrors ? 'bordered' : ''">
                     <FilterSelect id="bookingMarketFilterSelect" row="0" col="0" horizontalAlignment="left" verticalAlignment="center" [items]="marketFilterSelectList"
                         (change)="onMarketItemSelected($event)" render="drop" multiple="false" hint="Select Market " modal_title="Market"
@@ -75,7 +75,7 @@
                     class="switch" horizontalAlignment="right"></Switch>
             </GridLayout>
 
-            <GridLayout rows="30" columns="*" backgroundColor="white" class="p-10 m-b-10">
+            <GridLayout rows="40" columns="*" backgroundColor="white" class="p-l-10 p-t-0 p-b-0 m-b-10">
                 <StackLayout row="0" col="0" horizontalAlignment="stretch" [class]="!this.formIsValid && !this.createBookingObject.MotorCarrier && this.displayValidationErrors ? 'bordered' : ''">
                     <FilterSelect id="bookingMotorCarrierFilterSelect" row="0" col="0" horizontalAlignment="left" verticalAlignment="center"
                         [items]="motorCarrierFilterSelectList" (change)="onMotorCarrierSelected($event)" render="drop" multiple="false"
@@ -88,7 +88,7 @@
             <GridLayout rows="*" columns="*" colSpan="2" backgroundColor="white" class="p-10">
                 <GridLayout row="0" col="0" rows="*" columns="*,*" orientation="horizontal" horizontalAlignment="stretch" [class]="!this.formIsValid && this.createBookingObject.ResponsiblePartyType == 'STEAMSHIP' && !this.createBookingObject.BookingNumber && this.displayValidationErrors ? 'bordered' : ''">
                     <Label row="0" col="0" text="Booking/BOL Number" textWrap="false" horizontalAlignment="left" verticalAlignment="center"></Label>
-                    <TextField width="200" row="0" col="1" class="text-default booking-text" [(ngModel)]="this.createBookingObject.BookingNumber"
+                    <TextField width="200" marginLeft="10" row="0" col="1" class="text-default booking-text" [(ngModel)]="this.createBookingObject.BookingNumber"
                         (ngModelChange)="checkFormValidation()" horizontalAlignment="left" verticalAlignment="center" hint="Number"></TextField>
                 </GridLayout>
             </GridLayout>

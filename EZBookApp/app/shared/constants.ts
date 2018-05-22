@@ -3,7 +3,7 @@ import { EquipmentCategory } from "~/data/equipment/equipment-category.model";
 import { PartyType } from "~/data/party/party-type.model";
 
 
-export const bookingStatusList: Array<BookingStatus> = Array(
+export const BookingStatusList: Array<BookingStatus> = Array(
   new BookingStatus("", "All"),
   new BookingStatus("OP", "Open"),
   new BookingStatus("CL", "Closed"),
@@ -12,7 +12,7 @@ export const bookingStatusList: Array<BookingStatus> = Array(
   new BookingStatus("EX", "Expired")
 );
 
-export const equipmentCategoriesList : Array<EquipmentCategory> = Array(
+export const EquipmentCategoriesList : Array<EquipmentCategory> = Array(
   new EquipmentCategory("", ""),  
   new EquipmentCategory("Chassis.20", "20 Foot Chassis"),
   new EquipmentCategory("Chassis.40", "40 Foot Chassis"),

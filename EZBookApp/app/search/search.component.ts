@@ -11,7 +11,7 @@ import { EquipmentCategory } from '~/data/equipment/equipment-category.model';
 import { Market } from '~/data/market/market.model';
 import { LocationModel } from '~/data/location/location.model';
 import { Customer } from '~/data/customer/customer.model';
-import { bookingStatusList, equipmentCategoriesList } from '~/shared/constants';
+import { BookingStatusList, EquipmentCategoriesList } from '~/shared/constants';
 
 
 @Component({
@@ -25,8 +25,7 @@ import { bookingStatusList, equipmentCategoriesList } from '~/shared/constants';
 export class SearchComponent implements OnInit, OnDestroy {
   private searchObject: DashboardBookingSearch = this.data.searchOptions;
   private bookingStatusCodesNames: Array<string>;
-  private bookingStatusCodes: Array<string>;
-  //private bookingConverter: BookingStatusConverter;
+  private bookingStatusCodes: Array<string>;  
   private equipmentCategories: Array<string>;
   private locationList: Array<string> = this.data.locationStrings;
   private marketList: Array<string> = this.data.marketStrings;
@@ -42,12 +41,12 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.searchObject = this.data.searchOptions;
 
 
-    this.bookingStatusCodesNames = bookingStatusList.map((status: BookingStatus) => status.name);
-    this.equipmentCategories = equipmentCategoriesList.map((category: EquipmentCategory) => category.EquipmentCategoryDescription);
+    this.bookingStatusCodesNames = BookingStatusList.map((status: BookingStatus) => status.name);
+    this.equipmentCategories = EquipmentCategoriesList.map((category: EquipmentCategory) => category.EquipmentCategoryDescription);
 
     //Convert from codes from search API call to strings for UI
-    this.searchObject.BookingStatusCode = bookingStatusList.filter((status: BookingStatus) => status.code === this.data.searchOptions.BookingStatusCode)[0].name;
-    this.searchObject.EquipmentSize = equipmentCategoriesList.filter((category: EquipmentCategory) => category.EquipmentCategoryCode === this.data.searchOptions.EquipmentSize)[0].EquipmentCategoryDescription;
+    this.searchObject.BookingStatusCode = BookingStatusList.filter((status: BookingStatus) => status.code === this.data.searchOptions.BookingStatusCode)[0].name;
+    this.searchObject.EquipmentSize = EquipmentCategoriesList.filter((category: EquipmentCategory) => category.EquipmentCategoryCode === this.data.searchOptions.EquipmentSize)[0].EquipmentCategoryDescription;
     this.searchObject.MarketCode = this.searchObject.MarketCode ? this.data.marketData.filter((market: Market) => market.LocationMarketCode === this.data.searchOptions.MarketCode)[0].LocationMarketDescription : "";
     this.searchObject.LocationId = this.searchObject.LocationId ? this.data.locationData.filter((loc: LocationModel) => loc.LocationId.toString() === this.data.searchOptions.LocationId)[0].LocationName : "";
     this.searchObject.CustomerId = this.searchObject.CustomerId && this.userIsAdmin ? this.data.customerData.filter((customer: Customer) => customer.CustomerId.toString() === this.data.searchOptions.CustomerId)[0].CustomerName : "";
@@ -65,8 +64,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
 
     //Convert from strings to codes for search API call    
-    this.searchObject.BookingStatusCode = this.searchObject.BookingStatusCode ? bookingStatusList.filter((status: BookingStatus) => status.name === this.searchObject.BookingStatusCode)[0].code : "";
-    this.searchObject.EquipmentSize = this.searchObject.EquipmentSize ? equipmentCategoriesList.filter((category: EquipmentCategory) => category.EquipmentCategoryDescription === this.searchObject.EquipmentSize)[0].EquipmentCategoryCode : "";
+    this.searchObject.BookingStatusCode = this.searchObject.BookingStatusCode ? BookingStatusList.filter((status: BookingStatus) => status.name === this.searchObject.BookingStatusCode)[0].code : "";
+    this.searchObject.EquipmentSize = this.searchObject.EquipmentSize ? EquipmentCategoriesList.filter((category: EquipmentCategory) => category.EquipmentCategoryDescription === this.searchObject.EquipmentSize)[0].EquipmentCategoryCode : "";
     this.searchObject.MarketCode = this.searchObject.MarketCode ? this.data.marketData.filter((market: Market) => market.LocationMarketDescription === this.searchObject.MarketCode)[0].LocationMarketCode : "";
     this.searchObject.LocationId = this.searchObject.LocationId ? this.data.locationData.filter((loc: LocationModel) => loc.LocationName === this.searchObject.LocationId)[0].LocationId.toString() : "";
 
@@ -99,7 +98,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     console.log("ngOnDestroy executing");
     //If conversion of BookingStatus Code and Name get into a bad state, this should catch it.
     if (this.searchObject.BookingStatusCode.length > 2) {
-      this.searchObject.BookingStatusCode = this.searchObject.BookingStatusCode ? bookingStatusList.filter((status: BookingStatus) => status.name === this.searchObject.BookingStatusCode)[0].code : "";
+      this.searchObject.BookingStatusCode = this.searchObject.BookingStatusCode ? BookingStatusList.filter((status: BookingStatus) => status.name === this.searchObject.BookingStatusCode)[0].code : "";
     }
   }
 }
