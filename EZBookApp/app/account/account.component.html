@@ -6,9 +6,9 @@
   <ScrollView>
     
       <GridLayout row="0" col="0" rows="auto,auto,auto,auto, *" columns="*,*">
-          <Button verticalAlignment="center" horizontalAlignment="stretch" class="fa btn btn-primary toggle-btn" row="0" col="0" text="&#xf2bb; Basic Information" fontSize="16"
+          <Button verticalAlignment="center" horizontalAlignment="stretch" class="fa btn btn-primary toggle-btn" row="0" col="0" text="&#xf2bb; Basic Information" fontSize="18" height="60"
               textTransform="none" (tap)="onBasicInformationTapped()" [backgroundColor]= "shouldSeeBasicInformation ? this.accentHex : 'white'" [color]= "shouldSeeBasicInformation ? 'white' : this.accentHex"></Button>
-          <Button verticalAlignment="top" horizontalAlignment="stretch" class="fa btn btn-primary toggle-btn" row="0" col="1" text="&#xf023; Change Password" fontSize="16"
+          <Button verticalAlignment="top" horizontalAlignment="stretch" class="fa btn btn-primary toggle-btn" row="0" col="1" text="&#xf023; Change Password" fontSize="18" height="60"
               textTransform="none" (tap)="onChangePasswordTapped()" [backgroundColor]= "shouldSeeBasicInformation == false ? this.accentHex : 'white'" [color]= "shouldSeeBasicInformation == false ? 'white' : this.accentHex"></Button>
 
           <GridLayout *ngIf="shouldSeeBasicInformation" row="2" col="0" colSpan="2" rows="auto,auto,auto,auto,auto,auto,*" columns="auto, *" class="p-10 m-t-20">
