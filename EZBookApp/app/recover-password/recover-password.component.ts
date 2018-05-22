@@ -3,6 +3,7 @@ import { AuthenticationService } from '~/services/authentication.service';
 import { RouterExtensions } from "nativescript-angular/router";
 import { Subscription } from 'rxjs/Subscription';
 import * as dialogs from "ui/dialogs";
+import { Config } from '~/shared/config';
 
 @Component({
   selector: "RecoverPassword",
@@ -15,6 +16,7 @@ import * as dialogs from "ui/dialogs";
 export class RecoverPasswordComponent implements OnInit, OnDestroy {
   private username:string;
   private scac:string;
+  private tracBlueHex: string = Config.tracBlueHex;
   private recoverPasswordSubscription: Subscription;
 
   constructor(private authService:AuthenticationService, private routerExtensions:RouterExtensions) { }

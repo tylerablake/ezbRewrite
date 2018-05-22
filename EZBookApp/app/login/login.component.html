@@ -4,20 +4,25 @@
     </StackLayout>
     <StackLayout col="0" row="1" margin="5" padding="0" verticalAlignment="center" backgroundColor="white">
         <StackLayout class="form" padding="10">
-            <StackLayout class="input-field" color="#005ABB">
-                <TextField class="input" hint="Username" [(ngModel)]="this.username" style.placeholderColor="#005ABB" autocorrect="false"></TextField>
-                <StackLayout class="hr-light"></StackLayout>
-            </StackLayout>
-            <StackLayout class="input-field" color="#005ABB">
-                <TextField secure="true" class="input" hint="Password" [(ngModel)]="this.password" style.placeholderColor="#005ABB" autocorrect="false"></TextField>
-                <StackLayout class="hr-light"></StackLayout>
-            </StackLayout>
+            <GridLayout class="input-field" color="#005ABB" rows="auto,auto" columns="auto,*">
+                <Label [color]="this.tracBlueHex" fontSize="20" col="0" row="0" class="fa p-b-5 m-r-10" text="&#xf2be;"></Label>
+                <TextField row="0" col="1" class="input" hint="Username" [(ngModel)]="this.username" style.placeholderColor="#005ABB" autocorrect="false"></TextField>
+                <StackLayout row="1" col="0" colSpan="2" class="hr-light"></StackLayout>
+            </GridLayout>
+            <GridLayout class="input-field" color="#005ABB" rows="auto,auto" columns="auto,*">
+                <Label [color]="this.tracBlueHex" fontSize="24" col="0" row="0" class="fa p-b-5 m-r-15" text="&#xf023;"></Label>
+                <TextField col="1" row="0" secure="true" class="input" hint="Password" [(ngModel)]="this.password" style.placeholderColor="#005ABB" autocorrect="false"></TextField>
+                <StackLayout col="0" row="1" colSpan="2" class="hr-light"></StackLayout>
+            </GridLayout>
             <Button class="btn btn-primary" textTransform="none" text="Login" (tap)="onSignIn()" [isEnabled]="this.username && this.password ? 'true' : 'false'"></Button>
         </StackLayout>
         <GridLayout rows="auto" columns="*,*">
-            <Button [visibility]="isAndroid ? 'visible' : 'collapsed'" row="0" col="0" class="btn btn-default" marginLeft="5" textWrap="true" textTransform="none" text="Register New User" (tap)="onRegisterTap()" color="#005ABB"></Button>
-            <Button [visibility]="isAndroid ? 'collapsed' : 'visible'" row="0" col="0" class="btn btn-default" margin="0" textWrap="false" textTransform="none" text="Call Customer Service" (tap)="onCallCustomerSupport()" color="#005ABB"></Button>
-            <Button row="0" col="1" class="btn btn-default" textWrap="true" textTransform="none" text="Forgot Password" (tap)="onForgotPasswordTap()" color="#005ABB"></Button>
+            <Button [visibility]="isAndroid ? 'visible' : 'collapsed'" row="0" col="0" class="btn btn-default" marginLeft="5" textWrap="true"
+                textTransform="none" text="Register New User" (tap)="onRegisterTap()" color="#005ABB"></Button>
+            <Button [visibility]="isAndroid ? 'collapsed' : 'visible'" row="0" col="0" class="btn btn-default" margin="0" textWrap="false"
+                textTransform="none" text="Call Customer Service" (tap)="onCallCustomerSupport()" color="#005ABB"></Button>
+            <Button row="0" col="1" class="btn btn-default" textWrap="true" textTransform="none" text="Forgot Password" (tap)="onForgotPasswordTap()"
+                color="#005ABB"></Button>
         </GridLayout>
     </StackLayout>
     <Label row="2" col="0" verticalAlignment="center" horizontalAlignment="center" text="QA Build" class="font-weight-bold" fontSize="14"

@@ -5,6 +5,7 @@ import * as dialogs from 'ui/dialogs';
 import { AuthenticationService } from '~/services/authentication.service';
 import { AccountService } from '~/services/account.service';
 import { Register } from '~/data/register/register.model';
+import { Config } from '~/shared/config';
 
 
 
@@ -18,6 +19,8 @@ import { Register } from '~/data/register/register.model';
 
 export class RegisterComponent implements OnInit {
   private registerModel: Register = new Register();
+  private tracBlueHex: string = Config.tracBlueHex;
+
   constructor(private accountService: AccountService, private authService: AuthenticationService, private routerExtensions: RouterExtensions) { }
 
   ngOnInit() { }

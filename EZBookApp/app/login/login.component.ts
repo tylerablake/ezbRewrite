@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   private password: string;  
   private logoImageSrc: string;  
   private isAndroid: boolean;
+  private tracBlueHex: string = Config.tracBlueHex;
 
   constructor(private page:Page, private router: Router, private routerExtensions:RouterExtensions, private authService: AuthenticationService) {
     if(platformModule.isAndroid){

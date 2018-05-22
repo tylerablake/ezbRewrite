@@ -5,29 +5,29 @@
   <ScrollView>    
   
     <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="auto,*" class="m-10">
-  
-        <Image col="0" row="0" src="res://user"></Image>      
+          
+        <Label col="0" row="0" class="fa icon" fontSize="24" text="&#xf2be;" [color]="this.tracBlueHex"></Label> 
         <TextField col="1" row="0" class="input" hint="First Name" [(ngModel)]="registerModel.FirstName"></TextField>
   
-        <Image col="0" row="1" src="res://user"></Image>      
+        <Label col="0" row="1" class="fa icon" fontSize="24" text="&#xf2be;" [color]="this.tracBlueHex"></Label>    
         <TextField col="1" row="1" class="input" hint="Last Name" [(ngModel)]="registerModel.LastName"></TextField>
-  
-        <Image col="0" row="2" src="res://user"></Image>      
+          
+        <Label col="0" row="2" class="fa icon" fontSize="24" text="&#xf2be;" [color]="this.tracBlueHex"></Label>
         <TextField col="1" row="2" class="input" hint="Username" [(ngModel)]="registerModel.Username"></TextField>
-        
-        <Image col="0" row="3" src="res://user"></Image>      
+                
+        <Label col="0" row="3" class="fa icon" text="&#xf023;" [color]="this.tracBlueHex"></Label>
         <TextField col="1" row="3" class="input" secure="true" hint="Password" [(ngModel)]="registerModel.Password"></TextField>
-  
-        <Image col="0" row="4" src="res://user"></Image>      
+          
+        <Label col="0" row="4" class="fa icon" text="&#xf023;" [color]="this.tracBlueHex"></Label>
         <TextField col="1" row="4" class="input" secure="true" hint="Confirm Password" [(ngModel)]="registerModel.ConfirmPassword"></TextField>
-  
-        <Image col="0" row="5" src="res://user"></Image>      
+                   
+        <Label col="0" row="5" class="fa icon" fontSize="24" text="&#xf0e0;" [color]="this.tracBlueHex"></Label> 
         <TextField col="1" row="5" class="input" hint="Email" [(ngModel)]="registerModel.Email"></TextField>
-  
-        <Image col="0" row="6" src="res://user"></Image>      
+          
+        <Label col="0" row="6" class="fa icon" text="&#xf095;" [color]="this.tracBlueHex"></Label> 
         <TextField col="1" row="6" class="input" hint="Phone Number" [(ngModel)]="registerModel.PhoneNumber"></TextField>
-  
-        <Image col="0" row="7" src="res://user"></Image>      
+          
+        <Label col="0" row="7" class="fa icon" fontSize="24" text="&#xf0ea;" [color]="this.tracBlueHex"></Label> 
         <TextField col="1" row="7" class="input" hint="SCAC" [(ngModel)]="registerModel.SCAC"></TextField>
     </GridLayout>
   </ScrollView>
