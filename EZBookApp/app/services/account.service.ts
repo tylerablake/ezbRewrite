@@ -10,6 +10,7 @@ import { UserAccount } from "~/data/user/user-account.model";
 import { ChangePasswordRequest } from "~/data/change-password/change-password-request.model";
 import { Register } from "~/data/register/register.model";
 import { RegisterUserRequest } from "~/data/register/register-user-request.model";
+import { UpdateUserRequest } from "~/data/user/update-user-request.model";
 
 
 @Injectable()
@@ -116,6 +117,43 @@ export class AccountService implements OnDestroy {
                 });
 
         return registerUserResult;
+    }
+
+    updateUser(userAccount: UserAccount): Observable<string> {
+        console.log(`userAccount info => ${JSON.stringify(userAccount)}`);
+        this.authService.refreshToken();
+
+        const url = Config.proxyUrl + Config.updateUserUrl;
+
+        const options = this.httpHelper.getCommonAuthHeaders();
+
+        var params = new UpdateUserRequest();
+        params.FirstName = userAccount.FirstName;
+        params.LastName = userAccount.LastName;
+        params.Email = userAccount.Email;
+        params.Phone = userAccount.PhoneNumber;
+
+        const updateUserResponse: Observable<string> =
+            <Observable<string>>
+            this.http.post(
+                url,
+                JSON.stringify(params), options)
+                .map(res => {  
+                    if(res.ok){
+                        return Observable.of("Success");
+                    }                  
+                    else{
+                        return Observable.of("");
+                    }
+                    
+                })
+                .catch(err => {
+                    console.log("Error on updateUser(): " + err);
+                    this.handleErrors(err);
+                    return Observable.of("");
+                });
+
+        return updateUserResponse;
     }
 
     private handleErrors(error: Response): Observable<any> {

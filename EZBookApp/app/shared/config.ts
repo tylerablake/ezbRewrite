@@ -43,6 +43,8 @@ export class Config {
 
   static registerUserUrl= "/trac/api/ezb/user";
 
+  static updateUserUrl= "/trac/api/ezb/user/updateAccount";
+
   static applicationCode = "00a4c5e7-4106-421c-9f1f-f7ba2ed2e0af";
 
   static token = "";

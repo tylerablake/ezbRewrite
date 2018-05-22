@@ -28,7 +28,7 @@ import { DashboardComponent } from "~/tabs/dashboard/dashboard.component";
 import { BookingComponent } from "~/tabs/booking/booking.component";
 import { SearchComponent } from "~/search/search.component";
 import { ReuseComponent } from "~/tabs/reuse/reuse.component";
-
+import { AccountComponent } from "~/account/account.component";
 
 //Services
 import { AccountService } from "~/services/account.service";
@@ -37,9 +37,6 @@ import { HttpHelperService } from "~/services/http-helper.service";
 import { OrderService } from "~/services/order.service";
 import { Data } from "~/shared/data";
 import { HelperService } from "~/services/helper.service";
-
-
-
 
 
 
@@ -69,7 +66,8 @@ import { HelperService } from "~/services/helper.service";
         HomeComponent,
         DashboardComponent,
         BookingComponent,
-        ReuseComponent
+        ReuseComponent,
+        AccountComponent
     ],
     providers: [
         AuthenticationService,

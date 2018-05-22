@@ -1,0 +1,54 @@
+<ActionBar class="action-bar">
+  <Label class="action-bar-title" text="My Account" android:horizontalAlignment="left"></Label>
+</ActionBar>
+
+<GridLayout class="page page-content" backgroundColor="#fff" rows="*" columns="*">
+  <ScrollView>
+    
+      <GridLayout row="0" col="0" rows="auto,auto,auto,auto, *" columns="*,*">
+          <Button verticalAlignment="center" horizontalAlignment="stretch" class="fa btn btn-primary toggle-btn" row="0" col="0" text="&#xf2bb; Basic Information" fontSize="16"
+              textTransform="none" (tap)="onBasicInformationTapped()" [backgroundColor]= "shouldSeeBasicInformation ? this.accentHex : 'white'" [color]= "shouldSeeBasicInformation ? 'white' : this.accentHex"></Button>
+          <Button verticalAlignment="top" horizontalAlignment="stretch" class="fa btn btn-primary toggle-btn" row="0" col="1" text="&#xf023; Change Password" fontSize="16"
+              textTransform="none" (tap)="onChangePasswordTapped()" [backgroundColor]= "shouldSeeBasicInformation == false ? this.accentHex : 'white'" [color]= "shouldSeeBasicInformation == false ? 'white' : this.accentHex"></Button>
+
+          <GridLayout *ngIf="shouldSeeBasicInformation" row="2" col="0" colSpan="2" rows="auto,auto,auto,auto,auto,auto,*" columns="auto, *" class="p-10 m-t-20">
+              <Label row="0" col="0" text="SCAC" textWrap="false" class="font-weight-bold label"></Label>
+              <Label row="0" col="1" [text]="this.accountInformation.SCAC" class="input"></Label>
+
+              <Label row="1" col="0" text="UserID" textWrap="false" class="font-weight-bold label"></Label>
+              <Label row="1" col="1" [text]="this.accountInformation.UserID" class="input"></Label>
+
+              <Label row="2" col="0" text="First Name" textWrap="false" class="font-weight-bold label" verticalAlignment="center"></Label>
+              <TextField row="2" col="1" hint="" [(ngModel)]="this.accountInformation.FirstName" class="input-underline"></TextField>
+
+              <Label row="3" col="0" text="Last Name" textWrap="false" class="font-weight-bold label" verticalAlignment="center"></Label>
+              <TextField row="3" col="1" hint="" [(ngModel)]="this.accountInformation.LastName" class="input-underline"></TextField>
+
+              <Label row="4" col="0" text="Email" textWrap="false" class="font-weight-bold label" verticalAlignment="center"></Label>
+              <TextField row="4" col="1" hint="" [(ngModel)]="this.accountInformation.Email" class="input-underline"></TextField>
+
+              <Label row="5" col="0" text="Phone #" textWrap="false" class="font-weight-bold label" verticalAlignment="center"></Label>
+              <TextField row="5" col="1" hint="" [(ngModel)]="this.accountInformation.PhoneNumber" class="input-underline"></TextField>
+
+              <Button isEnabled="false" row="6" col="1" class="btn btn-primary" text="Update Account" (tap)="onBasicInformationSubmit()" textTransform="none"></Button>
+          </GridLayout>
+
+          <GridLayout *ngIf="shouldSeeBasicInformation == false" row="3" col="0" colSpan="2" rows="auto,auto,auto,auto" columns="auto, *" class="p-10">
+              <Label row="0" col="0" text="Current Password" textWrap="false" class="font-weight-bold label" verticalAlignment="center"></Label>
+              <TextField secure="true" row="0" col="1" hint="" [(ngModel)]="this.accountInformation.CurrentPassword" class="input-underline"></TextField>
+
+              <Label row="1" col="0" text="New Password" textWrap="false" class="font-weight-bold label" verticalAlignment="center"></Label>
+              <TextField secure="true" row="1" col="1" hint="" [(ngModel)]="this.accountInformation.NewPassword" class="input-underline"></TextField>
+
+              <Label row="2" col="0" text="Confirm Password" textWrap="false" class="font-weight-bold label" verticalAlignment="center"></Label>
+              <TextField secure="true" row="2" col="1" hint="" [(ngModel)]="this.accountInformation.ConfirmPassword" class="input-underline"></TextField>              
+              
+              <Button [isEnabled]="this.accountInformation.CurrentPassword != '' && this.accountInformation.NewPassword != '' && this.accountInformation.ConfirmPassword != ''" row="3" col="1" class="btn btn-primary" text="Change Password" (tap)="onChangePasswordSubmit()"
+              verticalAlignment="center"  horizontalAlignment="stretch" textTransform="none"></Button>
+          </GridLayout>
+
+
+      </GridLayout>
+
+  </ScrollView>
+</GridLayout>
