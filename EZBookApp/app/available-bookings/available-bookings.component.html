@@ -1,0 +1,60 @@
+<ActionBar class="action-bar">
+    <Label class="action-bar-title" text="Available Units" horizontalAlignment="center"></Label>
+</ActionBar>
+<GridLayout rows="*, auto" columns="*">
+    <GridLayout rows="*,50" columns="*" row="0" col="0">
+        
+        <Label [visibility]="this.availableChassisCount > 0 ? 'visible' : 'collapsed'" text="Available chassis found!" textWrap="true"></Label>
+
+        <RadListView *ngIf="this.availableChassisCount> 0" #myListView [items]="this.availableUnits" (itemTap)="onOrderItemTap($event)"
+            class="list-group" selectionBehavior="None" (itemSwipeProgressEnded)="onSwipeCellFinished($event)" separatorColor="white">
+            <ng-template tkListItemTemplate let-unit="item">
+                <StackLayout class="list-group-item">
+                    <GridLayout rows="*, *, *, *, *" columns="*, *, *" class="list-group-item-content">
+                        <Label row="0" col="0" colSpan="5" [text]="unit.LocationName + ' - ' + unit.InventoryOrgDesc" class="text-primary font-weight-bold p-b-10"></Label>
+                        <Label horizontalAlignment="right" class="list-group-item-text m-r-5">
+                        </Label>
+
+                        <StackLayout row="1" col="0" colSpan="3" verticalAlignment="center">
+                            <Label class="p-b-10 text-primary" [text]="unit.LocationStreet1 + ' ' + unit.City + ', ' + unit.LocationStateProvince" ></Label>
+                            <Label class="p-b-10" [text]="'Hours: ' + unit.LocationOperatingHours" textWrap="true">
+                            </Label>
+                        </StackLayout>
+
+                        <StackLayout row="2" col="0" colSpan="1" verticalAlignment="center" orientation="horizontal">
+                            <Label col="1" colSpan="1" class="p-b-10 p-r-30 font-weight-bold" [text]="getChassisEquipmentString(unit.EquipmentSize, unit.EquipmentClass)"></Label>
+                        </StackLayout>
+
+
+                        <StackLayout row="2" col="1" colSpan="1" verticalAlignment="center" horizontalAlignment="center" orientation="horizontal">
+                            <Label class="p-b-10 p-r-10 font-weight-bold" row="4" col="2" [text]="unit.AvailableQuantity"></Label>
+                        </StackLayout>
+
+
+                        <StackLayout row="2" col="2" colSpan="1" verticalAlignment="center" horizontalAlignment="center" orientation="horizontal">
+                            <Button android:style="width:30;" class="text-primary" text="-" (tap)="decrementQuantity(unit.LocationName, unit.InventoryOrgDesc, unit.EquipmentClass)" horizontalAlignment="center" verticalAlignment="center"></Button>
+                            <Label android:style="width:30;"  marginLeft="10" width="20" [text]="unit.RequestedQuantity" horizontalAlignment="center" verticalAlignment="center"></Label>
+                            <Button android:style="width:30;" class="text-primary" text="+" (tap)="incrementQuantity(unit.LocationName, unit.InventoryOrgDesc, unit.EquipmentClass)" horizontalAlignment="center" verticalAlignment="center"></Button>
+                        </StackLayout>
+
+                        <Label row="3" col="1" horizontalAlignment="center" verticalAlignment="center" colSpan="1" text="Available" textWrap="true"></Label>
+                        <Label row="3" col="2" horizontalAlignment="center" verticalAlignment="center" colSpan="1" text="Quantity" textWrap="true"></Label>
+
+
+                    </GridLayout>
+                </StackLayout>
+            </ng-template>
+        </RadListView>
+
+        <Button textTransform="none" android:style="height:60;" [isEnabled]="totalRequestedQuantity >= 1" [visibility]="!this.isLoading && this.availableChassisCount > 0 ? 'visible' : 'collapsed'" row="1" col="0" class="btn btn-primary" text="Next" (tap)="onSubmitAvailableUnits()" verticalAlignment="center" horizontalAlignment="stretch"></Button>
+        
+    </GridLayout>
+
+    
+    
+    <Label row="0" col="0" [visibility]="!this.isLoading && this.availableChassisCount == 0 ? 'visible' : 'collapsed'" fontSize="20" text="No results found."
+        textWrap="true" color="black" verticalAlignment="center" horizontalAlignment="center"></Label>
+        
+    <ActivityIndicator [busy]="this.isLoading"></ActivityIndicator>
+    
+</GridLayout>

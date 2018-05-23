@@ -213,7 +213,7 @@ export class BookingComponent implements OnInit {
       this.clearMarketFilterSelect();  
       this.clearMotorCarrierFilterSelect();
       this.clearBookingNumber(); 
-      //this.checkFormValidation();
+      this.checkFormValidation();
       return;
     }
     else {
@@ -354,7 +354,7 @@ export class BookingComponent implements OnInit {
     this.createBookingObject.Reuse = false;
     this.data.availabilitySearchOptions = this.createBookingObject;    
 
-    this.routerExtensions.navigate(["/availability"],
+    this.routerExtensions.navigate(["/available-bookings"],
       {
         animated: true,
         transition: {

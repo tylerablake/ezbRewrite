@@ -40,6 +40,7 @@ import { HttpHelperService } from "~/services/http-helper.service";
 import { OrderService } from "~/services/order.service";
 import { Data } from "~/shared/data";
 import { HelperService } from "~/services/helper.service";
+import { AvailableBookingsComponent } from "~/available-bookings/available-bookings.component";
 
 
 
@@ -69,7 +70,8 @@ import { HelperService } from "~/services/helper.service";
         ReuseComponent,
         AccountComponent,
         OrderDetailComponent,
-        SettingsComponent        
+        SettingsComponent,
+        AvailableBookingsComponent        
     ],
     providers: [
         AuthenticationService,

@@ -23,4 +23,5 @@ export class Availability{
     CountryName: string;
     InventoryOrgCode: any;
     InventoryOrgDesc: string; 
+    RequestedQuantity: number;
 }

@@ -20,6 +20,9 @@ import { DashboardOrder } from "~/data/order/dashboard-order.model";
 import { HelperService } from "~/services/helper.service";
 import { CustomerBookingDetails } from "~/data/customer-booking/customer-booking-details.model";
 import { OrderDetail } from "~/data/order/order-detail.model";
+import { CheckAvailability } from "~/data/availability/check-availability.model";
+import { Availability } from "~/data/availability/availability.model";
+import { AvailableBookingsRequest } from "~/data/availability/available-bookings-request.model";
 
 
 @Injectable()
@@ -171,31 +174,31 @@ export class OrderService implements OnDestroy {
 
     // }
 
-    // checkAvailability(availabilitySearchOptons: CheckAvailability): Observable<AvailabilityViewModel[]> {
-    //     this.authService.refreshToken();
-    //     const url = Config.proxyUrl + Config.checkAvailabilityUrl;
-    //     const options = this.httpHelper.getCommonAuthHeaders();
+    checkAvailability(availabilitySearchOptons: CheckAvailability): Observable<Availability[]> {
+        this.authService.refreshToken();
+        const url = Config.proxyUrl + Config.checkAvailabilityUrl;
+        const options = this.httpHelper.getCommonAuthHeaders();
 
-    //     var params = new CheckAvailabilityApiObject(availabilitySearchOptons);
+        var params = new AvailableBookingsRequest(availabilitySearchOptons);
 
-    //     if (this.data.userProfile.CustomerId) {
-    //         params.CustomerId = this.data.userProfile.CustomerId;
-    //     }
+        if (this.data.userProfile.CustomerId) {
+            params.CustomerId = this.data.userProfile.CustomerId;
+        }
 
-    //     console.log('Params: ' + JSON.stringify(params));
+        console.log('Params: ' + JSON.stringify(params));
 
-    //     const availabilities: Observable<AvailabilityViewModel[]> =
-    //         <Observable<AvailabilityViewModel[]>>
-    //         this.http.post(
-    //             url, JSON.stringify(params), options)
-    //             .map(res => res.json())
-    //             .catch(err => {
-    //                 this.handleErrors(err);
-    //                 return Observable.of(false);
-    //             });
+        const availabilities: Observable<Availability[]> =
+            <Observable<Availability[]>>
+            this.http.post(
+                url, JSON.stringify(params), options)
+                .map(res => res.json())
+                .catch(err => {
+                    this.handleErrors(err);
+                    return Observable.of(false);
+                });
 
-    //     return availabilities;
-    // }
+        return availabilities;
+    }
 
     // update(order: Order) {
     // }

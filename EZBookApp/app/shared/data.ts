@@ -10,6 +10,7 @@ import { BookingAvailabilityViewModel } from '~/data/availability/booking-availa
 import { ReuseAvailabilityViewModel } from '~/data/availability/reuse-availability.viewmodel';
 import { LocationModel } from '~/data/location/location.model';
 import { CancelBookingRequest } from '~/data/cancel/cancel-booking-request.model';
+import { Availability } from '~/data/availability/availability.model';
 
 // import { DashboardBookingSearch } from "../search/dashboard-order-search.model";
 // import { EquipmentCategory } from './equipment/equipment-category.model';
@@ -68,7 +69,7 @@ export class Data {
 
   public userProfile: UserProfile = new UserProfile();
 
-  public poolBookingUnits: BookingAvailabilityViewModel[] = new Array<BookingAvailabilityViewModel>();
+  public poolBookingUnits: Availability[] = new Array<Availability>();
 
   public reuseBookingUnits: ReuseAvailabilityViewModel[] = new Array<ReuseAvailabilityViewModel>();
 
