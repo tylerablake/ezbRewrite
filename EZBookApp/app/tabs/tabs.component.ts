@@ -171,8 +171,8 @@ export class TabsComponent implements OnInit {
             });
     }
 
-    onMyAccountButtonTap():void{ 
-        this.routerExtensions.navigate(["/account"],
+    onSettingsTap():void{ 
+        this.routerExtensions.navigate(["/settings"],
         {
             animated: true,
             transition: {

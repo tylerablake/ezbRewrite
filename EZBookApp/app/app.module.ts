@@ -30,6 +30,8 @@ import { SearchComponent } from "~/search/search.component";
 import { ReuseComponent } from "~/tabs/reuse/reuse.component";
 import { AccountComponent } from "~/account/account.component";
 import { OrderDetailComponent } from "~/order-detail/order-detail.component";
+import { SettingsComponent } from "~/settings/settings.component";
+
 
 //Services
 import { AccountService } from "~/services/account.service";
@@ -38,7 +40,6 @@ import { HttpHelperService } from "~/services/http-helper.service";
 import { OrderService } from "~/services/order.service";
 import { Data } from "~/shared/data";
 import { HelperService } from "~/services/helper.service";
-
 
 
 
@@ -67,7 +68,8 @@ import { HelperService } from "~/services/helper.service";
         BookingComponent,
         ReuseComponent,
         AccountComponent,
-        OrderDetailComponent        
+        OrderDetailComponent,
+        SettingsComponent        
     ],
     providers: [
         AuthenticationService,

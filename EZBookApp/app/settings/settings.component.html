@@ -1,0 +1,17 @@
+<ActionBar title="Settings" icon="" class="action-bar">
+</ActionBar>
+
+<GridLayout horizontalAlignment="left" verticalAlignment="top" class="page page-content" backgroundColor="#efefef" rows="*,*"
+  columns="*">
+
+  <StackLayout col="0" row="0" backgroundColor="#ffffff" class="p-t-10 p-l-15 m-b-10">
+    <Label ios:height="50" android:height="40" width="100%" class="fa" [color]="this.tracBlueHex" fontSize="22" text="&#xf2be; My Account" horizontalAlignment="left" (tap)="onAccountTap()"></Label>
+    <Label ios:height="50" android:height="40" width="100%" class="fa" [color]="this.tracBlueHex" fontSize="22" text="&#xf08b; Sign Out" horizontalAlignment="left" (tap)="onSignOutTap()"></Label>
+  </StackLayout>
+
+  <StackLayout col="0" row="1" backgroundColor="#ffffff" class="p-l-15 p-t-10">
+    <Label ios:height="50" android:height="40" width="100%" class="fa" [color]="this.tracBlueHex" fontSize="22" text="&#xf10b; App Specs" horizontalAlignment="left" (tap)="onAppSpecsTap()"></Label>
+    <Label ios:height="50" android:height="40" width="100%" class="fa" [color]="this.tracBlueHex" fontSize="22" text="&#xf128; Help" horizontalAlignment="left" (tap)="onHelpTap()"></Label>
+  </StackLayout>
+
+</GridLayout>

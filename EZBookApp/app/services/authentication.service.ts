@@ -212,7 +212,7 @@ export class AuthenticationService implements OnDestroy{
             //TNSFancyAlert.showError("Session Timeout", "You were idle too long. You need to login to access the application.", "Dismiss");    
             
         }
-        else if(sessionTimeout === false){
+        else if(sessionTimeout === true){
             dialogs.alert({
                 title: "Success!",
                 message: "Please log in using your new password",

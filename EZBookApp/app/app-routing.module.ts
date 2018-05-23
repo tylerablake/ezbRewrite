@@ -9,6 +9,7 @@ import { SearchComponent } from "~/search/search.component";
 import { AccountComponent } from "~/account/account.component";
 import { ReuseComponent } from "~/tabs/reuse/reuse.component";
 import { OrderDetailComponent } from "~/order-detail/order-detail.component";
+import { SettingsComponent } from "~/settings/settings.component";
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
     { path: "order-detail/:id", component: OrderDetailComponent },
     { path: "order-detail/:id/orderNumber/:orderNumber", component: OrderDetailComponent},
     //{ path: "order-detail-edit/:id", component: OrderDetailEditComponent }, 
+    { path: "settings", component: SettingsComponent}    
 ];
 
 @NgModule({
