@@ -12,6 +12,7 @@ import { Market } from '~/data/market/market.model';
 import { LocationModel } from '~/data/location/location.model';
 import { Customer } from '~/data/customer/customer.model';
 import { BookingStatusList, EquipmentCategoriesList } from '~/shared/constants';
+import * as applicationModule from "tns-core-modules/application";
 
 
 @Component({
@@ -50,9 +51,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.searchObject.MarketCode = this.searchObject.MarketCode ? this.data.marketData.filter((market: Market) => market.LocationMarketCode === this.data.searchOptions.MarketCode)[0].LocationMarketDescription : "";
     this.searchObject.LocationId = this.searchObject.LocationId ? this.data.locationData.filter((loc: LocationModel) => loc.LocationId.toString() === this.data.searchOptions.LocationId)[0].LocationName : "";
     this.searchObject.CustomerId = this.searchObject.CustomerId && this.userIsAdmin ? this.data.customerData.filter((customer: Customer) => customer.CustomerId.toString() === this.data.searchOptions.CustomerId)[0].CustomerName : "";
-
-
   }
+
 
   onSubmit(): void {
     if (!this.searchObject.DateTo) {

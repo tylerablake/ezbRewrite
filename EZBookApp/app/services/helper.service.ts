@@ -29,18 +29,22 @@ export class HelperService {
 
     return Config.tracBlueHex;
   }
-  
-  getChassisEquipmentString(equipmentSize: string):string{
-    if(!equipmentSize){
-        return " ";
+
+  getChassisEquipmentString(equipmentSize: string): string {
+    if (!equipmentSize) {
+      return " ";
     }
     var size = equipmentSize.slice(-2);
-    
+
     var dotIndex = equipmentSize.indexOf('.');
 
-    var classString = equipmentSize.substring(0,dotIndex);
+    var classString = equipmentSize.substring(0, dotIndex);
 
     return size + "` " + classString;
 
-};
+  };
+
+  addDays(date: Date, days: number): Date {
+    return new Date(date.getTime() + (days * (1000 * 60 * 60 * 24)));
+  }
 }

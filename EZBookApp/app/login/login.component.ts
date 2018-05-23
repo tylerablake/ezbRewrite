@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { PageRoute, RouterExtensions } from "nativescript-angular/router";
-//import { TNSFancyAlert, TNSFancyAlertButton } from 'nativescript-fancyalert';
 import { Page } from "ui/page";
 import * as platformModule from "tns-core-modules/platform";
 import { Config } from "../shared/config";
@@ -50,11 +49,9 @@ export class LoginComponent implements OnInit {
         }
         else{          
           dialogs.alert("Invalid Credentials, please try again.");
-          //TNSFancyAlert.showError("Invalid Credentials!", "", "Try Again");  
         }        
       }, (error) => {
         dialogs.alert("Something went wrong, please try again.");
-        //TNSFancyAlert.showError("Oops!", "Something went wrong, please try again.", "Dismiss");        
       });
   } 
   onForgotPasswordTap():void{

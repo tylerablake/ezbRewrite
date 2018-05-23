@@ -8,6 +8,7 @@ import { RecoverPasswordComponent } from "~/recover-password/recover-password.co
 import { SearchComponent } from "~/search/search.component";
 import { AccountComponent } from "~/account/account.component";
 import { ReuseComponent } from "~/tabs/reuse/reuse.component";
+import { OrderDetailComponent } from "~/order-detail/order-detail.component";
 
 
 const routes: Routes = [
@@ -19,7 +20,10 @@ const routes: Routes = [
     { path: "tabs", component: TabsComponent},
     { path: "tabs/:id", component: TabsComponent},
     { path: "account", component: AccountComponent},
-    { path: "reuse", component: ReuseComponent}    
+    { path: "reuse", component: ReuseComponent},
+    { path: "order-detail/:id", component: OrderDetailComponent },
+    { path: "order-detail/:id/orderNumber/:orderNumber", component: OrderDetailComponent},
+    //{ path: "order-detail-edit/:id", component: OrderDetailEditComponent }, 
 ];
 
 @NgModule({

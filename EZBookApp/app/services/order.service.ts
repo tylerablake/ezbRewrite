@@ -17,44 +17,9 @@ import { DashboardBookingSearch } from "~/data/search/dashboard-search.model";
 import { Order } from "~/data/order/order.model";
 import { LocationModel } from "~/data/location/location.model";
 import { DashboardOrder } from "~/data/order/dashboard-order.model";
-
-// import { Injectable, NgZone, OnDestroy } from "@angular/core";
-// import { Http, Response, Request, Headers } from "@angular/http";
-
-// import * as dialogs from "ui/dialogs";
-
-// import { Config } from "../shared/config";
-// import { HttpHelperService } from "../shared/http-helper.service";
-// import { Order } from "./order.model";
-// import { Data } from "../shared/data";
-
-// import { DashboardBookingSearch } from "../search/dashboard-order-search.model";
-// import { CustomerBookingDetails } from "./customer-booking-details.model";
-// import { OrderDetail } from "./order-detail/order-detail.model";
-// import { Market } from "../shared/markets/market.model";
-// import { LocationModel } from "../shared/locations/location.model";
-// import { AuthenticationService } from "../shared/user/authentication.service";
-// import { Customer } from "./customer.model";
-// import { CreateBooking } from "../shared/booking/create-booking.model";
-// import { Availability } from "../shared/booking/availability.model";
-// import { CheckAvailabilityApiObject } from "../shared/booking/check-availability-api-object.model";
-// import { LoadingIndicator } from "nativescript-loading-indicator";
-// import { SubmitBooking } from "../shared/booking/submit-booking.model";
-// import { AvailabilityViewModel } from "../availability/availability.viewmodel";
-// import { SubmitBookingOrder } from "../shared/booking/submit-booking-order.model";
-// import { ConfirmBookingOrder } from "../shared/booking/confirm-booking-order.model";
-// import { ConfirmBooking } from "../shared/booking/confirm-booking.model";
-// import { CheckAvailability } from "../shared/booking/check-availability.model";
-// import { ReusableChassisLocationData } from "../reusable-chassis/reuseable-chassis-location-data.model";
-// import { ConfirmReuse } from "../confirm-reuse/confirm-reuse.model";
-// import { SubmitRecoverPassword } from "../recover-password/submit-recover-password.model";
-// import { SubmitReuse } from "../shared/reuse/submit-reuse.model";
-// import { EditBookingRequest } from "./order-detail-edit/edit-booking-request.model";
-// import { EditBookingResponse } from "./order-detail-edit/edit-booking-response.model";
-// import { CancelBookingResponse } from "../shared/booking/cancel-booking-response.model";
-// import { CancelBookingRequest } from "../shared/booking/cancel-booking-request.model";
-// import { ValidateChassisResponse } from "../reusable-chassis/validate-chassis-response.model";
-
+import { HelperService } from "~/services/helper.service";
+import { CustomerBookingDetails } from "~/data/customer-booking/customer-booking-details.model";
+import { OrderDetail } from "~/data/order/order-detail.model";
 
 
 @Injectable()
@@ -90,7 +55,7 @@ export class OrderService implements OnDestroy {
         }
     };
 
-    constructor(private http: Http, private httpHelper: HttpHelperService, private data: Data, private authService: AuthenticationService) {
+    constructor(private http: Http, private httpHelper: HttpHelperService, private data: Data, private authService: AuthenticationService, private helperService:HelperService) {
     }
 
     getDashboardData(orderSearch: DashboardBookingSearch = new DashboardBookingSearch(false)): Observable<any> {
@@ -114,59 +79,59 @@ export class OrderService implements OnDestroy {
         return orderList;
     }
 
-    // getOrderDetailsByBookingNumber(orderNumber: string) {
+    getOrderDetailsByBookingNumber(orderNumber: string) {
 
-    //     if (!orderNumber) {
-    //         return;
-    //     }
-    //     this.authService.refreshToken();
-    //     const url = Config.proxyUrl + Config.dashboardUrl + "/search";
-    //     const options = this.httpHelper.getCommonAuthHeaders();
+        if (!orderNumber) {
+            return;
+        }
+        this.authService.refreshToken();
+        const url = Config.proxyUrl + Config.dashboardUrl + "/search";
+        const options = this.httpHelper.getCommonAuthHeaders();
 
-    //     var orderSearch: DashboardBookingSearch = new DashboardBookingSearch(false);
+        var orderSearch: DashboardBookingSearch = new DashboardBookingSearch(false);
 
-    //     orderSearch.DateFrom = this.addDays(new Date, -7);
-    //     orderSearch.DateTo = new Date();
-    //     orderSearch.OrderNumber = orderNumber;
+        orderSearch.DateFrom = this.helperService.addDays(new Date, -7);
+        orderSearch.DateTo = new Date();
+        orderSearch.OrderNumber = orderNumber;
 
-    //     const order: Observable<Order> =
-    //         <Observable<Order>>
+        const order: Observable<Order> =
+            <Observable<Order>>
 
-    //         this.http.post(
-    //             url,
-    //             JSON.stringify(orderSearch), options)
-    //             .map(res => res.json())
-    //             .catch(err => {
-    //                 this.handleErrors(err);
-    //                 return Observable.of(false);
-    //             });
+            this.http.post(
+                url,
+                JSON.stringify(orderSearch), options)
+                .map(res => res.json())
+                .catch(err => {
+                    this.handleErrors(err);
+                    return Observable.of(false);
+                });
 
-    //     return order;
-    // }
+        return order;
+    }
 
-    // getCustomerBookingDetailsById(id: number): Observable<CustomerBookingDetails> {
-    //     if (!id) {
-    //         return;
-    //     }
-    //     this.authService.refreshToken();
-    //     const url = Config.proxyUrl + Config.customerBookingUrl + "/" + id.toString();
+    getCustomerBookingDetailsById(id: number): Observable<CustomerBookingDetails> {
+        if (!id) {
+            return;
+        }
+        this.authService.refreshToken();
+        const url = Config.proxyUrl + Config.customerBookingUrl + "/" + id.toString();
 
-    //     const options = this.httpHelper.getCommonAuthHeaders();
+        const options = this.httpHelper.getCommonAuthHeaders();
 
-    //     const customerBookingDetails: Observable<CustomerBookingDetails> =
-    //         <Observable<CustomerBookingDetails>>
+        const customerBookingDetails: Observable<CustomerBookingDetails> =
+            <Observable<CustomerBookingDetails>>
 
-    //         this.http.get(
-    //             url, options)
-    //             .map(res => res.json())
-    //             .catch(err => {
-    //                 this.handleErrors(err);
-    //                 return Observable.of(false);
-    //             });
+            this.http.get(
+                url, options)
+                .map(res => res.json())
+                .catch(err => {
+                    this.handleErrors(err);
+                    return Observable.of(false);
+                });
 
-    //     return customerBookingDetails;
+        return customerBookingDetails;
 
-    // }
+    }
 
     // getOrderById(id: string): Order {
     //     if (!id) {
@@ -179,28 +144,28 @@ export class OrderService implements OnDestroy {
     //     })[0];
     // }
 
-    // getOrderDetails(id: number): Observable<OrderDetail[]> {
-    //     if (!id) {
-    //         return;
-    //     }
-    //     this.authService.refreshToken();
-    //     const url = Config.proxyUrl + Config.dashboardDetailsUrl + "/" + id.toString();
+    getOrderDetails(id: number): Observable<OrderDetail[]> {
+        if (!id) {
+            return;
+        }
+        this.authService.refreshToken();
+        const url = Config.proxyUrl + Config.dashboardDetailsUrl + "/" + id.toString();
 
-    //     const options = this.httpHelper.getCommonAuthHeaders();
+        const options = this.httpHelper.getCommonAuthHeaders();
 
-    //     const orderDetails: Observable<OrderDetail[]> =
-    //         <Observable<OrderDetail[]>>
+        const orderDetails: Observable<OrderDetail[]> =
+            <Observable<OrderDetail[]>>
 
-    //         this.http.get(
-    //             url, options)
-    //             .map(res => res.json())
-    //             .catch(err => {
-    //                 this.handleErrors(err);
-    //                 return Observable.of(false);
-    //             });
+            this.http.get(
+                url, options)
+                .map(res => res.json())
+                .catch(err => {
+                    this.handleErrors(err);
+                    return Observable.of(false);
+                });
 
-    //     return orderDetails;
-    // }
+        return orderDetails;
+    }
 
     // searchOrders(searchOptions: DashboardBookingSearch): void {
 
@@ -238,9 +203,7 @@ export class OrderService implements OnDestroy {
     // uploadImage(remoteFullPath: string, localFullPath: string) {
     // }
 
-    // private addDays(date: Date, days: number): Date {
-    //     return new Date(date.getTime() + (days * (1000 * 60 * 60 * 24)));
-    // }
+
 
     getLocationData(): Subscription {
         console.log("Starting getLocationData()");

@@ -112,6 +112,24 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return this.helperService.getStatusDescriptionColor(statusDescription);
   }
 
+  onOrderItemTap(args: ListViewEventData): void {
+
+  }
+
+  onOrderEditTap(args: ListViewEventData): void {
+      const tappedOrderItem = args.view.bindingContext;        
+
+      this._routerExtensions.navigate(["order-detail/" + tappedOrderItem.BookingOrderId + '/orderNumber/' + tappedOrderItem.BookingOrderCode],
+          {
+              animated: true,
+              transition: {
+                  name: "slide",
+                  duration: 400,
+                  curve: "ease"
+              }
+          });
+  }
+
   onLogoutButtonTap() {
     this.authService.logout();
   }

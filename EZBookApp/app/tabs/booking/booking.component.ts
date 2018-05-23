@@ -45,9 +45,9 @@ export class BookingComponent implements OnInit {
   private motorCarrierFilterSelectList: ObservableArray<PartyFilterSelectItem> = new ObservableArray<PartyFilterSelectItem>();
   private previousDataResponsiblePartyType: string;
   private previousDataResponsiblePartyId: number;
-  private twentyChassisSelected: boolean = false;
-  private fortyChassisSelected: boolean = false;
-  private fortyFiveChassisSelected: boolean = false;
+  private twentyChassisSelected: boolean;
+  private fortyChassisSelected: boolean;
+  private fortyFiveChassisSelected: boolean;
   private formIsValid: boolean = false;
   private displayValidationErrors: boolean = false;
   private accentHex: string = Config.tracBlueHex;
@@ -213,7 +213,7 @@ export class BookingComponent implements OnInit {
       this.clearMarketFilterSelect();  
       this.clearMotorCarrierFilterSelect();
       this.clearBookingNumber(); 
-      this.checkFormValidation();
+      //this.checkFormValidation();
       return;
     }
     else {
@@ -233,9 +233,7 @@ export class BookingComponent implements OnInit {
            
           this.clearMarketFilterSelect();  
           this.clearMotorCarrierFilterSelect(); 
-        }
-        else{          
-        }                
+        }             
       }    
 
     this.checkFormValidation();

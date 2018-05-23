@@ -1,0 +1,110 @@
+<ActionBar class="action-bar">
+    <NavigationButton android.systemIcon="ic_menu_back" (tap)="onBackButtonTap()">
+    </NavigationButton>
+    <Label class="action-bar-title" [text]="'Order#: '+ this.orderNumber" horizontalAlignment="center"></Label>
+    <!-- <ActionItem ios.position="right" android.position="right" (tap)="onEditButtonTap()">
+        <Label text="Edit" class="action-item"></Label>
+    </ActionItem> -->
+</ActionBar>
+
+<GridLayout rows="*, 50" columns="*" backgroundColor="#efefef">
+    <GridLayout col="0" row="0" rows="*" columns="*">
+        <ScrollView *ngIf="this.order && this.orderDetails">
+            <StackLayout>
+                <StackLayout backgroundColor="white" class="m-r-10 m-l-10 m-t-5 m-b-5 p-r-0" orientation="horizontal">
+                    <Label text="Order Status" class="detail-text p-5 font-weight-bold pull-left" width="50%"></Label>
+                    <Label [text]="this.order.StatusDescription" class="detail-text p-5 pull-right" textWrap="false"></Label>
+                    <Label col="1" class="list-group-item-text m-r-5 detail-text" verticalAlignment="center" horizontalAlignment="center">
+                        <FormattedString>
+                            <Span text="&#9679;" [style.color]="getColor(this.order.StatusDescription)"></Span>
+                        </FormattedString>
+                    </Label>
+                </StackLayout>
+
+                <StackLayout backgroundColor="white" class="m-r-10 m-l-10 m-b-5 m-t-5">
+                    <StackLayout orientation="horizontal">
+                        <Label text="Market" class="detail-text p-5 font-weight-bold pull-left" width="50%"></Label>
+                        <Label [text]="this.order.MarketDescription" class="detail-text p-5 pull-right" textWrap="false" width="50%"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal">
+                        <Label text="Customer" class="detail-text p-5 font-weight-bold pull-left" width="50%"></Label>
+                        <Label [text]="this.order.Customer" class="detail-text p-5 pull-right" textWrap="true" width="50%"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal">
+                        <Label text="Equipment Size" class="detail-text p-5 font-weight-bold pull-left" width="50%"></Label>
+                        <Label [text]="getChassisEquipmentString(this.order.EquipmentSize)" class="detail-text p-5 pull-right" textWrap="false" width="50%"></Label>
+                    </StackLayout>
+                    <!-- TODO: Revisit if these become required to show in EZBook 3.0 -->
+                    <!-- <StackLayout orientation="horizontal">
+                                        <Label text="Equipment Class" class="detail-text p-5 font-weight-bold pull-left" width="50%"></Label>
+                                        <Label text="LOREM EQ CLASS" class="detail-text p-5 pull-right" textWrap="false" width="50%"></Label>
+                                    </StackLayout>
+                                    <StackLayout orientation="horizontal">
+                                        <Label text="Motor Carrier" class="detail-text p-5 font-weight-bold pull-left" width="50%"></Label>
+                                        <Label text="LOREM MOTOR CARRIER" class="detail-text p-5 pull-right" textWrap="false" width="50%"></Label>
+                                    </StackLayout>
+                                    <StackLayout orientation="horizontal">
+                                        <Label text="Ocean Carrier" class="detail-text p-5 font-weight-bold pull-left" width="50%"></Label>
+                                        <Label text="LOREM OCEAN CARRIER" class="detail-text p-5 pull-right" textWrap="false" width="50%"></Label>
+                                    </StackLayout>
+                                    <StackLayout orientation="horizontal">
+                                        <Label text="Responsible Party" class="detail-text p-5 font-weight-bold pull-left" width="50%"></Label>
+                                        <Label text="LOREM RES PARTY" class="detail-text p-5 pull-right" textWrap="false" width="50%"></Label>
+                                    </StackLayout> -->
+                </StackLayout>
+
+
+                <StackLayout *ngFor="let detail of orderDetails" backgroundColor="white" class="m-r-10 m-l-10 m-b-5 m-t-5">
+                    <StackLayout orientation="horizontal">
+                        <Label text="Booking #" class="detail-text p-5 font-weight-bold pull-left" width="50%"></Label>
+                        <Label [text]="detail.BookingNumber" class="detail-text p-5 pull-right" textWrap="false" width="50%"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal">
+                        <Label text="Status" class="detail-text p-5 font-weight-bold pull-left" width="50%"></Label>
+                        <Label [text]="detail.StatusDescription" class="detail-text p-5 pull-right" textWrap="false"></Label>
+                        <Label col="1" class="list-group-item-text m-r-5" verticalAlignment="center" horizontalAlignment="center">
+                            <FormattedString>
+                                <Span text="&#9679; " [style.color]="getColor(detail.StatusDescription)"></Span>
+                            </FormattedString>
+                        </Label>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal">
+                        <Label text="Bookings" class="detail-text p-5 font-weight-bold pull-left" width="50%"></Label>
+                        <Label [text]="detail.UnitsRequestedCount" class="detail-text p-5 pull-right" textWrap="false" width="50%"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal">
+                        <Label text="Fulfilled" class="detail-text p-5 font-weight-bold pull-left" width="50%"></Label>
+                        <Label [text]="detail.UnitsPickedCount" class="detail-text p-5 pull-right" textWrap="false" width="50%"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal">
+                        <Label text="Location" class="detail-text p-5 font-weight-bold pull-left" width="50%"></Label>
+                        <Label [text]="detail.LocationName" class="detail-text p-5 pull-right" textWrap="true" width="50%"></Label>
+                    </StackLayout>
+                    <StackLayout orientation="horizontal">
+                        <Label text="Inventory Org Code" class="detail-text p-5 font-weight-bold pull-left" width="50%"></Label>
+                        <Label [text]="detail.ToInventoryOrgCode" class="detail-text p-5 pull-right" textWrap="true" width="50%"></Label>
+                    </StackLayout>
+                </StackLayout>
+
+                <!-- TODO: Revisit if this becomes required to show in EZBook 3.0 -->
+                <!-- <StackLayout backgroundColor="white" class="m-r-10 m-l-10 m-t-5 m-b-5 p-r-0" orientation="horizontal">
+                                <Label text="Comments" class="detail-text p-5 font-weight-bold pull-left" width="50%"></Label>
+                                <Label text="LOREM IPSUM COMMENTS" class="detail-text p-5 pull-right" textWrap="false" width="50%"></Label>
+                            </StackLayout>    -->
+
+            </StackLayout>
+        </ScrollView>
+
+
+    </GridLayout>
+
+    <GridLayout *ngIf="this.order" col="0" row="1" rows="*" columns="*,*">
+        <Button textTransform="none" [isEnabled]="this.order.StatusDescription != 'Cancelled'" android:style="height:60;" row="1" col="0" class="btn btn-danger"
+            backgroundColor="red" text="Cancel Order" (tap)="onCancelOrderTap()" verticalAlignment="center" horizontalAlignment="center"></Button>
+        <Button textTransform="none" [visibility]="this.order.IsReUseBooking ? 'collapsed' : 'visible'" [isEnabled]="this.order.StatusDescription != 'Cancelled'"
+            android:style="height:60;" row="1" col="1" class="btn btn-primary" text="Edit Order" (tap)="onEditButtonTap()" verticalAlignment="center"
+            horizontalAlignment="center"></Button>
+    </GridLayout>
+
+    <ActivityIndicator [busy]="isDataLoading"></ActivityIndicator>
+</GridLayout>

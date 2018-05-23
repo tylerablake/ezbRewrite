@@ -9,6 +9,7 @@ import { CheckAvailability } from '~/data/availability/check-availability.model'
 import { BookingAvailabilityViewModel } from '~/data/availability/booking-availability.viewmodel';
 import { ReuseAvailabilityViewModel } from '~/data/availability/reuse-availability.viewmodel';
 import { LocationModel } from '~/data/location/location.model';
+import { CancelBookingRequest } from '~/data/cancel/cancel-booking-request.model';
 
 // import { DashboardBookingSearch } from "../search/dashboard-order-search.model";
 // import { EquipmentCategory } from './equipment/equipment-category.model';
@@ -81,7 +82,7 @@ export class Data {
 
   // public submitEditBookingModel: SubmitEditBookingRequest = new SubmitEditBookingRequest();
 
-  // public cancelOrderData: CancelBookingRequest = new CancelBookingRequest();
+  public cancelOrderData: CancelBookingRequest = new CancelBookingRequest();
 
 
   // public constructor(private equipmentService:EquipmentService) {
