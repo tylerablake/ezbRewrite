@@ -57,115 +57,115 @@ ActionBar .action-bar-title {
 //    color: $accent;  
 //  }
  
-//  Label{
-//      font-size: 14px;
-//  }
+ Label{
+     font-size: 14px;
+ }
  
-//  .text {
-//      color: $blue-dark;
-//      font-size: 14px;
-//  }
+ .text {
+     color: $blue-dark;
+     font-size: 14px;
+ }
  
-//  .text-primary {
-//      color: $accent-dark;
-//      font-size: 14px;
-//  }
+ .text-primary {
+     color: $accent-dark;
+     font-size: 14px;
+ }
  
-//  .text-secondary {
-//      color: $blue-50;
-//      font-size: 14px;
-//  }
+ .text-secondary {
+     color: $blue-50;
+     font-size: 14px;
+ }
  
-//  .btn-primary{
-//      background-color:#3D70B9;
-//      font-size: 14px;
-//  }
+ .btn-primary{
+     background-color:#3D70B9;
+     font-size: 14px;
+ }
  
-//  .btn-danger{
-//      background-color: red;
-//      font-size: 14px;
-//      color: white;
-//  }
+ .btn-danger{
+     background-color: red;
+     font-size: 14px;
+     color: white;
+ }
  
  
  
-//  .btn-primary:disabled{
-//      background-color: lighten(#3D70B9, 5%);    
-//      font-size: 14px;
-//      color:gray;
-//  }
+ .btn-primary:disabled{
+     background-color: lighten(#3D70B9, 5%);    
+     font-size: 14px;
+     color:gray;
+ }
  
-//  .btn-danger:disabled{
-//      background-color: lighten(red, 5%);
-//      font-size: 14px;
-//      color:gray;
-//  }
-//  .bordered{        
-//      border-bottom-width: 3px;
-//      border-bottom-color: red;
-//  }
+ .btn-danger:disabled{
+     background-color: lighten(red, 5%);
+     font-size: 14px;
+     color:gray;
+ }
+ .bordered{        
+     border-bottom-width: 3px;
+     border-bottom-color: red;
+ }
  
-//  //Swipe Actions Styles
+ //Swipe Actions Styles
  
-//  .listItemStackLayout {
-//      background-color: white;
-//      padding-left: 5;
-//  }
+ .listItemStackLayout {
+     background-color: white;
+     padding-left: 5;
+ }
  
-//  .labelName {
-//      font-size: 20;
-//      margin-bottom: 8;
-//  }
+ .labelName {
+     font-size: 20;
+     margin-bottom: 8;
+ }
  
-//  .labelTitle {
-//      font-size: 14;
-//      font-weight: bold;
-//  }
+ .labelTitle {
+     font-size: 14;
+     font-weight: bold;
+ }
  
-//  .labelText {
-//      font-size: 12;
-//  }
+ .labelText {
+     font-size: 12;
+ }
  
-//  .markGridLayout {
-//      background-color: #0099ff;
-//      padding: 16;
-//  }
+ .markGridLayout {
+     background-color: #0099ff;
+     padding: 16;
+ }
  
-//  .archiveGridLayout {
-//      background-color: #ffcc99;
-//      padding: 16;
-//  }
+ .archiveGridLayout {
+     background-color: #ffcc99;
+     padding: 16;
+ }
  
-//  .unreadGridLayout {
-//      background-color: #ff3300;
-//      padding: 16;
-//  }
+ .unreadGridLayout {
+     background-color: #ff3300;
+     padding: 16;
+ }
  
-//  .deleteGridLayout {
-//      background-color: red;
-//      padding: 16;
-//  }
+ .deleteGridLayout {
+     background-color: red;
+     padding: 16;
+ }
  
-//  .readGridLayout {
-//      background-color: #ff66ff;
-//      padding: 16;
-//  }
+ .readGridLayout {
+     background-color: #ff66ff;
+     padding: 16;
+ }
  
-//  .forwardGridLayout {
-//      background-color: #9966ff;
-//      padding: 16;
-//  }
+ .forwardGridLayout {
+     background-color: #9966ff;
+     padding: 16;
+ }
  
-//  .swipetemplateLabel {
-//      font-size: 15;
-//  }
+ .swipetemplateLabel {
+     font-size: 15;
+ }
  
-//  @keyframes validationPopin {
-//      from { background-color: transparent; color:transparent }
-//      to { background-color: white; color: red }
-//  }
-//  .validationMessage {
-//      animation-name: validationPopin;
-//      animation-duration: 2s;
-//      animation-fill-mode: forwards;
-//  }
+ @keyframes validationPopin {
+     from { background-color: transparent; color:transparent }
+     to { background-color: white; color: red }
+ }
+ .validationMessage {
+     animation-name: validationPopin;
+     animation-duration: 2s;
+     animation-fill-mode: forwards;
+ }

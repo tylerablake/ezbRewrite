@@ -29,6 +29,7 @@ elementRegistryModule.registerElement("FilterSelect", () => require("nativescrip
 })
 
 
+
 export class BookingComponent implements OnInit {    
   private createBookingObject: CreateBooking = new CreateBooking();
   private equipmentCategories: string[] = EquipmentCategoriesList.map(equip => equip.EquipmentCategoryDescription);
@@ -45,13 +46,13 @@ export class BookingComponent implements OnInit {
   private motorCarrierFilterSelectList: ObservableArray<PartyFilterSelectItem> = new ObservableArray<PartyFilterSelectItem>();
   private previousDataResponsiblePartyType: string;
   private previousDataResponsiblePartyId: number;
-  private twentyChassisSelected: boolean;
-  private fortyChassisSelected: boolean;
-  private fortyFiveChassisSelected: boolean;
+  private twentyChassisSelected: boolean = false;
+  private fortyChassisSelected: boolean = false;
+  private fortyFiveChassisSelected: boolean = false;
   private formIsValid: boolean = false;
   private displayValidationErrors: boolean = false;
   private accentHex: string = Config.tracBlueHex;
-  private truckImageSrc = "res://semiTruck.png";
+  private truckImageSrc = "res://semiTruck.png"
   private listItemTemplate = "";
   public item_template = `
   <GridLayout class="item" columns="*"> 
@@ -233,7 +234,9 @@ export class BookingComponent implements OnInit {
            
           this.clearMarketFilterSelect();  
           this.clearMotorCarrierFilterSelect(); 
-        }             
+        }
+        else{          
+        }                
       }    
 
     this.checkFormValidation();
@@ -354,7 +357,7 @@ export class BookingComponent implements OnInit {
     this.createBookingObject.Reuse = false;
     this.data.availabilitySearchOptions = this.createBookingObject;    
 
-    this.routerExtensions.navigate(["/available-bookings"],
+    this.routerExtensions.navigate(["/availability"],
       {
         animated: true,
         transition: {

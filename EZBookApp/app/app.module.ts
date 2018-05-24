@@ -31,6 +31,7 @@ import { ReuseComponent } from "~/tabs/reuse/reuse.component";
 import { AccountComponent } from "~/account/account.component";
 import { OrderDetailComponent } from "~/order-detail/order-detail.component";
 import { SettingsComponent } from "~/settings/settings.component";
+import { AvailableBookingsComponent } from "~/available-bookings/available-bookings.component";
 
 
 //Services
@@ -40,7 +41,6 @@ import { HttpHelperService } from "~/services/http-helper.service";
 import { OrderService } from "~/services/order.service";
 import { Data } from "~/shared/data";
 import { HelperService } from "~/services/helper.service";
-import { AvailableBookingsComponent } from "~/available-bookings/available-bookings.component";
 
 
 

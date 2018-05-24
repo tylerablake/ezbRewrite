@@ -25,8 +25,7 @@ export class CreateBooking{
     this.Reuse = false;
     this.IncludeZeroInventory = false;    
     this.EquipmentSize = "";
-    this.BookingNumber = ""; 
-    
+    this.BookingNumber = "";  
     this.MotorCarrier = "";
     this.MotorCarrierId = 0;
   }
