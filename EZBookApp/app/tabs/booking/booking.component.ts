@@ -1,16 +1,16 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { EquipmentCategoriesList, PartyTypeList } from '../../shared/constants';
-import { RadAutoCompleteTextViewComponent } from "nativescript-ui-autocomplete/angular";
+// import { RadAutoCompleteTextViewComponent } from "nativescript-ui-autocomplete/angular";
 import { Data } from "../../shared/data";
 import { RouterExtensions } from 'nativescript-angular/router';
 import { Page, Observable, isIOS } from 'tns-core-modules/ui/page/page';
 import { Config } from '../../shared/config';
-import { TokenModel } from 'nativescript-ui-autocomplete';
+//import { TokenModel } from 'nativescript-ui-autocomplete';
 import { ObservableArray } from 'tns-core-modules/data/observable-array/observable-array';
 import { isAndroid } from 'tns-core-modules/platform/platform';
 import * as elementRegistryModule from 'nativescript-angular/element-registry';
 import { filter } from 'rxjs/operator/filter';
-import { Subscription } from 'rxjs/Subscription';
+//import { Subscription } from 'rxjs/Subscription';
 import { OrderService } from '~/services/order.service';
 import { PartyFilterSelectItem } from '~/data/party/party-filter-select-item.model';
 import { CreateBooking } from '~/data/booking/create-booking.model';
@@ -31,7 +31,7 @@ elementRegistryModule.registerElement("FilterSelect", () => require("nativescrip
 
 
 export class BookingComponent implements OnInit {    
-  private createBookingObject: CreateBooking = new CreateBooking();
+  private createBookingObject: CreateBooking;
   private equipmentCategories: string[] = EquipmentCategoriesList.map(equip => equip.EquipmentCategoryDescription);
   private chassisAvailabilities: Availability[];
   private responsiblePartyTypeList: string[] = PartyTypeList.map(type => type.name);    
@@ -59,6 +59,20 @@ export class BookingComponent implements OnInit {
   <Label col="0" height="50" fontSize="16" class="text-center" text="{{ text || name }}" textWrap="true" />   
   </GridLayout>
   `;
+
+
+  get bookingNumberValidationIsVisible():string {
+    if (this.createBookingObject.ResponsiblePartyType === "STEAMSHIP") {
+        if(this.createBookingObject.BookingNumber.length < 1){
+          return 'visible';
+        }
+        else{
+          return 'collapse';
+        }        
+    } else{
+        return 'collapse';
+    }     
+}
   
   constructor(private orderService: OrderService, private data: Data, private routerExtensions: RouterExtensions, private page: Page) {
     if (isAndroid) {
@@ -72,6 +86,7 @@ export class BookingComponent implements OnInit {
   }
 
   initFormData() {    
+    this.createBookingObject = new CreateBooking();
     this.initResponsiblePartyTypeAutoComplete();
     this.initMotorCarrierTokens();
     this.fortyChassisSelected = false;
@@ -170,6 +185,8 @@ export class BookingComponent implements OnInit {
 
   checkFormValidation(): void {
     console.log("Checking form validation: " + JSON.stringify(this.createBookingObject));
+
+
     if (this.createBookingObject.EquipmentSize &&
       this.createBookingObject.ResponsiblePartyId &&
       this.createBookingObject.ResponsiblePartyType &&
@@ -224,6 +241,7 @@ export class BookingComponent implements OnInit {
         var partyTypeIndex = PartyTypeList.map(type => type.name).indexOf(args.selected.name);
         console.log('PartyTypeIndex = ' + partyTypeIndex);
         if(partyTypeIndex > -1){          
+          
           var responsiblePartyTypeId = PartyTypeList[partyTypeIndex].id;
           this.createBookingObject.ResponsiblePartyType = PartyTypeList[partyTypeIndex].id;
 
