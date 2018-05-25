@@ -33,7 +33,8 @@
 
                         <StackLayout row="2" col="2" colSpan="1" verticalAlignment="center" horizontalAlignment="center" orientation="horizontal">
                             <Button android:style="width:30;" class="text-primary" text="-" (tap)="decrementQuantity(unit.LocationName, unit.InventoryOrgDesc, unit.EquipmentClass)" horizontalAlignment="center" verticalAlignment="center"></Button>
-                            <Label android:style="width:30;"  marginLeft="10" width="20" [text]="unit.RequestedQuantity" horizontalAlignment="center" verticalAlignment="center"></Label>
+                            <!-- <Label android:style="width:30;"  marginLeft="10" width="20" [text]="unit.RequestedQuantity" horizontalAlignment="center" verticalAlignment="center"></Label> -->
+                            <TextField android:style="width:30;"  marginLeft="10" width="20" hint="0" [text]="unit.RequestedQuantity" (textChange)="setRequestedQuantity(unit.LocationName, unit.InventoryOrgDesc, unit.EquipmentClass, $event)" horizontalAlignment="center" verticalAlignment="center"></TextField>
                             <Button android:style="width:30;" class="text-primary" text="+" (tap)="incrementQuantity(unit.LocationName, unit.InventoryOrgDesc, unit.EquipmentClass)" horizontalAlignment="center" verticalAlignment="center"></Button>
                         </StackLayout>
 

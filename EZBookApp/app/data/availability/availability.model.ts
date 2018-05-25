@@ -7,7 +7,7 @@ export class Availability{
     MarketCode: string;
     LocationCode: number;
     LocationName: string;
-    EquipmentCategoryCode: string;
+    EquipmentSize: string;
     EquipmentClass: string;
     EquipmentTypeDescription: string;
     Market: string;

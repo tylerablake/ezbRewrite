@@ -43,6 +43,16 @@ export class AvailableBookingsComponent implements OnInit {
     this.totalRequestedQuantity++;
   }
 
+  
+  setRequestedQuantity(locationName: string, inventoryOrgDescription: string, equipmentClass: string, args:any): void {
+    console.log(`Quantity manually update => ${args.object.text}`);
+    var unitToIncrement = this.availableUnits.filter(unit => unit.LocationName == locationName && unit.InventoryOrgDesc == inventoryOrgDescription && unit.EquipmentClass == equipmentClass)[0];
+
+    unitToIncrement.RequestedQuantity = args.object.text;
+    this.totalRequestedQuantity = args.object.text;
+    console.log(`TotalRequestedQuantity => ${this.totalRequestedQuantity}`);
+  }
+
   decrementQuantity(locationName: string, inventoryOrgDescription: string, equipmentClass: string): void {
     var unitToDecrement = this.availableUnits.filter(unit => unit.LocationName == locationName && unit.InventoryOrgDesc == inventoryOrgDescription && unit.EquipmentClass == equipmentClass)[0];
 
@@ -54,7 +64,7 @@ export class AvailableBookingsComponent implements OnInit {
   }
 
   getChassisEquipmentString(equipmentSize: string, equipmentClass:string = null):string{
-    return this.helperService.getChassisEquipmentString(equipmentClass, equipmentClass);  
+    return this.helperService.getChassisEquipmentString(equipmentSize, equipmentClass);  
 };
 
   onOrderItemTap() { }

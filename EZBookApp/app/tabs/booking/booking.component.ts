@@ -15,6 +15,7 @@ import { Availability } from '~/data/availability/availability.model';
 import { MarketFilterSelectItem } from '~/data/market/market-filter-select-item.model';
 import { CheckAvailability } from '~/data/availability/check-availability.model';
 import { EquipmentCategory } from '~/data/equipment/equipment-category.model';
+import { HelperService } from '~/services/helper.service';
 
 elementRegistryModule.registerElement("FilterSelect", () => require("nativescript-filter-select").FilterSelect);
 
@@ -55,25 +56,8 @@ export class BookingComponent implements OnInit {
   <Label col="0" height="50" fontSize="16" class="text-center" text="{{ text || name }}" textWrap="true" />   
   </GridLayout>
   `;
-
-
-  get bookingNumberValidationIsVisible():boolean {
-    if (this.createBookingObject.ResponsiblePartyType === "STEAMSHIP") {
-        if(this.createBookingObject.BookingNumber.length < 1){
-          console.log(`BookingNumber validation should be visible`);
-          return true;
-        }
-        else{
-          console.log(`BookingNumber validation should NOT be visible`);
-          return false;
-        }        
-    } else{
-      console.log(`BookingNumber validation should NOT be visible`);
-        return false;
-    }     
-}
   
-  constructor(private orderService: OrderService, private data: Data, private routerExtensions: RouterExtensions, private page: Page) {
+  constructor(private orderService: OrderService, private data: Data, private routerExtensions: RouterExtensions, private page: Page, private helperService: HelperService) {
     if (isAndroid) {
       this.truckImageSrc = "res://semiTruck";
     }    
@@ -163,22 +147,7 @@ export class BookingComponent implements OnInit {
   }
 
   getChassisColor(isChassisSelected: boolean) {
-    if (isAndroid) {
-      if (isChassisSelected) {
-        return "res://semitruckblue";
-      }
-      else {
-        return "res://semitruck";
-      }
-    }
-    else {
-      if (isChassisSelected) {
-        return "res://semiTruckBlue.png";
-      }
-      else {
-        return "res://semiTruck.png";
-      }
-    }
+    return this.helperService.getAvailableChassisButtonColor(isChassisSelected);
   }
 
 
@@ -220,8 +189,7 @@ export class BookingComponent implements OnInit {
     console.log("Party Type Changed");
     this.responsiblePartySelectList = new ObservableArray<PartyFilterSelectItem>();
     this.marketFilterSelectList = new ObservableArray<MarketFilterSelectItem>();
-    this.motorCarrierFilterSelectList = new ObservableArray<PartyFilterSelectItem>();
-    this.createBookingObject.EquipmentSize = "";
+    this.motorCarrierFilterSelectList = new ObservableArray<PartyFilterSelectItem>();    
     this.clearResponsiblePartySelect();  
     this.clearMarketFilterSelect();  
     this.clearMotorCarrierFilterSelect();

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Config } from '~/shared/config';
+import { isAndroid } from 'tns-core-modules/platform/platform';
 
 @Injectable()
 export class HelperService {
@@ -30,6 +31,25 @@ export class HelperService {
     return Config.tracBlueHex;
   }
 
+  getAvailableChassisButtonColor(isChassisSelected: boolean) {
+    if (isAndroid) {
+      if (isChassisSelected) {
+        return "res://semitruckblue";
+      }
+      else {
+        return "res://semitruck";
+      }
+    }
+    else {
+      if (isChassisSelected) {
+        return "res://semiTruckBlue.png";
+      }
+      else {
+        return "res://semiTruck.png";
+      }
+    }
+  }
+
   getChassisEquipmentString(equipmentSize: string, equipmentClass: string = ""): string {
     if (!equipmentSize) {
       return " ";
@@ -41,7 +61,6 @@ export class HelperService {
     var classString = equipmentSize.substring(0, dotIndex);
 
     return size + "` " + classString;
-
   };
 
 
