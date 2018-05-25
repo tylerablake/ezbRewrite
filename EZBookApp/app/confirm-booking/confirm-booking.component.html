@@ -1,0 +1,176 @@
+<ActionBar class="action-bar">
+  <Label class="action-bar-title" text="Confirm Booking" horizontalAlignment="center"></Label>
+</ActionBar>
+
+<GridLayout rows="*, auto" columns="*">
+
+  <GridLayout row="0" col="0" rows="auto, *, 50" columns="*" *ngIf="this.confirmBookingOrder.BookingOrderCode">
+
+    <StackLayout row="0" col="0" orientation="vertical" verticalAlignment="center" horizontalAlignment="center">
+      <Label fontSize="14" text="Your order has been successfully processed." textWrap="false" verticalAlignment="center" horizontalAlignment="center"></Label>
+      <StackLayout orientation="horizontal" verticalAlignment="center" horizontalAlignment="center">
+        <Label class="font-weight-bold" color="#f8a61d" fontSize="14" text="Please Note: Bookings are valid through the end of the day."
+          textWrap="true" verticalAlignment="center" horizontalAlignment="center"></Label>
+      </StackLayout>
+      <Label fontSize="14" text="If you have any questions, please contact Customer Support at" textWrap="true" verticalAlignment="center"
+        horizontalAlignment="center"></Label>
+      <Label fontSize="14" text="1-877-987-2226 option 2" textWrap="true" verticalAlignment="center" horizontalAlignment="center"></Label>
+    </StackLayout>
+
+    <GridLayout row="1" col="0" rows="auto,auto,*" columns="*">
+
+      <GridLayout row="0" col="0" rows="auto,auto,auto,auto,auto" columns="*" backgroundColor="#efefef">
+
+        <GridLayout row="0" col="0" rows="*" columns="*" height="40" class="" orientation="horizontal" color="white" [backgroundColor]="this.accentColor">
+          <Label class="p-l-10 font-weight-bold" row="0" col="0" [text]="'Booking Order # '+ this.confirmBookingOrder.BookingOrderCode"
+            textWrap="true" horizontalAlignment="left"></Label>
+        </GridLayout>
+
+        <GridLayout row="1" col="0" rows="*" columns="auto,*" orientation="horizontal" backgroundColor="white">
+          <Label class="p-l-10 font-weight-bold" row="0" col="0" text="Responsible Party: " textWrap="false"
+            horizontalAlignment="left"></Label>
+          <Label class="" row="0" col="1" [text]="this.responsiblePartyName" textWrap="true"
+            horizontalAlignment="left"></Label>
+        </GridLayout>
+
+        <GridLayout row="2" col="0" rows="*" columns="auto,*" orientation="horizontal" backgroundColor="white">
+            <Label class="p-l-10 font-weight-bold" row="0" col="0" text="Motor Carrier:" textWrap="false"
+            horizontalAlignment="left"></Label>
+          <Label class="p-l-10" row="0" col="1" [text]="this.motorCarrierName" textWrap="true"
+            horizontalAlignment="left"></Label>
+        </GridLayout>
+
+
+
+        <GridLayout row="3" col="0" rows="*" columns="*" class="" orientation="horizontal" backgroundColor="white">
+          <Label class="p-l-10 font-weight-bold" row="0" col="0" text="Comments" textWrap="true" horizontalAlignment="left"></Label>
+        </GridLayout>
+
+        <GridLayout row="4" col="0" rows="*" columns="*" class="" orientation="horizontal" backgroundColor="white">
+          <Label class="p-l-10" row="0" col="0" [text]="this.comment"
+            horizontalAlignment="left"></Label>
+        </GridLayout>
+
+      </GridLayout>
+
+
+      <RadListView *ngIf="this.bookingVMs.length > 0" row="1" col="0" rowSpan="2" #bookingVMListView [items]="this.bookingVMs" (itemTap)="onOrderItemTap($event)"
+        class="list-group" selectionBehavior="None" separatorColor="white" swipeActions="false">
+        <ng-template tkListItemTemplate let-unit="item" let-index="index">
+          <StackLayout class="list-group-item">
+
+            <GridLayout *ngIf="index == 0" row="1" col="0" rows="*" columns="*" height="40" class="" orientation="horizontal" color="white"
+              [backgroundColor]="this.accentColor">
+              <Label class="p-l-10" row="0" col="0" text="Confirmed Booking(s)" textWrap="true" horizontalAlignment="left"></Label>
+            </GridLayout>
+
+            <GridLayout row="0" col="0" colSpan="3" rows="*,*" columns="*" class="font-weight-bold" orientation="horizontal" backgroundColor="#e6ecf2">
+              <Label class="p-5" row="0" col="0" [text]="'Booking Number: '+ unit.CustomerBooking.CustomerBookingCode" textWrap="false"
+                horizontalAlignment="left" backgroundColor="#e6ecf2"></Label>
+              <!-- <Label class="p-l-5" row="1" col="0" [text]="'Booking Status: '+ unit.CustomerBooking.BookingStatus || unit.CustomerBooking.BookingStatusCode " textWrap="false"
+                horizontalAlignment="left" backgroundColor="#e6ecf2"></Label> -->
+            </GridLayout>
+            <GridLayout rows="*, *, *, *, *" columns="*, *, *" class="list-group-item-content">
+
+              <Label textWrap="true" row="0" col="0" colSpan="5" [text]="unit.LocationName + ' - ' + unit.InventoryOrgDesc" class="text-primary font-weight-bold p-b-10"></Label>
+              <Label horizontalAlignment="right" class="list-group-item-text m-r-5">
+              </Label>
+
+              <StackLayout row="1" col="0" colSpan="3" verticalAlignment="center">
+                <Label class="p-b-10">
+                  <FormattedString ios:fontFamily="system">
+                    <Span [text]="unit.LocationStreet1 + ' ' + unit.City + ', ' + unit.LocationStateProvince" class="text-primary" color="gray"></Span>
+                  </FormattedString>
+                </Label>
+                <Label class="p-b-10" textWrap="true">
+                  <FormattedString ios:fontFamily="system">
+                    <Span [text]="'Hours: ' + unit.LocationOperatingHours"></Span>
+                  </FormattedString>
+                </Label>
+              </StackLayout>
+
+              <StackLayout row="2" col="0" colSpan="1" verticalAlignment="center" orientation="horizontal">
+                <Label col="1" colSpan="1" class="p-b-10 p-r-30">
+                  <FormattedString ios:fontFamily="system">
+                    <Span [text]="getChassisEquipmentString(unit.EquipmentSize, unit.EquipmentClass)" class="font-weight-bold"></Span>
+                  </FormattedString>
+                </Label>
+              </StackLayout>
+
+              <StackLayout row="2" col="1" colSpan="1" verticalAlignment="center" horizontalAlignment="center" orientation="horizontal">
+                <Label width="20" [text]="unit.CustomerBooking.UnitsRequestedCount"></Label>
+              </StackLayout>
+
+              <Label row="3" col="1" horizontalAlignment="center" verticalAlignment="center" colSpan="1" text="Quantity" textWrap="true"></Label>
+
+            </GridLayout>
+          </StackLayout>
+        </ng-template>
+      </RadListView>
+
+
+      <RadListView *ngIf="this.pendingVMs.length > 0" #pendingVMListView row="2" col="0" [items]="this.pendingVMs" (itemTap)="onOrderItemTap($event)"
+        class="list-group" selectionBehavior="None" separatorColor="white" swipeActions="false">
+        <ng-template tkListItemTemplate let-unit="item" let-index="index">
+          <StackLayout class="list-group-item">
+
+            <GridLayout *ngIf="index == 0" row="1" col="0" rows="*" columns="*" height="40" class="" orientation="horizontal" color="white"
+              [backgroundColor]="this.accentColor">
+              <Label class="p-l-10" row="0" col="0" text="Pending Booking(s)" textWrap="true" horizontalAlignment="left"></Label>
+            </GridLayout>
+
+            <GridLayout row="0" col="0" colSpan="3" rows="*" columns="*" height="40" class="font-weight-bold" orientation="horizontal"
+              backgroundColor="#e6ecf2">
+              <Label class="p-l-5" row="0" col="0" [text]="'Booking Number: Pending'" textWrap="false" horizontalAlignment="left"></Label>
+            </GridLayout>
+            <GridLayout rows="*, *, *, *, *" columns="*, *, *" class="list-group-item-content">
+
+              <Label row="0" col="0" colSpan="5" [text]="unit.LocationName + ' - ' + unit.InventoryOrgDesc" class="text-primary font-weight-bold p-b-10"></Label>
+              <Label horizontalAlignment="right" class="list-group-item-text m-r-5">
+              </Label>
+
+              <StackLayout row="1" col="0" colSpan="3" verticalAlignment="center">
+                <Label class="p-b-10">
+                  <FormattedString ios:fontFamily="system">
+                    <Span [text]="unit.LocationStreet1 + ' ' + unit.City + ', ' + unit.LocationStateProvince" class="text-primary" color="gray"></Span>
+                  </FormattedString>
+                </Label>
+                <Label class="p-b-10" textWrap="true">
+                  <FormattedString ios:fontFamily="system">
+                    <Span [text]="'Hours: ' + unit.LocationOperatingHours"></Span>
+                  </FormattedString>
+                </Label>
+              </StackLayout>
+
+              <StackLayout row="2" col="0" colSpan="1" verticalAlignment="center" orientation="horizontal">
+                <Label col="1" colSpan="1" class="p-b-10 p-r-30">
+                  <FormattedString ios:fontFamily="system">
+                    <Span [text]="unit.EquipmentClass" class="font-weight-bold"></Span>
+                  </FormattedString>
+                </Label>
+              </StackLayout>
+
+              <StackLayout row="2" col="1" colSpan="1" verticalAlignment="center" horizontalAlignment="center" orientation="horizontal">
+                <Label width="20" [text]="unit.CustomerBooking.UnitsRequestedCount"></Label>
+              </StackLayout>
+
+              <Label row="3" col="1" horizontalAlignment="center" verticalAlignment="center" colSpan="1" text="Quantity" textWrap="true"></Label>
+
+            </GridLayout>
+          </StackLayout>
+        </ng-template>
+      </RadListView>
+
+    </GridLayout>
+
+    <GridLayout row="2" col="0" rows="auto" columns="auto,auto">
+      <Button row="0" col="0" class="btn btn-primary" text="Create New Booking"  textTransform="none" (tap)="onCreateNewBooking()" verticalAlignment="center"
+      horizontalAlignment="stretch"></Button>
+    <Button row="0" col="1" class="btn btn-primary" text="View Orders" textTransform="none" (tap)="onViewOrders()" verticalAlignment="center" horizontalAlignment="stretch"></Button>
+    </GridLayout>
+
+
+
+  </GridLayout>
+  <ActivityIndicator verticalAlignment="center" horizontalAlignment="center" [busy]="this.isLoading"></ActivityIndicator>
+</GridLayout>

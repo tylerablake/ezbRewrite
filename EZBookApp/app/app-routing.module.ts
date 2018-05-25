@@ -12,6 +12,7 @@ import { OrderDetailComponent } from "~/order-detail/order-detail.component";
 import { SettingsComponent } from "~/settings/settings.component";
 import { AvailableBookingsComponent } from "~/available-bookings/available-bookings.component";
 import { ReviewBookingComponent } from "~/review-booking/review-booking.component";
+import { ConfirmBookingComponent } from "~/confirm-booking/confirm-booking.component";
 
 
 const routes: Routes = [
@@ -29,7 +30,8 @@ const routes: Routes = [
     { path: "order-detail/:id/orderNumber/:orderNumber", component: OrderDetailComponent},
     //{ path: "order-detail-edit/:id", component: OrderDetailEditComponent }, 
     { path: "available-bookings", component: AvailableBookingsComponent},
-    { path: "review-booking", component: ReviewBookingComponent}
+    { path: "review-booking", component: ReviewBookingComponent},
+    { path: "confirm-booking", component: ConfirmBookingComponent}
 ];
 
 @NgModule({

@@ -23,6 +23,8 @@ import { OrderDetail } from "~/data/order/order-detail.model";
 import { CheckAvailability } from "~/data/availability/check-availability.model";
 import { Availability } from "~/data/availability/availability.model";
 import { AvailableBookingsRequest } from "~/data/availability/available-bookings-request.model";
+import { SubmitBooking } from "~/data/booking/submit-booking.model";
+import { ConfirmBooking } from "~/data/booking/confirm-booking.model";
 
 
 @Injectable()
@@ -318,29 +320,29 @@ export class OrderService implements OnDestroy {
         }
     }
 
-    // submitCustomerBooking(submitPoolBookingData: SubmitBooking): Observable<ConfirmBooking> {
-    //     console.log("Starting submitCustomerBooking()");
+    submitCustomerBooking(submitPoolBookingData: SubmitBooking): Observable<ConfirmBooking> {
+        console.log("Starting submitCustomerBooking()");
 
-    //     this.authService.refreshToken();
-    //     const options = this.httpHelper.getCommonAuthHeaders();
-    //     const url = Config.proxyUrl + Config.customerBookingUrl;
+        this.authService.refreshToken();
+        const options = this.httpHelper.getCommonAuthHeaders();
+        const url = Config.proxyUrl + Config.customerBookingUrl;
 
-    //     const confirmBookingOrderResult: Observable<ConfirmBooking> =
-    //         <Observable<ConfirmBooking>>
+        const confirmBookingOrderResult: Observable<ConfirmBooking> =
+            <Observable<ConfirmBooking>>
 
-    //         this.http.post(
-    //             url,
-    //             JSON.stringify(submitPoolBookingData), options)
-    //             .map(res => res.json())
-    //             .catch(err => {
-    //                 console.log("Error on submitCustomerBooking(): " + err);
-    //                 this.handleErrors(err);
-    //                 return Observable.of(false);
-    //             });
+            this.http.post(
+                url,
+                JSON.stringify(submitPoolBookingData), options)
+                .map(res => res.json())
+                .catch(err => {
+                    console.log("Error on submitCustomerBooking(): " + err);
+                    this.handleErrors(err);
+                    return Observable.of(false);
+                });
 
-    //     return confirmBookingOrderResult;
+        return confirmBookingOrderResult;
 
-    // }
+    }
 
     // getReuseLocations(customerClassCode: string, marketCode: string, customerId: number): Observable<ReusableChassisLocationData[]> {
     //     console.log("Starting getReuseLocations()");

@@ -33,6 +33,8 @@ import { OrderDetailComponent } from "~/order-detail/order-detail.component";
 import { SettingsComponent } from "~/settings/settings.component";
 import { AvailableBookingsComponent } from "~/available-bookings/available-bookings.component";
 import { ReviewBookingComponent } from "~/review-booking/review-booking.component";
+import { ConfirmBookingComponent } from "~/confirm-booking/confirm-booking.component";
+
 
 //Services
 import { AccountService } from "~/services/account.service";
@@ -41,8 +43,6 @@ import { HttpHelperService } from "~/services/http-helper.service";
 import { OrderService } from "~/services/order.service";
 import { Data } from "~/shared/data";
 import { HelperService } from "~/services/helper.service";
-
-
 
 
 @NgModule({
@@ -73,7 +73,8 @@ import { HelperService } from "~/services/helper.service";
         OrderDetailComponent,
         SettingsComponent,
         AvailableBookingsComponent,
-        ReviewBookingComponent        
+        ReviewBookingComponent,
+        ConfirmBookingComponent        
     ],
     providers: [
         AuthenticationService,
