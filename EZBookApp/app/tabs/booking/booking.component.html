@@ -1,7 +1,6 @@
-<GridLayout class="page page-content" backgroundColor="#efefef">
-        <ScrollView>
-    
-            <StackLayout class="form m-b-20 m-r-10 m-l-10 m-t-10">
+<GridLayout class="page page-content" backgroundColor="#efefef" columns="*" rows="*,auto">  
+        <ScrollView>    
+            <StackLayout col="0" row="0" class="form m-r-10 m-l-10 m-t-10">
                 <GridLayout rows="100" columns="auto, auto, auto" horizontalAlignment="center" paddingBottom="10">
                     <Label fontSize="20" [visibility]="!this.createBookingObject.EquipmentSize ? 'visible' : 'collapsed'" row="0" col="0" color="red" text="*"></Label>
                     <StackLayout row="0" col="0" colSpan="1" orientation="vertical" (tap)="onTwentyChassisSelected()"                     
@@ -94,11 +93,8 @@
                         <Label row="0" col="1" text="Booking/BOL Number" textWrap="false" horizontalAlignment="left" verticalAlignment="center"></Label>
                         <TextField width="200" row="0" col="2" class="text-default booking-text p-l-10" [(ngModel)]="this.createBookingObject.BookingNumber" (ngModelChange)="checkFormValidation()" horizontalAlignment="left" verticalAlignment="center" hint="Number"></TextField>
                     </GridLayout>
-                </GridLayout>
-    
-                <StackLayout orientation="horizontal" horizontalAlignment="center" verticalAlignment="center">
-                    <Button textTransform="none" text="Check Availability" width="100%" class="btn btn-primary" (tap)="onSearch()" [isEnabled]="this.formIsValid"></Button>
-                </StackLayout>
+                </GridLayout>                    
             </StackLayout>
-        </ScrollView>
+        </ScrollView>        
+            <Button col="0" row="1" textTransform="none" text="Check Availability" width="100%" class="btn btn-primary" (tap)="onSearch()" [isEnabled]="this.formIsValid"></Button>        
     </GridLayout>

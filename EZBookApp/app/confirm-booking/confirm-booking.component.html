@@ -82,7 +82,7 @@
                     <Span [text]="unit.LocationStreet1 + ' ' + unit.City + ', ' + unit.LocationStateProvince" class="text-primary" color="gray"></Span>
                   </FormattedString>
                 </Label>
-                <Label class="p-b-10" textWrap="true">
+                <Label class="p-b-10" textWrap="true" color="gray">
                   <FormattedString ios:fontFamily="system">
                     <Span [text]="'Hours: ' + unit.LocationOperatingHours"></Span>
                   </FormattedString>
@@ -135,7 +135,7 @@
                     <Span [text]="unit.LocationStreet1 + ' ' + unit.City + ', ' + unit.LocationStateProvince" class="text-primary" color="gray"></Span>
                   </FormattedString>
                 </Label>
-                <Label class="p-b-10" textWrap="true">
+                <Label class="p-b-10" textWrap="true" color="gray">
                   <FormattedString ios:fontFamily="system">
                     <Span [text]="'Hours: ' + unit.LocationOperatingHours"></Span>
                   </FormattedString>
@@ -145,7 +145,7 @@
               <StackLayout row="2" col="0" colSpan="1" verticalAlignment="center" orientation="horizontal">
                 <Label col="1" colSpan="1" class="p-b-10 p-r-30">
                   <FormattedString ios:fontFamily="system">
-                    <Span [text]="unit.EquipmentClass" class="font-weight-bold"></Span>
+                    <Span [text]="getChassisEquipmentString(unit.EquipmentSize, unit.EquipmentClass)" class="font-weight-bold"></Span>
                   </FormattedString>
                 </Label>
               </StackLayout>
@@ -163,7 +163,7 @@
 
     </GridLayout>
 
-    <GridLayout row="2" col="0" rows="auto" columns="auto,auto">
+    <GridLayout row="2" col="0" rows="auto" columns="*,*">
       <Button row="0" col="0" class="btn btn-primary" text="Create New Booking"  textTransform="none" (tap)="onCreateNewBooking()" verticalAlignment="center"
       horizontalAlignment="stretch"></Button>
     <Button row="0" col="1" class="btn btn-primary" text="View Orders" textTransform="none" (tap)="onViewOrders()" verticalAlignment="center" horizontalAlignment="stretch"></Button>

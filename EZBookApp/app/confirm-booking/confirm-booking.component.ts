@@ -12,6 +12,7 @@ import { ConfirmBooking } from '~/data/booking/confirm-booking.model';
 import { Availability } from '~/data/availability/availability.model';
 import { ConfirmBookingOrder } from '~/data/booking/confirm-booking-order.model';
 import { CheckAvailability } from '~/data/availability/check-availability.model';
+import { HelperService } from '~/services/helper.service';
 
 @Component({
   selector: 'ConfirmBooking',
@@ -34,7 +35,7 @@ export class ConfirmBookingComponent implements OnInit {
   private responsiblePartyName: string = "";
   private motorCarrierName: string = "";
 
-  constructor(private data:Data, private orderService: OrderService, private routerExtensions:RouterExtensions) {
+  constructor(private data:Data, private orderService: OrderService, private routerExtensions:RouterExtensions, private helperService: HelperService) {
     this.isLoading = true;
     
     this.orderService.submitCustomerBooking(this.submitBookingModel)
@@ -77,23 +78,9 @@ export class ConfirmBookingComponent implements OnInit {
      
    }
 
-   getChassisEquipmentString(equipmentSize: string, equipmentClass:string = null):string{
-    if(!equipmentSize){
-        return " ";
-    }
-    var size = equipmentSize.slice(-2);
-    
-    var dotIndex = equipmentSize.indexOf('.');
-
-    if(equipmentClass){
-      return size + "` " + equipmentClass;
-    }
-
-    var classString = equipmentSize.substring(0,dotIndex);
-
-    return size + "` " + classString;
-
-};
+   getChassisEquipmentString(equipmentSize: string, equipmentClass: string): string{
+    return this.helperService.getChassisEquipmentString(equipmentSize, equipmentClass); 
+   }
 
    onCreateNewBooking():void{
     this.data.availabilitySearchOptions = new CheckAvailability();
