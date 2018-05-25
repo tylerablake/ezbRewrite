@@ -32,7 +32,7 @@ import { AccountComponent } from "~/account/account.component";
 import { OrderDetailComponent } from "~/order-detail/order-detail.component";
 import { SettingsComponent } from "~/settings/settings.component";
 import { AvailableBookingsComponent } from "~/available-bookings/available-bookings.component";
-
+import { ReviewBookingComponent } from "~/review-booking/review-booking.component";
 
 //Services
 import { AccountService } from "~/services/account.service";
@@ -41,6 +41,7 @@ import { HttpHelperService } from "~/services/http-helper.service";
 import { OrderService } from "~/services/order.service";
 import { Data } from "~/shared/data";
 import { HelperService } from "~/services/helper.service";
+
 
 
 
@@ -71,7 +72,8 @@ import { HelperService } from "~/services/helper.service";
         AccountComponent,
         OrderDetailComponent,
         SettingsComponent,
-        AvailableBookingsComponent        
+        AvailableBookingsComponent,
+        ReviewBookingComponent        
     ],
     providers: [
         AuthenticationService,

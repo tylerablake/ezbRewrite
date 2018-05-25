@@ -11,6 +11,7 @@ import { ReuseAvailabilityViewModel } from '~/data/availability/reuse-availabili
 import { LocationModel } from '~/data/location/location.model';
 import { CancelBookingRequest } from '~/data/cancel/cancel-booking-request.model';
 import { Availability } from '~/data/availability/availability.model';
+import { SubmitBooking } from '~/data/booking/submit-booking.model';
 
 // import { DashboardBookingSearch } from "../search/dashboard-order-search.model";
 // import { EquipmentCategory } from './equipment/equipment-category.model';
@@ -73,7 +74,7 @@ export class Data {
 
   public reuseBookingUnits: ReuseAvailabilityViewModel[] = new Array<ReuseAvailabilityViewModel>();
 
-  // public submitCustomerBookingModel: SubmitBooking = new SubmitBooking();
+  public submitCustomerBookingModel: SubmitBooking = new SubmitBooking();
 
   // public submitReuseBookingModel: SubmitReuse = new SubmitReuse();
 
