@@ -90,7 +90,7 @@
     
                 <GridLayout rows="*" columns="*" backgroundColor="white" class="p-10">
                     <GridLayout row="0" col="0" rows="*" columns="auto,*,*" orientation="horizontal" horizontalAlignment="stretch">
-                        <Label [visibility]="bookingNumberValidationIsVisible" fontSize="20" row="0" col="0" color="red" text="*"></Label>
+                        <Label [visibility]="!this.formIsValid ? 'visible' : 'collapsed'" fontSize="20" row="0" col="0" color="red" text="*"></Label>
                         <Label row="0" col="1" text="Booking/BOL Number" textWrap="false" horizontalAlignment="left" verticalAlignment="center"></Label>
                         <TextField width="200" row="0" col="2" class="text-default booking-text p-l-10" [(ngModel)]="this.createBookingObject.BookingNumber" (ngModelChange)="checkFormValidation()" horizontalAlignment="left" verticalAlignment="center" hint="Number"></TextField>
                     </GridLayout>

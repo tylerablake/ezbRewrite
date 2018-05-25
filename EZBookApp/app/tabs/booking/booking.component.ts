@@ -1,16 +1,13 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { EquipmentCategoriesList, PartyTypeList } from '../../shared/constants';
-// import { RadAutoCompleteTextViewComponent } from "nativescript-ui-autocomplete/angular";
 import { Data } from "../../shared/data";
 import { RouterExtensions } from 'nativescript-angular/router';
 import { Page, Observable, isIOS } from 'tns-core-modules/ui/page/page';
 import { Config } from '../../shared/config';
-//import { TokenModel } from 'nativescript-ui-autocomplete';
 import { ObservableArray } from 'tns-core-modules/data/observable-array/observable-array';
 import { isAndroid } from 'tns-core-modules/platform/platform';
 import * as elementRegistryModule from 'nativescript-angular/element-registry';
 import { filter } from 'rxjs/operator/filter';
-//import { Subscription } from 'rxjs/Subscription';
 import { OrderService } from '~/services/order.service';
 import { PartyFilterSelectItem } from '~/data/party/party-filter-select-item.model';
 import { CreateBooking } from '~/data/booking/create-booking.model';
@@ -27,7 +24,6 @@ elementRegistryModule.registerElement("FilterSelect", () => require("nativescrip
   templateUrl: './booking.component.html',
   providers: [OrderService]
 })
-
 
 
 export class BookingComponent implements OnInit {    
@@ -61,16 +57,19 @@ export class BookingComponent implements OnInit {
   `;
 
 
-  get bookingNumberValidationIsVisible():string {
+  get bookingNumberValidationIsVisible():boolean {
     if (this.createBookingObject.ResponsiblePartyType === "STEAMSHIP") {
         if(this.createBookingObject.BookingNumber.length < 1){
-          return 'visible';
+          console.log(`BookingNumber validation should be visible`);
+          return true;
         }
         else{
-          return 'collapse';
+          console.log(`BookingNumber validation should NOT be visible`);
+          return false;
         }        
     } else{
-        return 'collapse';
+      console.log(`BookingNumber validation should NOT be visible`);
+        return false;
     }     
 }
   
@@ -219,24 +218,24 @@ export class BookingComponent implements OnInit {
 
   onResponsiblePartyTypeSelected(args){
     console.log("Party Type Changed");
+    this.responsiblePartySelectList = new ObservableArray<PartyFilterSelectItem>();
+    this.marketFilterSelectList = new ObservableArray<MarketFilterSelectItem>();
+    this.motorCarrierFilterSelectList = new ObservableArray<PartyFilterSelectItem>();
+    this.createBookingObject.EquipmentSize = "";
+    this.clearResponsiblePartySelect();  
+    this.clearMarketFilterSelect();  
+    this.clearMotorCarrierFilterSelect();
+    this.clearBookingNumber(); 
     this.checkFormValidation();
+
     //If the textbox has been cleared
     if (!args.selected.name) {      
       console.log("Party Type text is null")
-      this.responsiblePartySelectList = new ObservableArray<PartyFilterSelectItem>();
-      this.marketFilterSelectList = new ObservableArray<MarketFilterSelectItem>();
-      this.motorCarrierFilterSelectList = new ObservableArray<PartyFilterSelectItem>();
-      this.createBookingObject.EquipmentSize = "";
-      this.clearResponsiblePartySelect();  
-      this.clearMarketFilterSelect();  
-      this.clearMotorCarrierFilterSelect();
-      this.clearBookingNumber(); 
       this.checkFormValidation();
       return;
     }
     else {
-      //If the textbox has text
-      //Check for valid text      
+      //If the textbox has text check for valid text      
         console.log("Party Type text is: " + args.selected.name);
         var partyTypeIndex = PartyTypeList.map(type => type.name).indexOf(args.selected.name);
         console.log('PartyTypeIndex = ' + partyTypeIndex);
@@ -302,6 +301,9 @@ export class BookingComponent implements OnInit {
 
     if(args.selected.name){      
       this.createBookingObject.MarketCode = this.data.marketData.filter(m => m.LocationMarketDescription === args.selected.name)[0].LocationMarketCode;      
+    }
+    else{
+      this.createBookingObject.MarketCode = "";    
     }        
 
     this.checkFormValidation();
@@ -314,6 +316,10 @@ export class BookingComponent implements OnInit {
       this.createBookingObject.MotorCarrier = args.selected.name;
       this.createBookingObject.MotorCarrierId = this.data.customerData.filter(c => c.CustomerName == args.selected.name)[0].CustomerId;      
     }        
+    else{
+      this.createBookingObject.MotorCarrier = "";
+      this.createBookingObject.MotorCarrierId = 0;
+    }
     this.checkFormValidation();
   }
 
@@ -345,6 +351,7 @@ export class BookingComponent implements OnInit {
   }
 
   clearResponsiblePartySelect(){
+    this.createBookingObject.ResponsiblePartyId = 0;    
     let responsiblePartyFilterSelect = <any>this.page.getViewById('bookingResponsiblePartyFilterSelect');
     responsiblePartyFilterSelect.Clear();
   }
@@ -375,7 +382,7 @@ export class BookingComponent implements OnInit {
     this.createBookingObject.Reuse = false;
     this.data.availabilitySearchOptions = this.createBookingObject;    
 
-    this.routerExtensions.navigate(["/availability"],
+    this.routerExtensions.navigate(["/available-bookings"],
       {
         animated: true,
         transition: {
