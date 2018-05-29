@@ -7,14 +7,16 @@
   <GridLayout row="0" col="0" rows="auto, *, 50" columns="*" *ngIf="this.confirmBookingOrder.BookingOrderCode">
 
     <StackLayout row="0" col="0" orientation="vertical" verticalAlignment="center" horizontalAlignment="center">
-      <Label fontSize="14" text="Your order has been successfully processed." textWrap="false" verticalAlignment="center" horizontalAlignment="center"></Label>
-      <StackLayout orientation="horizontal" verticalAlignment="center" horizontalAlignment="center">
-        <Label class="font-weight-bold" color="#f8a61d" fontSize="14" text="Please Note: Bookings are valid through the end of the day."
-          textWrap="true" verticalAlignment="center" horizontalAlignment="center"></Label>
-      </StackLayout>
-      <Label fontSize="14" text="If you have any questions, please contact Customer Support at" textWrap="true" verticalAlignment="center"
+      <Label fontSize="14" text="Your order has been successfully processed." textWrap="false" verticalAlignment="center" horizontalAlignment="center"></Label>      
+        <Label class="font-weight-bold" color="#f8a61d" fontSize="14" text="Please Note: Bookings are valid through"
+          textWrap="false" verticalAlignment="center" horizontalAlignment="center"></Label>
+        <Label class="font-weight-bold" color="#f8a61d" fontSize="14" text="the end of the day."
+          textWrap="false" verticalAlignment="center" horizontalAlignment="center"></Label>      
+      <Label fontSize="14" text="If you have any questions, please contact" textWrap="true" verticalAlignment="center"
         horizontalAlignment="center"></Label>
-      <Label fontSize="14" text="1-877-987-2226 option 2" textWrap="true" verticalAlignment="center" horizontalAlignment="center"></Label>
+        <Label fontSize="14" text="Customer Support at" textWrap="false" verticalAlignment="center"
+        horizontalAlignment="center"></Label>
+      <Label fontSize="14" text="1-877-987-2226 option 2" textWrap="false" verticalAlignment="center" horizontalAlignment="center"></Label>
     </StackLayout>
 
     <GridLayout row="1" col="0" rows="auto,auto,*" columns="*">
