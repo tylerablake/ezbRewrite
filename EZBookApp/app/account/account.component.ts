@@ -69,7 +69,7 @@ export class AccountComponent implements OnInit {
     else{
       this.accountService.changePassword(this.accountInformation).subscribe((result) => {
         if(result){        
-          this.authService.logout(false);        
+          this.authService.passwordChangeLogout();        
         }
   
       }, (error => {

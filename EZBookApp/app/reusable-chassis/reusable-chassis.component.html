@@ -1,0 +1,98 @@
+<ActionBar class="action-bar">
+  <Label class="action-bar-title" text="Add Chassis" horizontalAlignment="center"></Label>
+</ActionBar>
+<GridLayout rows="*, 50" columns="*">
+  <GridLayout row="0" col="0" rows="140,auto,auto, *" columns="*">
+
+    <GridLayout row="0" col="0" rows="60,40,40" columns="*" backgroundColor="#efefef">
+      <GridLayout row="0" col="0" rows="*" columns="*" class="m-t-10 m-r-10 m-l-10 m-b-10 p-l-10" orientation="horizontal" horizontalAlignment="stretch"
+        backgroundColor="white" (tap)="onMarketTapped($event)">
+        <FilterSelect id="reusableChassisMarketFilterSelect" row="0" col="0" horizontalAlignment="left" verticalAlignment="center"
+          [items]="locationSelectList" [disabled]="this.disableLocationSearch" (change)="onMarketItemSelected($event)" render="drop"
+          hint="Select a Location " modal_title="Location" searchHint="Select a Location" closeText="Back" clearText="Clear"
+          item_template="{{item_template}}" search_param="name" primary_key="id">
+        </FilterSelect>
+      </GridLayout>
+
+      <GridLayout row="1" col="0" rows="*" columns="100,*" height="40" class="m-l-10 m-r-10" orientation="horizontal" backgroundColor="white">
+        <TextField class="p-l-10" row="0" col="0" colSpan="2" hint="Chassis ID" textWrap="false" horizontalAlignment="stretch" [(ngModel)]="this.chassisId"
+          autocorrect="false"></TextField>
+      </GridLayout>
+
+      <GridLayout row="2" col="0" rows="*" columns="*" height="40" class="m-l-10 m-r-10 m-b-20" orientation="horizontal" backgroundColor="white">
+        <Button android:style="height:40;" width="150" text="Add Chassis" class="btn btn-primary" (tap)="onAddChassis()" horizontalAlignment="right"></Button>
+      </GridLayout>
+
+    </GridLayout>
+
+    <StackLayout orientation="horizontal" row="1" col="0" horizontalAlignment="center" verticalAlignment="center">
+      <Label class="font-weight-bold m-t-5" text="NOTE: " color="#f8a61d" textWrap="true" verticalAlignment="center" horizontalAlignment="center"></Label>
+      <Label verticalAlignment="center" class="m-b-0 m-t-5" horizontalAlignment="center" color="#f8a61d" text="Click to remove chassis once added."
+        textWrap="true"></Label>
+    </StackLayout>
+
+    <StackLayout class="validationMessage" [visibility]="this.showErrorMessage ? 'visible' : 'collapsed'" row="2" col="0" height="50">
+      <Label [text]="this.validateResponseMessage" horizontalAlignment="center" verticalAlignment="center" class="font-weight-bold"
+        color="red" textWrap="true"></Label>
+    </StackLayout>
+
+
+    <RadListView *ngIf="this.availableUnits.length > 0" row="3" col="0" #myListView separatorColor="#efefef" [items]="this.availableUnits"
+      (itemTap)="onOrderItemTap($event)" class="list-group" selectionBehavior="None" (itemSwipeProgressEnded)="onSwipeCellFinished($event)"
+      selectionBehavior="None" (itemSwipeProgressEnded)="onSwipeCellFinished($event)" (itemSwipeProgressStarted)="onSwipeCellStarted($event)"
+      (itemSwipeProgressChanged)="onCellSwiping($event)" swipeActions="true">
+      <ng-template tkListItemTemplate let-unit="item">
+        <StackLayout class="list-group-item">
+          <GridLayout rows="*,*,*,*" columns="*,*,*" class="list-group-item-content">
+            <Label row="0" col="0" colSpan="5" [text]="unit.LocationName" class="text-primary font-weight-bold p-b-10"></Label>
+            <Label horizontalAlignment="right" class="list-group-item-text m-r-5">
+            </Label>
+
+            <StackLayout row="1" col="0" colSpan="3" verticalAlignment="center">
+              <Label class="p-b-10">
+                <FormattedString ios:fontFamily="system">
+                  <Span [text]="unit.LocationStreet1 + ' ' + unit.City + ', ' + unit.LocationStateProvince" class="text-primary" color="gray"></Span>
+                </FormattedString>
+              </Label>
+              <Label class="p-b-10" textWrap="true">
+                <FormattedString ios:fontFamily="system">
+                  <Span [text]="'Hours: ' + unit.OperatingHours" class="text-primary" color="gray"></Span>
+                </FormattedString>
+              </Label>
+            </StackLayout>
+
+            <StackLayout row="2" col="0" verticalAlignment="center" horizontalAlignment="left" orientation="horizontal">
+              <Label fontSize="14" class="font-weight-bold" [text]="unit.EquipmentTypeDescription"></Label>
+            </StackLayout>
+
+
+            <StackLayout row="2" col="1" colSpan="1" verticalAlignment="center" horizontalAlignment="left" orientation="horizontal">
+              <Label fontSize="14" class="font-weight-bold" [text]="unit.ChassisId"></Label>
+            </StackLayout>
+
+            <StackLayout row="2" col="2" colSpan="1" verticalAlignment="center" horizontalAlignment="left" orientation="horizontal">
+              <Label fontSize="14" class="font-weight-bold" [text]="unit.InventoryOrgDesc"></Label>
+            </StackLayout>
+
+
+            <!-- <StackLayout row="3" col="2" colSpan="1" verticalAlignment="center" horizontalAlignment="center" orientation="horizontal">
+              <Button class="btn font-weight-bold" textTransform="none" fontSize="14" text="Remove" backgroundColor="red" color="white" (tap)="onRemoveClicked(unit.ChassisId)"></Button>
+            </StackLayout> -->
+
+          </GridLayout>
+        </StackLayout>
+      </ng-template>
+      <!-- >> angular-listview-swipe-actions-template-html -->
+      <GridLayout *tkListItemSwipeTemplate columns="auto, *, 100" class="gridLayoutLayout" backgroundColor="red" (tap)="onRightSwipeClick($event)">
+        <StackLayout id="delete-view" col="2" class="deleteViewStackLayout" verticalAlignment="center" horizontalAlignment="center">
+          <Label text="delete" color="white" class="swipetemplateLabel font-weight-bold" verticalAlignment="center" horizontalAlignment="center"></Label>
+        </StackLayout>
+      </GridLayout>
+    </RadListView>
+
+  </GridLayout>
+
+  <Button textTransform="none" android:style="height:60;" row="1" col="0" class="btn btn-primary" text="Next" (tap)="onNextClick()"
+    [isEnabled]="this.availableUnits.length > 0" verticalAlignment="center" horizontalAlignment="stretch"></Button>
+  <ActivityIndicator [busy]="this.isLoading"></ActivityIndicator>
+</GridLayout>

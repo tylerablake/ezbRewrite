@@ -31,7 +31,7 @@ export class SettingsComponent implements OnInit {
   }
 
   onSignOutTap():void{
-    this.authService.logout(false);
+    this.authService.logout();
   }
 
   onAppSpecsTap():void{

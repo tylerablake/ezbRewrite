@@ -1,0 +1,29 @@
+export class ReusableChassisLocationData {
+  LocationId: number;
+  LocationCode: string;
+  LocationName: string;
+  LocationStreet1: string;
+  LocationStreet2?: any;
+  LocationStreet3?: any;
+  LocationCity: string;
+  LocationStateProvince: string;
+  LocationZipCode: string;
+  LocationCountry: string;
+  CountryName: string;
+  Timezone: string;
+  LocationTypeCode: string;
+  LocationTypeDescription: string;
+  Latitude: string;
+  Longitude: string;
+  LocationRegionCode: string;
+  LocationSubregionCode: string;
+  LocationMarketCode: string;
+  LocationRegionDescription: string;
+  LocationSubregionDescription: string;
+  LocationMarketDescription: string;
+  LocationOperationModeBehavor?: any;
+  LocationOperationModeDesc?: any;
+  LocationEmail: string;
+  OperatingHours: string;
+  NotificationType: string;
+}

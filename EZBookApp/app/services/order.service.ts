@@ -25,6 +25,8 @@ import { Availability } from "~/data/availability/availability.model";
 import { AvailableBookingsRequest } from "~/data/availability/available-bookings-request.model";
 import { SubmitBooking } from "~/data/booking/submit-booking.model";
 import { ConfirmBooking } from "~/data/booking/confirm-booking.model";
+import { ReusableChassisLocationData } from "~/data/reuse/reusable-chassis-location-data.model";
+import { ValidateChassisResponse } from "~/data/reuse/validate-chassis-response.model";
 
 
 @Injectable()
@@ -60,7 +62,7 @@ export class OrderService implements OnDestroy {
         }
     };
 
-    constructor(private http: Http, private httpHelper: HttpHelperService, private data: Data, private authService: AuthenticationService, private helperService:HelperService) {
+    constructor(private http: Http, private httpHelper: HttpHelperService, private data: Data, private authService: AuthenticationService, private helperService: HelperService) {
     }
 
     getDashboardData(orderSearch: DashboardBookingSearch = new DashboardBookingSearch(false)): Observable<any> {
@@ -272,7 +274,6 @@ export class OrderService implements OnDestroy {
     }
 
     getFilteredMarketData(customerId: number, customerClassCode: string): Observable<string[]> {
-        this.authService.refreshToken();
         const url = Config.proxyUrl + Config.lookupFilteredMarketsUrl + "/" + customerId + "?customerClassCode=" + customerClassCode;
         const options = this.httpHelper.getCommonAuthHeaders();
         this.authService.refreshToken();
@@ -344,57 +345,57 @@ export class OrderService implements OnDestroy {
 
     }
 
-    // getReuseLocations(customerClassCode: string, marketCode: string, customerId: number): Observable<ReusableChassisLocationData[]> {
-    //     console.log("Starting getReuseLocations()");
-    //     this.authService.refreshToken();
-    //     const options = this.httpHelper.getCommonAuthHeaders();
-    //     const url = Config.proxyUrl + Config.getReuseLocationsUrl;
+    getReuseLocations(customerClassCode: string, marketCode: string, customerId: number): Observable<ReusableChassisLocationData[]> {
+        console.log("Starting getReuseLocations()");
+        this.authService.refreshToken();
+        const options = this.httpHelper.getCommonAuthHeaders();
+        const url = Config.proxyUrl + Config.getReuseLocationsUrl;
 
-    //     var params = {
-    //         "CustomerClassCode": customerClassCode,
-    //         "CustomerId": customerId,
-    //         "MarketCode": marketCode,
-    //         "Reuse": true
-    //     };
+        var params = {
+            "CustomerClassCode": customerClassCode,
+            "CustomerId": customerId,
+            "MarketCode": marketCode,
+            "Reuse": true
+        };
 
-    //     const locationData: Observable<ReusableChassisLocationData[]> =
-    //         <Observable<ReusableChassisLocationData[]>>
-    //         this.http.post(
-    //             url,
-    //             JSON.stringify(params), options)
-    //             .map(res => res.json())
-    //             .catch(err => {
-    //                 console.log("Error on getReuseLocations(): " + err);
-    //                 this.handleErrors(err);
-    //                 return Observable.of(false);
-    //             });
+        const locationData: Observable<ReusableChassisLocationData[]> =
+            <Observable<ReusableChassisLocationData[]>>
+            this.http.post(
+                url,
+                JSON.stringify(params), options)
+                .map(res => res.json())
+                .catch(err => {
+                    console.log("Error on getReuseLocations(): " + err);
+                    this.handleErrors(err);
+                    return Observable.of(false);
+                });
 
-    //     return locationData;
+        return locationData;
 
 
-    // }
+    }
 
-    // validateReuseChassis(chassisId: string): Observable<ValidateChassisResponse> {
-    //     console.log("Starting validateReuseChassis()");
-    //     this.authService.refreshToken();
-    //     var urlParamsString = `/${chassisId}`;
-    //     const options = this.httpHelper.getCommonAuthHeaders();
-    //     const url = Config.proxyUrl + Config.validateReuseChassisUrl + urlParamsString;
+    validateReuseChassis(chassisId: string): Observable<ValidateChassisResponse> {
+        console.log("Starting validateReuseChassis()");
+        this.authService.refreshToken();
+        var urlParamsString = `/${chassisId}`;
+        const options = this.httpHelper.getCommonAuthHeaders();
+        const url = Config.proxyUrl + Config.validateReuseChassisUrl + urlParamsString;
 
-    //     var returnString = "";
+        var returnString = "";
 
-    //     const validateResponse: Observable<ValidateChassisResponse> =
-    //         <Observable<ValidateChassisResponse>>
-    //         this.http.get(url, options)
-    //             .map(res => res.json())
-    //             .catch(err => {
-    //                 console.log("Error on validateReuseChassis(): " + err);
-    //                 return Observable.of(false);
-    //             });
+        const validateResponse: Observable<ValidateChassisResponse> =
+            <Observable<ValidateChassisResponse>>
+            this.http.get(url, options)
+                .map(res => res.json())
+                .catch(err => {
+                    console.log("Error on validateReuseChassis(): " + err);
+                    return Observable.of(false);
+                });
 
-    //     return validateResponse;
+        return validateResponse;
 
-    // }
+    }
 
     // submitCustomerReuse(submitReuseData: SubmitReuse): Observable<number> {
     //     console.log("Starting submitCustomerReuse()");
@@ -557,16 +558,12 @@ export class OrderService implements OnDestroy {
 
     private handleErrors(error: Response): Observable<any> {
         console.log("Error Occured on request => " + error.status + ": " + error.statusText);
-        if (error.status === 401) {
-            this.authService.logout(true);
+
+        if (error.json().ModelState.ErrorMessage[0]) {
+            dialogs.alert(error.json().ModelState.ErrorMessage[0]);
         }
-        else {
-            if (error.json().ModelState.ErrorMessage[0]) {
-                dialogs.alert(error.json().ModelState.ErrorMessage[0]);
-            }
-        }
-        return Observable.of(false);
-        //return Observable.throw(error);
+        
+        return Observable.of(false);        
     }
 
     ngOnDestroy() {

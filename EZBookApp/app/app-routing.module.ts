@@ -13,6 +13,7 @@ import { SettingsComponent } from "~/settings/settings.component";
 import { AvailableBookingsComponent } from "~/available-bookings/available-bookings.component";
 import { ReviewBookingComponent } from "~/review-booking/review-booking.component";
 import { ConfirmBookingComponent } from "~/confirm-booking/confirm-booking.component";
+import { ReusableChassisComponent } from "~/reusable-chassis/reusable-chassis.component";
 
 
 const routes: Routes = [
@@ -31,7 +32,8 @@ const routes: Routes = [
     //{ path: "order-detail-edit/:id", component: OrderDetailEditComponent }, 
     { path: "available-bookings", component: AvailableBookingsComponent},
     { path: "review-booking", component: ReviewBookingComponent},
-    { path: "confirm-booking", component: ConfirmBookingComponent}
+    { path: "confirm-booking", component: ConfirmBookingComponent},
+    { path: "reusable-chassis", component: ReusableChassisComponent}
 ];
 
 @NgModule({

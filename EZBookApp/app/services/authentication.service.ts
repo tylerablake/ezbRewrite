@@ -20,27 +20,27 @@ import { DashboardBookingSearch } from "~/data/search/dashboard-search.model";
 
 
 @Injectable()
-export class AuthenticationService implements OnDestroy{    
+export class AuthenticationService implements OnDestroy {
     private userProfileSubscription: Subscription;
 
-    constructor(private http: Http, private router: Router, private httpHelper:HttpHelperService, private routerExtensions:RouterExtensions, private data:Data) {         
+    constructor(private http: Http, private router: Router, private httpHelper: HttpHelperService, private routerExtensions: RouterExtensions, private data: Data) {
     }
 
     login(username: string, password: string): Observable<boolean> {
         const url: string = Config.proxyUrl + Config.securityUrl;
-        
-        const options = this.httpHelper.getLoginHeaders(username,password);
-                
+
+        const options = this.httpHelper.getLoginHeaders(username, password);
+
         return this.http.get(url, options)
-            .map((response: Response) => {                                
-                const token = response.json() && response.json().token;                
+            .map((response: Response) => {
+                const token = response.json() && response.json().token;
 
-                if (token) {                    
+                if (token) {
                     Config.token = token;
-                    this.isInternalUser();   
-                    this.data.userClaims = this.getCurrentUserClaims();  
+                    this.isInternalUser();
+                    this.data.userClaims = this.getCurrentUserClaims();
 
-                    this.userProfileSubscription = this.getCurrentUserProfile().subscribe((profile: UserProfile) => {                        
+                    this.userProfileSubscription = this.getCurrentUserProfile().subscribe((profile: UserProfile) => {
                         this.data.userProfile = profile;
                     }, (error) => {
                         this.handleErrors(error);
@@ -71,23 +71,23 @@ export class AuthenticationService implements OnDestroy{
         console.log("Refreshing token!")
         const url: string = Config.proxyUrl + Config.securityUrl;
 
-        const options = this.httpHelper.getCommonAuthHeaders(); 
-        
-        if(Config.token === ""){
+        const options = this.httpHelper.getCommonAuthHeaders();
+
+        if (Config.token === "") {
             return false;
         }
 
         return this.http.get(url, options)
             .map((response: Response) => {
-                
-                const token = response.json() && response.json().token;
-                if (token) {                    
 
-                    Config.token = token;                    
+                const token = response.json() && response.json().token;
+                if (token) {
+
+                    Config.token = token;
                     return true;
 
                 } else {
-                    return false;                    
+                    return false;
                 }
             })
             .catch((error: any) => {
@@ -96,7 +96,7 @@ export class AuthenticationService implements OnDestroy{
             ;
     }
 
-    isAuthenticated():boolean {
+    isAuthenticated(): boolean {
         if (Config.token == null) {
             return false;
         }
@@ -115,7 +115,7 @@ export class AuthenticationService implements OnDestroy{
         return false;
     }
 
-    isAuthorized(entityType, demandPermissions):boolean {
+    isAuthorized(entityType, demandPermissions): boolean {
         if (Config.token == null) {
             return false;
         }
@@ -139,11 +139,11 @@ export class AuthenticationService implements OnDestroy{
         return authorized;
     }
 
-    getCurrentUserClaims():UserClaims {
+    getCurrentUserClaims(): UserClaims {
         if (this.isAuthenticated()) {
             const claims = this.getClaimsFromToken();
             if (claims) {
-                const userClaims:UserClaims = {
+                const userClaims: UserClaims = {
                     UserId: claims.UserId,
                     UserFullName: claims.UserFullName,
                     UserName: claims.sub,
@@ -157,31 +157,31 @@ export class AuthenticationService implements OnDestroy{
 
         return undefined;
     }
-    
-    getCurrentUserProfile(): Observable<any>{
-        const url = Config.proxyUrl + Config.userProfileUrl;
-        const options = this.httpHelper.getCommonAuthHeaders();                                                                        
 
-          const profile: Observable<UserProfile> =
-          <Observable<UserProfile>>
-                  
+    getCurrentUserProfile(): Observable<any> {
+        const url = Config.proxyUrl + Config.userProfileUrl;
+        const options = this.httpHelper.getCommonAuthHeaders();
+
+        const profile: Observable<UserProfile> =
+            <Observable<UserProfile>>
+
             this.http.get(
-            url, options)            
-            .map(res => res.json())
-            .catch(err => {
-                console.log("Error on getCurrentUserProfile(): " + err)
-                return Observable.of(false);
-            })
+                url, options)
+                .map(res => res.json())
+                .catch(err => {
+                    console.log("Error on getCurrentUserProfile(): " + err)
+                    return Observable.of(false);
+                })
             ;
 
-            return profile;                    
+        return profile;
     }
 
     isInternalUser(): boolean {
         if (this.isAuthenticated()) {
             const claims = this.getClaimsFromToken();
             if (claims.CustomerBookingAdditionalCapabilities) {
-                Config.userIsAdmin = true;                
+                Config.userIsAdmin = true;
                 console.log("User is admin.");
                 return true;
             }
@@ -197,46 +197,24 @@ export class AuthenticationService implements OnDestroy{
         return tokenNotExpired("token");
     }
 
-    logout(sessionTimeout?: boolean): void {
+    logout(): void {
         Config.token = "";
         this.data.searchOptions = new DashboardBookingSearch(false);
-        this.routerExtensions.navigate(["/login"], {clearHistory: true});
+        this.routerExtensions.navigate(["/login"], { clearHistory: true });
 
-        if(sessionTimeout){
-            dialogs.alert({
-                title: "Timeout",
-                message: "You were idle too long. You need to login to access the application.",
-                okButtonText: "Ok"
-            });
-            //dialogs.alert("You were idle too long. You need to login to access the application");
-            //TNSFancyAlert.showError("Session Timeout", "You were idle too long. You need to login to access the application.", "Dismiss");    
-            
-        }
-        else if(sessionTimeout === true){
-            dialogs.alert({
-                title: "Success!",
-                message: "Please log in using your new password",
-                okButtonText: "Ok"
-            });
-            //dialogs.alert("Success! Please log in using your new password");
-            //TNSFancyAlert.showSuccess("Success!","Please log in using your new password.");
-        }
-        else{
-            dialogs.alert({
-                title: "",                
-                message: "Logout successful!",
-                okButtonText: "Ok"
-            
-            });
-            //dialogs.alert("Logout successful!");
-            //TNSFancyAlert.showSuccess("Logout Successful!", "", "Dismiss");                    
-        }        
+        dialogs.alert({
+            title: "",
+            message: "Logout successful!",
+            okButtonText: "Ok"
+
+        });
+
     }
 
-    passwordChangeLogout():void{
+    passwordChangeLogout(): void {
         Config.token = "";
         this.data.searchOptions = new DashboardBookingSearch(false);
-        this.routerExtensions.navigate(["/login"], {clearHistory: true});
+        this.routerExtensions.navigate(["/login"], { clearHistory: true });
     }
 
     private getClaimsFromToken() {
@@ -246,13 +224,13 @@ export class AuthenticationService implements OnDestroy{
         return jwt;
     }
 
-    recoverPassword(username:string, scac:string): Observable<boolean>{        
+    recoverPassword(username: string, scac: string): Observable<boolean> {
         return Observable.of(false);
         // if (!username && !scac) {
         //     return;
         // }
         // const url = Config.proxyUrl + Config.recoverPasswordUrl;
-        
+
         // const options = this.httpHelper.getCommonAuthHeaders();
 
         // const recoverPasswordModel:SubmitRecoverPassword = new SubmitRecoverPassword(username, scac);               
@@ -265,7 +243,7 @@ export class AuthenticationService implements OnDestroy{
         //     });
     }
 
-    ngOnDestroy():void{        
+    ngOnDestroy(): void {
         //this.userProfileSubscription.unsubscribe();
     }
 }

@@ -158,9 +158,6 @@ export class AccountService implements OnDestroy {
 
     private handleErrors(error: Response): Observable<any> {
         console.log("Error Occured on request => " + error.status + ": " + error.statusText);
-        if (error.status === 401) {
-            this.authService.logout(true);
-        }
         return Observable.of(false);        
     }
 
