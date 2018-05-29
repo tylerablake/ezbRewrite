@@ -1,6 +1,6 @@
 <GridLayout rows="*, auto" columns="*">
     <GridLayout rows="*" columns="*">
-        <RadListView  #myListView [items]="orders" (itemTap)="onOrderItemTap($event)" class="list-group">
+        <RadListView  #dashboardListView [items]="orders" (itemTap)="onOrderItemTap($event)" class="list-group">
             <ng-template tkListItemTemplate let-order="item" separatorColor="purple">
                 <StackLayout class="list-group-item">
                     <GridLayout rows="auto, auto" columns="200, *" class="list-group-item-content" borderLeftWidth="10" [borderColor]="getColor(order.StatusDescription)">

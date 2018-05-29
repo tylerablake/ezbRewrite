@@ -35,6 +35,7 @@ import { AvailableBookingsComponent } from "~/available-bookings/available-booki
 import { ReviewBookingComponent } from "~/review-booking/review-booking.component";
 import { ConfirmBookingComponent } from "~/confirm-booking/confirm-booking.component";
 import { ReusableChassisComponent } from "~/reusable-chassis/reusable-chassis.component";
+import { ReviewReuseComponent } from "~/review-reuse/review-reuse.component";
 
 
 //Services
@@ -76,7 +77,8 @@ import { HelperService } from "~/services/helper.service";
         AvailableBookingsComponent,
         ReviewBookingComponent,
         ConfirmBookingComponent,
-        ReusableChassisComponent        
+        ReusableChassisComponent,
+        ReviewReuseComponent        
     ],
     providers: [
         AuthenticationService,

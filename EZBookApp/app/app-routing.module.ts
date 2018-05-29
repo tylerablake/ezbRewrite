@@ -14,6 +14,7 @@ import { AvailableBookingsComponent } from "~/available-bookings/available-booki
 import { ReviewBookingComponent } from "~/review-booking/review-booking.component";
 import { ConfirmBookingComponent } from "~/confirm-booking/confirm-booking.component";
 import { ReusableChassisComponent } from "~/reusable-chassis/reusable-chassis.component";
+import { ReviewReuseComponent } from "~/review-reuse/review-reuse.component";
 
 
 const routes: Routes = [
@@ -33,7 +34,8 @@ const routes: Routes = [
     { path: "available-bookings", component: AvailableBookingsComponent},
     { path: "review-booking", component: ReviewBookingComponent},
     { path: "confirm-booking", component: ConfirmBookingComponent},
-    { path: "reusable-chassis", component: ReusableChassisComponent}
+    { path: "reusable-chassis", component: ReusableChassisComponent},
+    { path: "review-reuse", component: ReviewReuseComponent}
 ];
 
 @NgModule({
