@@ -6,6 +6,7 @@ import * as platformModule from "tns-core-modules/platform";
 import { Config } from "../shared/config";
 import { AuthenticationService } from "~/services/authentication.service";
 import * as dialogs from "ui/dialogs";
+import * as TNSPhone from 'nativescript-phone';
 
 @Component({
   selector: "Login",
@@ -88,6 +89,10 @@ export class LoginComponent implements OnInit {
             curve: "ease"
         }
     });
+  }
+
+  onCallCustomerSupport(){    
+    TNSPhone.dial('1-877-987-2226',true);
   }
 
   testLogout():void{
