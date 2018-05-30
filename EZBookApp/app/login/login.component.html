@@ -6,12 +6,12 @@
         <StackLayout class="form" padding="10">
             <GridLayout class="input-field" color="#aaaaaa" rows="auto,auto" columns="auto,*">
                 <Label [color]="this.tracBlueHex" fontSize="20" col="0" row="0" class="fa p-b-5 m-r-10" text="&#xf2be;"></Label>
-                <TextField row="0" col="1" class="input" hint="Username" [(ngModel)]="this.username" style.placeholderColor="#005ABB" autocorrect="false"></TextField>
+                <TextField row="0" col="1" class="input" hint="Username" [(ngModel)]="this.username" style.placeholderColor="gray" autocorrect="false"></TextField>
                 <StackLayout row="1" col="0" colSpan="2" class="hr-light"></StackLayout>
             </GridLayout>
             <GridLayout class="input-field" color="#aaaaaa" rows="auto,auto" columns="auto,*">
                 <Label [color]="this.tracBlueHex" fontSize="24" col="0" row="0" class="fa p-b-5 m-r-15" text="&#xf023;"></Label>
-                <TextField col="1" row="0" secure="true" class="input" hint="Password" [(ngModel)]="this.password" style.placeholderColor="#005ABB" autocorrect="false"></TextField>
+                <TextField col="1" row="0" secure="true" class="input" hint="Password" [(ngModel)]="this.password" style.placeholderColor="gray" autocorrect="false"></TextField>
                 <StackLayout col="0" row="1" colSpan="2" class="hr-light"></StackLayout>
             </GridLayout>
             <Button class="btn btn-primary" textTransform="none" text="Login" (tap)="onSignIn()" [isEnabled]="this.username && this.password ? 'true' : 'false'"></Button>

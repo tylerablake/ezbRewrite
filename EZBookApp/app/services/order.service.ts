@@ -419,7 +419,7 @@ export class OrderService implements OnDestroy {
                     return Observable.of(false);
                 });
 
-        return confirmedBookingOrderId;
+        return confirmedBookingOrderId;        
 
     }
 

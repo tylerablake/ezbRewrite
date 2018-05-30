@@ -7,4 +7,6 @@ export class CustomerBookingDetail {
   UpdateUser: string;
   CustomerBookingId: number;
   AllowReuse: boolean;
+  InventoryOrgCode?: string;
+  EquipmentSize?: string;
 }

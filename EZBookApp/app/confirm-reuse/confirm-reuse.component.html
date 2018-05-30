@@ -3,7 +3,7 @@
 </ActionBar>
 
 <GridLayout rows="*, auto" columns="*">
-  <GridLayout row="0" col="0" rows="100, *, 50" columns="*" *ngIf="this.submitReuseResultData.BookingOrder.BookingOrderCode">
+  <GridLayout row="0" col="0" rows="auto, *, 50" columns="*" *ngIf="this.submitReuseResultData.BookingOrder.BookingOrderCode">
 
     <StackLayout height="80" row="0" col="0" orientation="vertical" verticalAlignment="center" horizontalAlignment="center">
       <Label fontSize="12" text="Your order has been successfully processed." textWrap="false" verticalAlignment="center" horizontalAlignment="center"></Label>
@@ -51,47 +51,54 @@
 
             <GridLayout *ngIf="index == 0" row="1" col="0" rows="*" columns="*" height="40" class="" orientation="horizontal" color="white"
               [backgroundColor]="this.accentColor">
-              <Label class="p-l-10" row="0" col="0" text="Confirmed Booking(s)" textWrap="true" horizontalAlignment="left"></Label>
+              <Label class="p-l-10 font-weight-bold" row="0" col="0" text="Confirmed Booking(s)" textWrap="true" horizontalAlignment="left"></Label>
             </GridLayout>
 
             <GridLayout row="0" col="0" colSpan="3" rows="*" columns="*" height="40" class="font-weight-bold" orientation="horizontal"
               backgroundColor="#e6ecf2">
-              <Label class="p-l-5" row="0" col="0" [text]="'Booking Number: '+ unit.CustomerBookingCode" textWrap="false" horizontalAlignment="center"></Label>
+              <Label class="p-l-10" row="0" col="0" [text]="'Booking Number: '+ unit.CustomerBookingCode" textWrap="false" horizontalAlignment="center"></Label>
             </GridLayout>
             <GridLayout rows="*, *, *" columns="*, *, *" class="list-group-item-content">
 
-              <Label row="0" col="0" colSpan="5" [text]="unit.LocationName" class="text-primary font-weight-bold p-l-5 p-b-10"></Label>
+              <Label row="0" col="0" colSpan="5" [text]="unit.LocationName" class="text-primary font-weight-bold p-b-10"></Label>
               <Label horizontalAlignment="right" class="list-group-item-text m-r-5">
               </Label>
 
               <StackLayout row="1" col="0" colSpan="3" verticalAlignment="center">
-                <Label class="p-l-5 p-b-10">
-                  <FormattedString ios:fontFamily="system">
-                    <Span [text]="unit.LocationStreet1 + ' ' + unit.LocationCity + ', ' + unit.LocationStateProvince" class="text-primary" color="gray"></Span>
-                  </FormattedString>
-                </Label>
-                <Label class="p-l-5 p-b-10" textWrap="true">
-                  <FormattedString ios:fontFamily="system">
-                    <Span [text]="'Hours: ' + unit.LocationOperatingHours" class="text-primary" color="gray"></Span>
-                  </FormattedString>
-                </Label>
+                <Label class="p-b-10 text-primary" [text]="unit.LocationStreet1 + ' ' + unit.LocationCity + ', ' + unit.LocationStateProvince"
+                  color="gray"></Label>
+                <Label class="p-b-10 text-primary" textWrap="true" [text]="'Hours: ' + unit.LocationOperatingHours" color="gray"></Label>
               </StackLayout>
 
-              <StackLayout row="2" col="0" colSpan="1" verticalAlignment="center" orientation="horizontal">
-                <Label col="1" colSpan="1" class="p-l-5 p-b-10 p-r-30">
-                  <FormattedString ios:fontFamily="system">
-                    <Span [text]="getChassisEquipmentString(unit.EquipmentClass)" class="font-weight-bold"></Span>
-                  </FormattedString>
-                </Label>
+              <!-- <StackLayout row="2" col="0" colSpan="3" *ngFor="let details of unit.CustomerBookingDetails">
+                <StackLayout row="2" col="0" colSpan="1" verticalAlignment="center" orientation="horizontal">
+                  <Label col="1" colSpan="1" [text]="getChassisEquipmentString(unit.EquipmentClass)" class="font-weight-bold" color="gray"></Label>
+                </StackLayout>
+
+                <StackLayout row="2" col="1" colSpan="1" verticalAlignment="center" horizontalAlignment="center" orientation="horizontal">
+                  <Label class="font-weight-bold" fontSize="14" [text]="details.ChassisId" color="gray"></Label>
+                </StackLayout>
+
+                <StackLayout row="2" col="2" colSpan="1" verticalAlignment="center" horizontalAlignment="center" orientation="horizontal">
+                  <Label fontSize="14" [text]="unit.InventoryOrgCode" readOnly="true" color="gray"></Label>
+                </StackLayout>
+              </StackLayout> -->
+
+              <StackLayout row="2" col="0" colSpan="3">
+                <StackLayout row="2" col="0" colSpan="1" verticalAlignment="center" orientation="horizontal">
+                  <Label col="1" colSpan="1" [text]="getChassisEquipmentString(unit.EquipmentClass)" class="font-weight-bold" color="gray"></Label>
+                </StackLayout>
+
+                <StackLayout row="2" col="1" colSpan="1" verticalAlignment="center" horizontalAlignment="center" orientation="horizontal">
+                  <Label class="font-weight-bold" fontSize="14" [text]="unit.CustomerBookingDetails[0].ChassisId" color="gray"></Label>
+                </StackLayout>
+
+                <StackLayout row="2" col="2" colSpan="1" verticalAlignment="center" horizontalAlignment="center" orientation="horizontal">
+                  <Label fontSize="14" [text]="unit.InventoryOrgCode" readOnly="true" color="gray"></Label>
+                </StackLayout>
               </StackLayout>
 
-              <StackLayout row="2" col="1" colSpan="1" verticalAlignment="center" horizontalAlignment="center" orientation="horizontal">
-                <Label class="font-weight-bold" fontSize="14" [text]="unit.CustomerBookingDetails[0].ChassisId"></Label>
-              </StackLayout>
 
-              <StackLayout row="2" col="2" colSpan="1" verticalAlignment="center" horizontalAlignment="center" orientation="horizontal">
-                <Label fontSize="14" [text]="unit.InventoryOrgCode" readOnly="true"></Label>
-              </StackLayout>
             </GridLayout>
           </StackLayout>
         </ng-template>
@@ -106,46 +113,35 @@
 
             <GridLayout *ngIf="index == 0" row="1" col="0" rows="*" columns="*" height="40" class="" orientation="horizontal" color="white"
               [backgroundColor]="this.accentColor">
-              <Label class="p-l-10" row="0" col="0" text="Pending Booking(s)" textWrap="true" horizontalAlignment="left"></Label>
+              <Label class="p-l-10 font-weight-bold" row="0" col="0" text="Pending Booking(s)" textWrap="true" horizontalAlignment="left"></Label>
             </GridLayout>
 
             <GridLayout row="0" col="0" colSpan="3" rows="*" columns="*" height="40" class="font-weight-bold" orientation="horizontal"
               backgroundColor="#e6ecf2">
-              <Label class="p-l-5" row="0" col="0" [text]="'Booking Number: Pending'" textWrap="false" horizontalAlignment="left"></Label>
+              <Label class="p-l-10"  row="0" col="0" [text]="'Booking Number: Pending'" textWrap="false" horizontalAlignment="left"></Label>
             </GridLayout>
             <GridLayout rows="*, *, *" columns="*, *, *" class="list-group-item-content p-l-5">
 
-              <Label row="0" col="0" colSpan="5" [text]="unit.LocationName" class="text-primary font-weight-bold p-l-5 p-b-10"></Label>
+              <Label row="0" col="0" colSpan="5" [text]="unit.LocationName" class="text-primary font-weight-bold p-b-10"></Label>
               <Label horizontalAlignment="right" class="list-group-item-text m-r-5">
               </Label>
 
               <StackLayout row="1" col="0" colSpan="3" verticalAlignment="center">
-                <Label class="p-b-10 p-l-5" textWrap="true">
-                  <FormattedString ios:fontFamily="system">
-                    <Span [text]="unit.LocationStreet1 + ' ' + unit.LocationCity + ', ' + unit.LocationStateProvince" class="text-primary" color="gray"></Span>
-                  </FormattedString>
-                </Label>
-                <Label class="p-b-10 p-l-5" textWrap="true">
-                  <FormattedString ios:fontFamily="system">
-                    <Span [text]="'Hours: ' + unit.LocationOperatingHours" class="text-primary" color="gray"></Span>
-                  </FormattedString>
-                </Label>
+                <Label class="p-b-10 text-primary" [text]="unit.LocationStreet1 + ' ' + unit.LocationCity + ', ' + unit.LocationStateProvince"
+                  color="gray"></Label>
+                <Label class="p-b-10 text-primary" textWrap="true" [text]="'Hours: ' + unit.LocationOperatingHours" color="gray"></Label>
               </StackLayout>
 
               <StackLayout row="2" col="0" colSpan="1" verticalAlignment="center" orientation="horizontal">
-                <Label col="1" colSpan="1" class="p-l-5 p-b-10 p-r-30">
-                  <FormattedString ios:fontFamily="system">
-                    <Span [text]="getChassisEquipmentString(unit.EquipmentSize)" class="font-weight-bold"></Span>
-                  </FormattedString>
-                </Label>
+                <Label class="font-weight-bold" [text]="getChassisEquipmentString(unit.EquipmentSize)" color="gray"></Label>
               </StackLayout>
 
               <StackLayout row="2" col="1" colSpan="1" verticalAlignment="center" horizontalAlignment="center" orientation="horizontal">
-                <Label class="font-weight-bold" fontSize="14" [text]="unit.ChassisId"></Label>
+                <Label class="font-weight-bold" fontSize="14" [text]="unit.ChassisId" color="gray"></Label>
               </StackLayout>
 
               <StackLayout row="2" col="2" colSpan="1" verticalAlignment="center" horizontalAlignment="center" orientation="horizontal">
-                <Label class="font-weight-bold" fontSize="14" [text]="unit.InventoryOrgCode"></Label>
+                <Label class="font-weight-bold" fontSize="14" [text]="unit.InventoryOrgCode" color="gray"></Label>
               </StackLayout>
 
             </GridLayout>
@@ -157,9 +153,9 @@
 
 
     <GridLayout columns="*,*" rows="*" row="2" col="0" height="50" orientation="horizontal" horizontalAlignment="center" verticalAlignment="center">
-      <Button row="0" col="0" class="btn btn-primary" text="Create New Reuse" (tap)="onCreateNewReuse()" verticalAlignment="center"
+      <Button android:style="height:60;" textTransform="none" row="0" col="0" class="btn btn-primary" text="Create New Reuse" (tap)="onCreateNewReuse()" verticalAlignment="center"
         horizontalAlignment="stretch"></Button>
-      <Button row="0" col="1" class="btn btn-primary" text="View Orders" (tap)="onViewOrders()" verticalAlignment="center" horizontalAlignment="stretch"></Button>
+      <Button android:style="height:60;" textTransform="none" row="0" col="1" class="btn btn-primary" text="View Orders" (tap)="onViewOrders()" verticalAlignment="center" horizontalAlignment="stretch"></Button>
     </GridLayout>
   </GridLayout>
 

@@ -27,7 +27,7 @@ export class ConfrimReuseComponent implements OnInit {
   private accentColor: string = Config.tracBlueHex;
   private isLoading: boolean = true;
   private bookingVMs: ObservableArray<ReuseCustomerBooking> = new ObservableArray<ReuseCustomerBooking>();
-  private pendingVMs: ObservableArray<ReuseCustomerBooking> = new ObservableArray<ReuseCustomerBooking>();
+  //private pendingVMs: ObservableArray<ReuseCustomerBooking> = new ObservableArray<ReuseCustomerBooking>();
   private customerBookings: ObservableArray<ReuseCustomerBooking> = new ObservableArray<ReuseCustomerBooking>();
   private responsiblePartyName: string = "";
   private motorCarrierName: string = "";
@@ -69,6 +69,9 @@ export class ConfrimReuseComponent implements OnInit {
                 bookings.map(b => {
                   if (b.BookingOrderId) {
                     let confirmedBooking: ReuseCustomerBooking = new ReuseCustomerBooking();
+                    b.CustomerBookingDetails.map(detail => {
+                      
+                    });
                     confirmedBooking = b;
                     this.bookingVMs.push(confirmedBooking);
                   }

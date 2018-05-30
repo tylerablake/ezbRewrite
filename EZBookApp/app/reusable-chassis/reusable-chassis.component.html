@@ -27,7 +27,7 @@
 
     <StackLayout orientation="horizontal" row="1" col="0" horizontalAlignment="center" verticalAlignment="center">
       <Label class="font-weight-bold m-t-5" text="NOTE: " color="#f8a61d" textWrap="true" verticalAlignment="center" horizontalAlignment="center"></Label>
-      <Label verticalAlignment="center" class="m-b-0 m-t-5" horizontalAlignment="center" color="#f8a61d" text="Click to remove chassis once added."
+      <Label verticalAlignment="center" class="m-b-0 m-t-5" horizontalAlignment="center" color="#f8a61d" text="Swipe left to remove chassis once added."
         textWrap="true"></Label>
     </StackLayout>
 
@@ -62,16 +62,16 @@
             </StackLayout>
 
             <StackLayout row="2" col="0" verticalAlignment="center" horizontalAlignment="left" orientation="horizontal">
-              <Label fontSize="14" class="font-weight-bold" [text]="unit.EquipmentTypeDescription"></Label>
+              <Label fontSize="14" class="font-weight-bold" [text]="unit.EquipmentTypeDescription" color="gray"></Label>
             </StackLayout>
 
 
             <StackLayout row="2" col="1" colSpan="1" verticalAlignment="center" horizontalAlignment="left" orientation="horizontal">
-              <Label fontSize="14" class="font-weight-bold" [text]="unit.ChassisId"></Label>
+              <Label fontSize="14" class="font-weight-bold" [text]="unit.ChassisId" color="gray"></Label>
             </StackLayout>
 
             <StackLayout row="2" col="2" colSpan="1" verticalAlignment="center" horizontalAlignment="left" orientation="horizontal">
-              <Label fontSize="14" class="font-weight-bold" [text]="unit.InventoryOrgDesc"></Label>
+              <Label fontSize="14" class="font-weight-bold" [text]="unit.InventoryOrgDesc" color="gray"></Label>
             </StackLayout>
 
 
@@ -83,11 +83,13 @@
         </StackLayout>
       </ng-template>
       <!-- >> angular-listview-swipe-actions-template-html -->
-      <GridLayout *tkListItemSwipeTemplate columns="auto, *, 100" class="gridLayoutLayout" backgroundColor="red" (tap)="onRightSwipeClick($event)">
-        <StackLayout id="delete-view" col="2" class="deleteViewStackLayout" verticalAlignment="center" horizontalAlignment="center">
-          <Label text="delete" color="white" class="swipetemplateLabel font-weight-bold" verticalAlignment="center" horizontalAlignment="center"></Label>
+      <GridLayout *tkListItemSwipeTemplate columns="auto, *, 100" class="gridLayoutLayout" android:backgroundColor="white"  ios:backgroundColor="red" (tap)="onRightSwipeClick($event)">
+        <StackLayout id="delete-view" col="2" verticalAlignment="center" horizontalAlignment="center" backgroundColor="red" height="100%">
+            <Label fontSize="20" class="fa icon" text="&#xf1f8;" color="white" horizontalAlignment="center" verticalAlignment="center"></Label>
+          <Label text="Remove" textTransform="none" color="white" class="swipetemplateLabel font-weight-bold" verticalAlignment="center" horizontalAlignment="center"></Label>
         </StackLayout>
       </GridLayout>
+
     </RadListView>
 
   </GridLayout>

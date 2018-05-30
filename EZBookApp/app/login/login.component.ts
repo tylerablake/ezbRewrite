@@ -36,8 +36,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     //TODO: Remove after testing
-    this.username = "App1";
-    this.password = "App12345";
+    //this.username = "App1";
+    //this.password = "App12345";
   }
 
   onSignIn(): void {    

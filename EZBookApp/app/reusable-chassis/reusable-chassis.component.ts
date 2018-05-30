@@ -7,7 +7,7 @@ import { ListViewEventData, RadListView } from 'nativescript-ui-listview';
 import { RouterExtensions } from 'nativescript-angular/router';
 import { NativeScriptUIListViewModule, RadListViewComponent } from "nativescript-ui-listview/angular";
 import { TKListViewItemDirective, TKListViewItemSwipeDirective } from "nativescript-ui-listview/angular";
-import { View } from 'ui/core/view';
+import { View, isAndroid } from 'ui/core/view';
 import * as dialogs from "ui/dialogs";
 import { LocationFilterSelectItem } from '~/data/location/location-filter-select-item.model';
 import { ReuseAvailabilityViewModel } from '~/data/availability/reuse-availability.viewmodel';
@@ -16,13 +16,15 @@ import { OrderService } from '~/services/order.service';
 @Component({
   selector: 'ReusableChassis',
   moduleId: module.id,
-  templateUrl: './reusable-chassis.component.html'
+  templateUrl: './reusable-chassis.component.html',
+  styleUrls: ["./reusable-chassis.component.scss"]
 })
 
 export class ReusableChassisComponent implements OnInit {
   private isLoading: boolean = false;
   private showErrorMessage: boolean = false;
   private formIsValid: boolean = false;
+  private isAndroid: boolean = false;
   private leftThresholdPassed = false;
   private rightThresholdPassed = false;
   private selectedLocationId: number = 0;
@@ -40,7 +42,11 @@ export class ReusableChassisComponent implements OnInit {
 
   @ViewChild("myListView") listViewComponent: RadListViewComponent;
 
-  constructor(private orderService: OrderService, private data: Data, private page: Page, private routerExtensions: RouterExtensions) { }
+  constructor(private orderService: OrderService, private data: Data, private page: Page, private routerExtensions: RouterExtensions) {
+    if(isAndroid){
+      this.isAndroid = true;
+    }
+   }
 
   ngOnInit() {
     this.getLocationData();

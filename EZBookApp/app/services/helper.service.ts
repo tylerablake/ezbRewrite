@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Config } from '~/shared/config';
 import { isAndroid } from 'tns-core-modules/platform/platform';
+import { Data } from '~/shared/data';
 
 @Injectable()
 export class HelperService {
 
-  constructor() { }
+  constructor(private data:Data) { }
 
   getStatusDescriptionColor(statusDescription: string): string {
     if (!statusDescription) {
@@ -62,6 +63,15 @@ export class HelperService {
 
     return size + "` " + classString;
   };
+
+  getLocationOperatingHours(locationId: number){
+    var location = this.data.locationData.filter(loc => loc.LocationId === locationId)[0];
+
+    if(location){
+      return location.OperatingHours;
+    }
+
+  }
 
 
   addDays(date: Date, days: number): Date {
