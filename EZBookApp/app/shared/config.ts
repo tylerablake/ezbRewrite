@@ -1,9 +1,9 @@
 export class Config {
   //QA Base URL
-  static proxyUrl = "http://helix3qa.tracintermodal.com";
+  //static proxyUrl = "http://helix3qa.tracintermodal.com";
 
   //SIT Base Url
-  //static proxyUrl = "http://ezbsit.tracintermodal.com:50300";
+  static proxyUrl = "http://ezbsit.tracintermodal.com:50300";
 
   static securityUrl = "/trac/api/security/anonymous/authentication/login";
 

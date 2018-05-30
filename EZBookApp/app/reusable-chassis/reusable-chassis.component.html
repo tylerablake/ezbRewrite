@@ -83,7 +83,7 @@
         </StackLayout>
       </ng-template>
       <!-- >> angular-listview-swipe-actions-template-html -->
-      <GridLayout *tkListItemSwipeTemplate columns="auto, *, 100" class="gridLayoutLayout" android:backgroundColor="white"  ios:backgroundColor="red" (tap)="onRightSwipeClick($event)">
+      <GridLayout *tkListItemSwipeTemplate columns="auto, *, auto" class="gridLayoutLayout" android:backgroundColor="white"  ios:backgroundColor="red" (tap)="onRightSwipeClick($event)">
         <StackLayout id="delete-view" col="2" verticalAlignment="center" horizontalAlignment="center" backgroundColor="red" height="100%">
             <Label fontSize="20" class="fa icon" text="&#xf1f8;" color="white" horizontalAlignment="center" verticalAlignment="center"></Label>
           <Label text="Remove" textTransform="none" color="white" class="swipetemplateLabel font-weight-bold" verticalAlignment="center" horizontalAlignment="center"></Label>
