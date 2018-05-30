@@ -27,6 +27,8 @@ import { SubmitBooking } from "~/data/booking/submit-booking.model";
 import { ConfirmBooking } from "~/data/booking/confirm-booking.model";
 import { ReusableChassisLocationData } from "~/data/reuse/reusable-chassis-location-data.model";
 import { ValidateChassisResponse } from "~/data/reuse/validate-chassis-response.model";
+import { SubmitReuse } from "~/data/reuse/submit-reuse.model";
+import { ConfirmReuse } from "~/data/reuse/confirm-reuse.model";
 
 
 @Injectable()
@@ -397,51 +399,51 @@ export class OrderService implements OnDestroy {
 
     }
 
-    // submitCustomerReuse(submitReuseData: SubmitReuse): Observable<number> {
-    //     console.log("Starting submitCustomerReuse()");
-    //     console.log(JSON.stringify(submitReuseData));
-    //     this.authService.refreshToken();
-    //     const options = this.httpHelper.getCommonAuthHeaders();
-    //     const url = Config.proxyUrl + Config.reuseBookingUrl;
+    submitCustomerReuse(submitReuseData: SubmitReuse): Observable<number> {
+        console.log("Starting submitCustomerReuse()");
+        console.log(JSON.stringify(submitReuseData));
+        this.authService.refreshToken();
+        const options = this.httpHelper.getCommonAuthHeaders();
+        const url = Config.proxyUrl + Config.reuseBookingUrl;
 
-    //     const confirmedBookingOrderId: Observable<number> =
-    //         <Observable<number>>
+        const confirmedBookingOrderId: Observable<number> =
+            <Observable<number>>
 
-    //         this.http.post(
-    //             url,
-    //             JSON.stringify(submitReuseData), options)
-    //             .map(res => res.json())
-    //             .catch(err => {
-    //                 console.log("Error on submitCustomerReuse(): " + err);
-    //                 this.handleErrors(err);
-    //                 return Observable.of(false);
-    //             });
+            this.http.post(
+                url,
+                JSON.stringify(submitReuseData), options)
+                .map(res => res.json())
+                .catch(err => {
+                    console.log("Error on submitCustomerReuse(): " + err);
+                    this.handleErrors(err);
+                    return Observable.of(false);
+                });
 
-    //     return confirmedBookingOrderId;
+        return confirmedBookingOrderId;
 
-    // }
+    }
 
-    // getSubmittedCustomerReuseInfo(bookingOrderId: number): Observable<ConfirmReuse> {
-    //     console.log(`Starting getSubmittedCustomerReuseInfo(${bookingOrderId})`);
-    //     this.authService.refreshToken();
-    //     var urlParamsString = `/${bookingOrderId}`;
-    //     const options = this.httpHelper.getCommonAuthHeaders();
-    //     const url = Config.proxyUrl + Config.reuseBookingUrl + urlParamsString;
+    getSubmittedCustomerReuseInfo(bookingOrderId: number): Observable<ConfirmReuse> {
+        console.log(`Starting getSubmittedCustomerReuseInfo(${bookingOrderId})`);
+        this.authService.refreshToken();
+        var urlParamsString = `/${bookingOrderId}`;
+        const options = this.httpHelper.getCommonAuthHeaders();
+        const url = Config.proxyUrl + Config.reuseBookingUrl + urlParamsString;
 
-    //     var returnString = "";
+        var returnString = "";
 
-    //     const confirmReuseResponse: Observable<ConfirmReuse> =
-    //         <Observable<ConfirmReuse>>
-    //         this.http.get(url, options)
-    //             .map(res => res.json())
-    //             .catch(err => {
-    //                 console.log("Error on getSubmittedCustomerReuseInfo(): " + err);
-    //                 this.handleErrors(err);
-    //                 return Observable.of(false);
-    //             });
+        const confirmReuseResponse: Observable<ConfirmReuse> =
+            <Observable<ConfirmReuse>>
+            this.http.get(url, options)
+                .map(res => res.json())
+                .catch(err => {
+                    console.log("Error on getSubmittedCustomerReuseInfo(): " + err);
+                    this.handleErrors(err);
+                    return Observable.of(false);
+                });
 
-    //     return confirmReuseResponse;
-    // }
+        return confirmReuseResponse;
+    }
 
     // getEditBookingDetails(bookingOrderId: number): Observable<EditBookingResponse> {
     //     console.log(`Starting getEditBookingDetails(${bookingOrderId})`);

@@ -6,36 +6,24 @@
 
     <GridLayout row="0" col="0" rows="40,40,40" columns="*" backgroundColor="#efefef">
 
-      <!-- <GridLayout row="0" col="0" rows="*" columns="auto,*" height="40" class="m-t-20 m-l-10 m-r-10 m-b-10" orientation="horizontal"
+      <GridLayout row="0" col="0" rows="*" columns="*" height="40" class="m-t-10 m-l-10 m-r-10 m-b-10" orientation="horizontal"
         backgroundColor="white">
-        <Label class="p-l-10" row="0" col="0" text="Contact Name" textWrap="false" horizontalAlignment="left"></Label>
-        <TextField class="p-r-10" row="0" col="1" width="200" hint="Contact Name" [(ngModel)]="this.contactName" horizontalAlignment="right"></TextField>
-      </GridLayout>
-
-      <GridLayout row="1" col="0" rows="*" columns="100,*" height="40" class="m-l-10 m-r-10" orientation="horizontal" backgroundColor="white">
-        <Label class="p-l-10" row="0" col="0" text="Email" textWrap="true" horizontalAlignment="left"></Label>
-        <TextField class="p-r-10" row="0" col="1" width="200" hint="Email" [(ngModel)]="this.confirmationEmail" horizontalAlignment="right"></TextField>
-      </GridLayout>
-
-      <GridLayout row="2" col="0" rows="*" columns="100,*" height="40" class="m-l-10 m-r-10 m-b-20" orientation="horizontal" backgroundColor="white">
-        <Label class="p-l-10" row="0" col="0" text="Comments" textWrap="true" horizontalAlignment="left"></Label>
-        <TextField class="p-r-10" row="0" col="1" width="200" hint="Comment" [(ngModel)]="this.comments" horizontalAlignment="right"></TextField>
-      </GridLayout> -->
-
-      <GridLayout row="0" col="0" rows="*" columns="*" height="40" class="m-t-20 m-l-10 m-r-10 m-b-10" orientation="horizontal" backgroundColor="white">
         <!-- <Label class="p-l-10" row="0" col="0"  text="Contact Name" textWrap="false" horizontalAlignment="left"></Label> -->
-        <TextField class="p-l-5 p-r-10" row="0" col="1" width="400" textWrap="true" hint="Contact Name" [(ngModel)]="this.contactName" horizontalAlignment="left"></TextField>
+        <TextField class="p-l-5 p-r-10" row="0" col="1" width="400" textWrap="true" hint="Contact Name" [(ngModel)]="this.contactName"
+          horizontalAlignment="left"></TextField>
       </GridLayout>
 
       <GridLayout row="1" col="0" rows="*" columns="*" height="40" class="m-l-10 m-r-10" orientation="horizontal" backgroundColor="white">
-          <!-- <Label class="p-l-10" row="0" col="0"  text="Email" textWrap="true" horizontalAlignment="left"></Label> -->
-          <TextField class="p-l-5 p-r-10" row="0" col="1" width="400" textWrap="true" hint="Email" [(ngModel)]="this.confirmationEmail" horizontalAlignment="left"></TextField>
-        </GridLayout>
+        <!-- <Label class="p-l-10" row="0" col="0"  text="Email" textWrap="true" horizontalAlignment="left"></Label> -->
+        <TextField class="p-l-5 p-r-10" row="0" col="1" width="400" textWrap="true" hint="Email" [(ngModel)]="this.confirmationEmail"
+          horizontalAlignment="left"></TextField>
+      </GridLayout>
 
-        <GridLayout row="2" col="0" rows="*" columns="*" height="40" class="m-l-10 m-r-10 m-b-20" orientation="horizontal" backgroundColor="white">
-            <!-- <Label class="p-l-10" row="0" col="0"  text="Comments" textWrap="true" horizontalAlignment="left"></Label> -->
-            <TextView android:style="padding-left:5;" class="p-r-10" row="0" col="0" width="400" fontSize="17" textWrap="true" hint="Comment" [(ngModel)]="this.comments" horizontalAlignment="left"></TextView>
-          </GridLayout>
+      <GridLayout row="2" col="0" rows="*" columns="*" height="40" class="m-l-10 m-r-10 m-b-10" orientation="horizontal" backgroundColor="white">
+        <!-- <Label class="p-l-10" row="0" col="0"  text="Comments" textWrap="true" horizontalAlignment="left"></Label> -->
+        <TextView android:style="padding-left:5;" class="p-r-10" row="0" col="0" width="400" fontSize="17" textWrap="true" hint="Comment"
+          [(ngModel)]="this.comments" horizontalAlignment="left"></TextView>
+      </GridLayout>
 
 
     </GridLayout>
@@ -75,17 +63,17 @@
               <!-- <Label col="1" colSpan="1" class="p-b-10">                
                   <Span fontSize="14" [text]="unit.EquipmentTypeDescription" class="font-weight-bold"></Span>                
               </Label> -->
-              <Label fontSize="14" class="font-weight-bold"  [text]="unit.EquipmentTypeDescription" readOnly="true"></Label>
+              <Label fontSize="14" class="font-weight-bold" [text]="unit.EquipmentTypeDescription" readOnly="true" color="gray"></Label>
             </StackLayout>
 
 
             <StackLayout row="2" col="1" colSpan="1" verticalAlignment="center" horizontalAlignment="center" orientation="horizontal">
-              <Label fontSize="14" [text]="unit.ChassisId" class="font-weight-bold" readOnly="true"></Label>
+              <Label fontSize="14" [text]="unit.ChassisId" class="font-weight-bold" readOnly="true" color="gray"></Label>
             </StackLayout>
 
-            <StackLayout row="2" col="2" colSpan="1" verticalAlignment="center" horizontalAlignment="left" orientation="horizontal">              
-                <Label fontSize="14" class="font-weight-bold"  [text]="unit.InventoryOrgDesc"></Label>
-              </StackLayout>
+            <StackLayout row="2" col="2" colSpan="1" verticalAlignment="center" horizontalAlignment="left" orientation="horizontal">
+              <Label fontSize="14" class="font-weight-bold" [text]="unit.InventoryOrgDesc" color="gray"></Label>
+            </StackLayout>
 
           </GridLayout>
         </StackLayout>
@@ -95,6 +83,7 @@
 
   </GridLayout>
 
-  <Button textTransform="none" android:style="height:60;" row="1" col="0" class="btn btn-primary" text="Submit" (tap)="onSubmitReviewReuse()" verticalAlignment="center" horizontalAlignment="stretch"></Button>
+  <Button textTransform="none" android:style="height:60;" row="1" col="0" class="btn btn-primary" text="Submit" (tap)="onSubmitReviewReuse()"
+    verticalAlignment="center" horizontalAlignment="stretch"></Button>
 
 </GridLayout>

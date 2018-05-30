@@ -45,6 +45,7 @@ import { HttpHelperService } from "~/services/http-helper.service";
 import { OrderService } from "~/services/order.service";
 import { Data } from "~/shared/data";
 import { HelperService } from "~/services/helper.service";
+import { ConfrimReuseComponent } from "~/confirm-reuse/confirm-reuse.component";
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import { HelperService } from "~/services/helper.service";
         ReviewBookingComponent,
         ConfirmBookingComponent,
         ReusableChassisComponent,
-        ReviewReuseComponent        
+        ReviewReuseComponent,
+        ConfrimReuseComponent        
     ],
     providers: [
         AuthenticationService,
